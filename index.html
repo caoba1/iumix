@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self'".>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doc</title>
+    <meta name="description" content="Getting youtube data">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="styles/audioApp.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins|Lacquer' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+  <div class="pageHeader"><h1>This is the title</h1></div>
+  <div class="wrapper">
+
+  <div><label>A</label>
+  <div class="audioCapsule">
+    <audio class="audioStream" id="audioStreamA" autostart="0" autostart="false" preload ="none" controls>
+        <source src="http://localhost:3000/audio1?songId=t1TcDHrkQYg" type="audio/mpeg">
+    </audio>
+  </div>
+  <div>
+    Master <input type="range" id="volumeA" min="0" max="1" value="0.5" step="0.01">
+  </div>
+  <div>
+    Pan <input type="range" id="pannerA" min="-1" max="1" value="0" step="0.01">
+  </div>
+  <div>
+    Que: <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"><a href="#">set!</a></div>
+  </div>
+</div>
+
+<div><label>B</label>
+  <div class="audioCapsule">
+    <audio class="audioStream" id="audioStreamB" autostart="0" autostart="false" preload ="none" controls>
+        <source src="http://localhost:3000/audio2?songId=6W5pq4bIzIw" type="audio/mpeg">
+    </audio>
+  </div>
+  <div>
+    Master <input type="range" id="volumeB" min="0" max="1" value="0" step="0.01">
+  </div>
+  <div>
+    Pan <input type="range" id="pannerB" min="-1" max="1" value="0" step="0.01">
+  </div>
+  <div>
+    Que: <textarea class="yTiD" id="setIdB">#</textarea> <div id="setIdBSET" class="set-button"><a href="#">set!</a></div>
+  </div>
+</div>
+
+</div>
+
+<div>
+  Master <input type="range" id="volumeMaster" min="0" max="1" value="0.5" step="0.01">
+</div>
+<div>
+  Mix <input type="range" id="volumeMixer" min="-0.5" max="0.5" value="0" step="0.05">
+</div>
+<div>
+  <div class="toggle-btn" id="playAllButton"><a href="#">Play</a></div>
+  <div class="toggle-btn" id="pauseAllButton"><a href="#">Pause</a></div>
+</div>
+
+    <!-- Below is your custom application script -->
+    <script src="scripts/audioApp.js"></script>
+
+<div class="wrapper-search">
+  <label style="font-size: 36px"> Search Songs</label>
+  <div class="search-box">
+    <input type="text" id="search-box-text" value="planes"> <!-- change to get element id -->
+    <button type="button" class="toggle-btn" onclick="doSearch()">Submit</button>
+  </div>
+  <div class="search-results">
+    Results </br>
+
+    <div class="suggest-list">
+        Hello / This is not centered. </br>
+        <select id="search-results">
+        </select>
+    </div>
+    
+    Send to que </br>
+    <div class="toggle-btn" id="sendToA"><a href="#">A</a></div>
+    <div class="toggle-btn" id="sendToB"><a href="#">B</a></div>
+    <div>
+
+    </div>
+  </div>
+</div>
+
+    <!-- Search section for youtube streams -->
+
+    <script src="scripts/searchApp.js"></script>
+
+</body>
+</html>
