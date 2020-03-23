@@ -31,36 +31,40 @@ function initProgressBar() {
     progressbar.value = percent; /// 100;
   }
 };
-/*
+
 function initProgressBarB() {
-  var player = document.getElementById('audioStreamB');
-  var length = document.getElementById('durationB').innerHTML;//player.duration
-  var current_time = player.currentTime;
-  player.duration = length;
+  var playerB = document.getElementById('audioStreamB');
+  var lengthB = document.getElementById('durationB').innerHTML;//player.duration
+  var current_timeB = playerB.currentTime;
+  playerB.duration = lengthB;
 //console.log(length);
   // calculate total length of value
-  var totalLength = calculateTotalValue(length)
+  var totalLength = calculateTotalValue(lengthB)
   document.getElementById("end-timeB").innerHTML = totalLength;
 
   // calculate current value time
-  var currentTime = calculateCurrentValue(current_time);
-  document.getElementById("start-timeB").innerHTML = currentTime;
+  var currentTimeB = calculateCurrentValue(current_timeB);
+  document.getElementById("start-timeB").innerHTML = currentTimeB;
 
-  var progressbar = document.getElementById('seek-objB');
-  progressbar.value = (player.currentTime / length);
-  progressbar.addEventListener("click", seek);
+  var progressbarB = document.getElementById('seek-objB');
 
-  if (player.currentTime == player.duration) {
+  if (lengthB !=0){
+  progressbarB.value = (playerB.currentTime  / lengthB);
+} else {progressbarB.value = 0;}
+  progressbarB.addEventListener("click", seek);
+
+// change to length
+  if (playerB.currentTime == playerB.duration) {
     document.getElementById('play-btnB').className = "";
   }
 
   function seek(event) {
     var percent = event.offsetX / this.offsetWidth;
-    player.currentTime = percent * length;//player.duration;
-    progressbar.value = percent; /// 100;
+    playerB.currentTime = percent * lengthB;//player.duration;
+    progressbarB.value = percent; /// 100;
   }
 };
-*/
+
 
 function initPlayers(num) {
   // pass num in if there are multiple audio players e.g 'player' + i
@@ -82,6 +86,7 @@ function initPlayers(num) {
                 // Controls & Sounds Methods
                 // ----------------------------------------------------------
                 function togglePlay() {
+                  console.log("Player A toggled");
                   if (player.paused === false) {
                     player.pause();
                     isPlaying = false;
@@ -96,24 +101,24 @@ function initPlayers(num) {
 
 
       }else if (i===1){
-
         var playerContainer = document.getElementById('player-containerB'),
-          player = document.getElementById('audioStreamB'),
+          playerB = document.getElementById('audioStreamB'),
           isPlaying = false,
-          playBtn = document.getElementById('play-btnB');
-                if (playBtn != null) {
-                  playBtn.addEventListener('click', function() {
+          playBtnB = document.getElementById('play-btnB');
+                if (playBtnB != null) {
+                  playBtnB.addEventListener('click', function() {
                     togglePlayB()
                   });
                 }
             function togglePlayB() {
-                  if (player.paused === false) {
-                    player.pause();
+              console.log("Player B toggled");
+                  if (playerB.paused === false) {
+                    playerB.pause();
                     isPlaying = false;
                     document.getElementById('play-btnB').className = "";
 
                   } else {
-                    player.play();
+                    playerB.play();
                     document.getElementById('play-btnB').className = "pause";
                     isPlaying = true;
                   }
@@ -143,11 +148,12 @@ function calculateCurrentValue(currentTime) {
   return current_time;
 }
 
-initPlayers(1);
+//Initialize!
+initPlayers(2);
 setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'));
-//setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'));
+setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'));
 initProgressBar();
-//initProgressBarB();
+initProgressBarB();
 
 
 /*function initPlayers(num) {
