@@ -1,0 +1,49 @@
+.audio-player {
+  border: 1px solid #dfdfdf;
+  text-align: center;
+  display: flex;
+  flex-flow: row;
+  margin: 0 0 2rem 0;
+  width: 100%; }
+  .audio-player .album-image {
+    min-height: 80px;
+    width: 80px;
+    background-size: cover; }
+  .audio-player .player-controls {
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    flex: 3; }
+    .audio-player .player-controls progress {
+      width: 90%; }
+    .audio-player .player-controls progress[value] {
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: white;
+      color: blue;
+      height: 5px; }
+    .audio-player .player-controls progress[value]::-webkit-progress-bar {
+      background-color: white;
+      border-radius: 2px;
+      border: 1px solid #dfdfdf;
+      color: blue; }
+    .audio-player .player-controls progress::-webkit-progress-value {
+      background-color: blue; }
+    .audio-player .player-controls p {
+      font-size: 1rem; }
+  .audio-player #play-btn {
+    background-image: url("../images/play.svg");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    /*filter: invert(92%) sepia(18%) saturate(516%) hue-rotate(60deg) brightness(103%) contrast(102%);*/
+    }
+  .audio-player #play-btn:hover,
+  .audio-player #play-btn:focus {
+      filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    }
+  .audio-player #play-btn.pause {
+      background-image: url("../images/pause.svg"); }
+
+/*# sourceMappingURL=audio-player.css.map */

@@ -1,11 +1,13 @@
 const express = require("express");
 const app = new express();
 const stream = require('youtube-audio-stream');
+const cors = require('cors')
+app.use(cors());
 
 const uri = "https://www.youtube.com/watch?v=";
 
 app.use(function(req, res, next) {
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
+    res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-inline' https://apis.google.com");
     return next();
 });
 app.use(express.static(__dirname + '/'));

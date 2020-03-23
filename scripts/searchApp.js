@@ -12,14 +12,14 @@ function doSearch() {
 
 
 const thisDocIdElement = document.getElementById('search-results');
-    
+
 
 
     var ajaxSearchRequest = new XMLHttpRequest();
 ajaxSearchRequest.onreadystatechange = function() {
     if (ajaxSearchRequest.readyState == XMLHttpRequest.DONE) {
         // alert(ajaxSearchRequest.responseText);
-        
+
         let parsedResponse = JSON.parse(ajaxSearchRequest.responseText);
         console.log(ajaxSearchRequest.responseText);
         console.log("-------------------");
@@ -48,9 +48,31 @@ ajaxSearchRequest.open('GET', url, true);
 ajaxSearchRequest.send(null);
 
 
-    
 
 
 
 
+
+};
+
+
+function setVideoTitleData(videoId, thisElement){
+
+  var apiYTK = 'AIzaSyDn4eBLCP-WKdF5WZK3auTyfX-N5uIev6k';
+  let url='https://www.googleapis.com/youtube/v3/videos?id='+videoId+'&key='+apiYTK+'&fields=items(id,snippet(channelId,title,categoryId),statistics)&part=snippet,statistics';
+  var videoTitle="";
+  var ajaxSearchRequest = new XMLHttpRequest();
+ajaxSearchRequest.onreadystatechange = function() {
+  if (ajaxSearchRequest.readyState == XMLHttpRequest.DONE) {
+      let parsedResponse = JSON.parse(ajaxSearchRequest.responseText);
+      console.log(ajaxSearchRequest.responseText);
+      console.log("-------------------");
+      console.log(parsedResponse.items[0].snippet.title);
+      videoTitle=parsedResponse.items[0].snippet.title;
+      thisElement.innerHTML = videoTitle;
+  }
+}
+ajaxSearchRequest.open('GET', url, true);
+ajaxSearchRequest.send(null);
+//return videoTitle;//parsedResponse.items[0].snippet.title;
 };
