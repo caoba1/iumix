@@ -1,9 +1,9 @@
 function initProgressBar() {
   var player = document.getElementById('audioStreamA');
-  var length = player.duration
+  var length = document.getElementById('durationA').innerHTML;//player.duration
   var current_time = player.currentTime;
-
-console.log(player.metadata);
+  player.duration = length;
+//console.log(length);
   // calculate total length of value
   var totalLength = calculateTotalValue(length)
   document.getElementById("end-time").innerHTML = totalLength;
@@ -13,7 +13,12 @@ console.log(player.metadata);
   document.getElementById("start-time").innerHTML = currentTime;
 
   var progressbar = document.getElementById('seek-obj');
-  progressbar.value = (player.currentTime / player.duration);
+  //console.log("<<<"+player.currentTime);
+  //progressbar.value = (player.currentTime / player.duration);
+  if (length !=0){
+  progressbar.value = (player.currentTime / length);
+} else {progressbar.value = 0;}
+  //console.log("of "+player.duration+">>>");
   progressbar.addEventListener("click", seek);
 
   if (player.currentTime == player.duration) {
@@ -22,22 +27,50 @@ console.log(player.metadata);
 
   function seek(event) {
     var percent = event.offsetX / this.offsetWidth;
-    player.currentTime = percent * player.duration;
-    progressbar.value = percent / 100;
+    player.currentTime = percent * length;//player.duration;
+    progressbar.value = percent; /// 100;
   }
 };
+/*
+function initProgressBarB() {
+  var player = document.getElementById('audioStreamB');
+  var length = document.getElementById('durationB').innerHTML;//player.duration
+  var current_time = player.currentTime;
+  player.duration = length;
+//console.log(length);
+  // calculate total length of value
+  var totalLength = calculateTotalValue(length)
+  document.getElementById("end-timeB").innerHTML = totalLength;
+
+  // calculate current value time
+  var currentTime = calculateCurrentValue(current_time);
+  document.getElementById("start-timeB").innerHTML = currentTime;
+
+  var progressbar = document.getElementById('seek-objB');
+  progressbar.value = (player.currentTime / length);
+  progressbar.addEventListener("click", seek);
+
+  if (player.currentTime == player.duration) {
+    document.getElementById('play-btnB').className = "";
+  }
+
+  function seek(event) {
+    var percent = event.offsetX / this.offsetWidth;
+    player.currentTime = percent * length;//player.duration;
+    progressbar.value = percent; /// 100;
+  }
+};
+*/
 
 function initPlayers(num) {
   // pass num in if there are multiple audio players e.g 'player' + i
   for (var i = 0; i < num; i++) {
     (function() {
-      if (num===1){
+      if (i===0){
         var playerContainer = document.getElementById('player-container'),
           player = document.getElementById('audioStreamA'),
           isPlaying = false,
           playBtn = document.getElementById('play-btn');
-
-
                 // Controls Listeners
                 // ----------------------------------------------------------
                 if (playBtn != null) {
@@ -62,9 +95,7 @@ function initPlayers(num) {
                 }
 
 
-
-
-      }else if (num===2){
+      }else if (i===1){
 
         var playerContainer = document.getElementById('player-containerB'),
           player = document.getElementById('audioStreamB'),
@@ -111,9 +142,13 @@ function calculateCurrentValue(currentTime) {
 
   return current_time;
 }
-initPlayers(2);
-setVideoTitleData(idInA,document.getElementById('titleA'));
-setVideoTitleData(idInB,document.getElementById('titleB'));
+
+initPlayers(1);
+setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'));
+//setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'));
+initProgressBar();
+//initProgressBarB();
+
 
 /*function initPlayers(num) {
   // pass num in if there are multiple audio players e.g 'player' + i

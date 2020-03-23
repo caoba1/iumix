@@ -19,11 +19,11 @@
     .audio-player .player-controls progress[value] {
       -webkit-appearance: none;
       appearance: none;
-      background-color: white;
+      background-color: yellow;
       color: blue;
       height: 5px; }
     .audio-player .player-controls progress[value]::-webkit-progress-bar {
-      background-color: white;
+      background-color: green;
       border-radius: 2px;
       border: 1px solid #dfdfdf;
       color: blue; }
@@ -31,19 +31,20 @@
       background-color: blue; }
     .audio-player .player-controls p {
       font-size: 1rem; }
-  .audio-player #play-btn {
+  .audio-player #play-btn, .audio-player #play-btnB {
     background-image: url("../images/play.svg");
     background-size: cover;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     display: inline-block;
     /*filter: invert(92%) sepia(18%) saturate(516%) hue-rotate(60deg) brightness(103%) contrast(102%);*/
     }
-  .audio-player #play-btn:hover,
-  .audio-player #play-btn:focus {
+  .audio-player #play-btn:hover, .audio-player #play-btnB:hover,
+  .audio-player #play-btn:focus, .audio-player #play-btnB:focus {
       filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
     }
-  .audio-player #play-btn.pause {
+  .audio-player #play-btn.pause,
+  .audio-player #play-btnB.pause {
       background-image: url("../images/pause.svg"); }
-
+/* Issue with ID and class of buttons !(!!)
 /*# sourceMappingURL=audio-player.css.map */

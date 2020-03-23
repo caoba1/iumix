@@ -47,20 +47,15 @@ ajaxSearchRequest.onreadystatechange = function() {
 ajaxSearchRequest.open('GET', url, true);
 ajaxSearchRequest.send(null);
 
-
-
-
-
-
-
 };
 
 
-function setVideoTitleData(videoId, thisElement){
+function setVideoTitleData(videoId, thisElementVideo, thisElementDuration){
 
   var apiYTK = 'AIzaSyDn4eBLCP-WKdF5WZK3auTyfX-N5uIev6k';
-  let url='https://www.googleapis.com/youtube/v3/videos?id='+videoId+'&key='+apiYTK+'&fields=items(id,snippet(channelId,title,categoryId),statistics)&part=snippet,statistics';
+  let url='https://www.googleapis.com/youtube/v3/videos?id='+videoId+'&key='+apiYTK+'&fields=items(id,snippet(channelId,title,categoryId),statistics,contentDetails(duration))&part=snippet,statistics,contentDetails';
   var videoTitle="";
+  var videoDuration="";
   var ajaxSearchRequest = new XMLHttpRequest();
 ajaxSearchRequest.onreadystatechange = function() {
   if (ajaxSearchRequest.readyState == XMLHttpRequest.DONE) {
@@ -69,10 +64,37 @@ ajaxSearchRequest.onreadystatechange = function() {
       console.log("-------------------");
       console.log(parsedResponse.items[0].snippet.title);
       videoTitle=parsedResponse.items[0].snippet.title;
-      thisElement.innerHTML = videoTitle;
+      thisElementVideo.innerHTML = videoTitle;
+
+      //Get media element convertDuration
+      videoDuration=convertDuration(parsedResponse.items[0].contentDetails.duration);
+      thisElementDuration.innerHTML = videoDuration;
   }
 }
 ajaxSearchRequest.open('GET', url, true);
 ajaxSearchRequest.send(null);
 //return videoTitle;//parsedResponse.items[0].snippet.title;
 };
+
+function convertDuration(ytTimeFormat){
+
+  //thanksto  https://stackoverflow.com/questions/22148885/converting-youtube-data-api-v3-video-duration-format-to-seconds-in-javascript-no
+  //function YTDurationToSeconds(duration) {
+    var match = ytTimeFormat.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+
+    match = match.slice(1).map(function(x) {
+      if (x != null) {
+          return x.replace(/\D/, '');
+      }
+    });
+
+    var hours = (parseInt(match[0]) || 0);
+    var minutes = (parseInt(match[1]) || 0);
+    var seconds = (parseInt(match[2]) || 0);
+
+    return hours * 3600 + minutes * 60 + seconds;
+//  }
+
+
+
+}
