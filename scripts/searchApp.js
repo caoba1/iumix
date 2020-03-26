@@ -69,6 +69,7 @@ ajaxSearchRequest.onreadystatechange = function() {
       //Get media element convertDuration
       videoDuration=convertDuration(parsedResponse.items[0].contentDetails.duration);
       thisElementDuration.innerHTML = videoDuration;
+
   }
 }
 ajaxSearchRequest.open('GET', url, true);

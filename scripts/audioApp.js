@@ -241,7 +241,16 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
       audioSource.setAttribute('src', uriString,'type','audio/mpg');
       audioScope.appendChild(audioSource);
       audioScope.load();
+
+
+      idInA = document.querySelector('#setIdA').value.trim();
+      setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'));
+      document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
+      initProgressBar();
+      audioScope.play();
 });
+
+
 
 //According to the sliding window approach
 function getWaveEnvelope(dataBuff,length){
