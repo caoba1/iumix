@@ -11,11 +11,12 @@
     <!--meta name = "Access-Control-Allow-Origin" value = "*" /-->
 
     <link rel="stylesheet" type="text/css" href="audio-player/audio-player.css">
-
+    <link rel="stylesheet" type="text/css" href="audio-player/multirange.css">
 
     <link rel="stylesheet" type="text/css" href="styles/audioApp.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link href='https://fonts.googleapis.com/css?family=Poppins|Lacquer' rel='stylesheet' type='text/css'>
+
 
 </head>
 <body>
@@ -38,10 +39,19 @@
       <p id=titleA>Oslo <small>by</small> Holy Esque</p> <p style:"display:hidden;" id="durationA">0</p>
       <span id="seek-obj-container">
         <progress id="seek-obj" value="0.4" max="1"></progress>
+        <small style="float: left; position: relative; left: 5px; top: -20px;" id="start-time"></small>
+        <small style="float: right; position: relative; right: 20px; top: -20px;" id="end-time"></small>
       </span>
-      <small style="float: left; position: relative; left: 5px; top: -20px;" id="start-time"></small>
-      <small style="float: right; position: relative; right: 20px; top: -20px;" id="end-time"></small>
+
+      <!--span>
+        <input type="range" min="0" max="1" value="0" step="0.01" class="slider" id="slider-lower">
+        <input type="range" min="0" max="1" value="1" step="0.01" class="slider" id="slider-higher">
+      </span-->
+      <span>
+        <input class="slider" type="range" multiple value="1,99" step="0.1"/>
+      </span>
     </div>
+
     </div>
     <!--div class="album-image" style="background-image: url(https://artistxite.ie/imgcache/album/005/161/005161476_500.jpg)"></div-->
   </div>
@@ -78,7 +88,11 @@
       </span>
       <small style="float: left; position: relative; left: 5px; top: -20px;" id="start-timeB"></small>
       <small style="float: right; position: relative; right: 20px; top: -20px;" id="end-timeB"></small>
+
+      <div id="slider">
+      </div>
     </div>
+
     </div>
     <!--div class="album-image" style="background-image: url(https://artistxite.ie/imgcache/album/005/161/005161476_500.jpg)"></div-->
   </div>
@@ -114,6 +128,9 @@
   <div class="toggle-btn" id="pauseAllButton"><a href="#">Pause</a></div>
 </div>
 
+
+<script src="audio-player/multirange.js"></script>
+
   <script src="scripts/searchApp.js"></script>
     <!-- Below is your custom application script -->
     <script src="scripts/audioApp.js"></script>
@@ -123,7 +140,6 @@
 
 
  <!-- this area is light red-->
-
 
 
 
