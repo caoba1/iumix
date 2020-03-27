@@ -22,7 +22,14 @@ function initProgressBar() {
   progressbar.addEventListener("click", seek);
 
   if (player.currentTime == player.duration) {
+    // replay if loop
     document.getElementById('play-btn').className = "";
+  }
+
+  if (player.currentTime >= length * document.getElementById('sliderA').valueHigh) {
+    // replay if loop
+    player.currentTime = length * document.getElementById('sliderA').valueLow;
+    progressbar.value = document.getElementById('sliderA').valueLow;
   }
 
   function seek(event) {

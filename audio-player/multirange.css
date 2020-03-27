@@ -1,5 +1,6 @@
 @supports (--css: variables) {
 	input[type="range"].multirange {
+		width:200px;  /* Change width 1 */
 		padding: 0;
 		margin: 0;
 		display: inline-block;
@@ -10,6 +11,7 @@
 		}
 
 	input[type="range"].multirange.original {
+		width:200px;  /* Change width 2*/
 		position: absolute;
 	}
 
@@ -27,6 +29,7 @@
 		}
 
 	input[type="range"].multirange.middle {
+		width:200px;  /* Change width 3*/
 		position: absolute;
 		-webkit-appearance: none;
 	}
@@ -57,6 +60,7 @@
 		}
 
 	input[type="range"].multirange.ghost {
+		width:200px; /* Change width 4*/
 		position: relative;
 		background: var(--track-background);
 		--track-background: linear-gradient(to right,
@@ -100,7 +104,7 @@
 		input[type="range"].multirange::-ms-fill-upper {
 			background: transparent;
 		}
-	
+
 	input[type="range"].multirange.original {
 		position: absolute;
 	}
