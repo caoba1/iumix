@@ -26,11 +26,15 @@ function initProgressBar() {
     document.getElementById('play-btn').className = "";
   }
 
-  if (player.currentTime >= length * document.getElementById('sliderA').valueHigh) {
+  if (player.currentTime >= length * document.getElementById('sliderA').valueHigh | player.currentTime <= length * document.getElementById('sliderA').valueLow) {
     // replay if loop
     player.currentTime = length * document.getElementById('sliderA').valueLow;
     progressbar.value = document.getElementById('sliderA').valueLow;
   }
+
+  // Show looper's values --- TODO: change placement of this function or add tooltips
+  document.getElementById('sliderALowTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').valueLow*length);
+  document.getElementById('sliderAHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').valueHigh*length);
 
   function seek(event) {
     var percent = event.offsetX / this.offsetWidth;
@@ -64,6 +68,16 @@ function initProgressBarB() {
   if (playerB.currentTime == playerB.duration) {
     document.getElementById('play-btnB').className = "";
   }
+
+  if (playerB.currentTime >= lengthB * document.getElementById('sliderB').valueHigh | playerB.currentTime <= lengthB * document.getElementById('sliderB').valueLow) {
+    // replay if loop
+    playerB.currentTime = lengthB * document.getElementById('sliderB').valueLow;
+    progressbarB.value = document.getElementById('sliderB').valueLow;
+  }
+
+  // Show looper's values --- TODO: change placement of this function or add tooltips
+  document.getElementById('sliderBLowTip').innerHTML=calculateTotalValue(document.getElementById('sliderB').valueLow*lengthB);
+  document.getElementById('sliderBHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderB').valueHigh*lengthB);
 
   function seek(event) {
     var percent = event.offsetX / this.offsetWidth;
@@ -110,7 +124,7 @@ function initPlayers(num) {
       }else if (i===1){
         var playerContainer = document.getElementById('player-containerB'),
           playerB = document.getElementById('audioStreamB'),
-          isPlaying = false,
+          isPlayingB = false,
           playBtnB = document.getElementById('play-btnB');
                 if (playBtnB != null) {
                   playBtnB.addEventListener('click', function() {
@@ -121,13 +135,13 @@ function initPlayers(num) {
               console.log("Player B toggled");
                   if (playerB.paused === false) {
                     playerB.pause();
-                    isPlaying = false;
+                    isPlayingB = false;
                     document.getElementById('play-btnB').className = "";
 
                   } else {
                     playerB.play();
                     document.getElementById('play-btnB').className = "pause";
-                    isPlaying = true;
+                    isPlayingB = true;
                   }
                 }
       }

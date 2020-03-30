@@ -89,6 +89,9 @@ allPlayButton.addEventListener('click', function() {
   let aSB = document.getElementById('audioStreamB');
   aSA.play();
   aSB.play();
+    /* Added after new audio player is installed */
+  document.getElementById('play-btn').className = "pause";
+  document.getElementById('play-btn').className = "pause";
 }, false);
 //The all pause button
 const allPauseButton = document.getElementById('pauseAllButton');
@@ -97,6 +100,9 @@ allPauseButton.addEventListener('click', function() {
   let aSB = document.getElementById('audioStreamB');
   aSA.pause();
   aSB.pause();
+  /* Added after new audio player is installed */
+  document.getElementById('play-btnB').className = "";
+  document.getElementById('play-btnB').className = "";
 }, false);
 
 
@@ -130,7 +136,7 @@ setToB.addEventListener('click', function() {
 
   let AIS = document.getElementById('volumeA').value;
   let BIS = document.getElementById('volumeB').value;
-    console.log("pressed");
+    console.log("nrm pressed");
     if (idA < idB){
         var volUP = measure;
         document.getElementById('volumeA').value = AIS + BIS*volUP;
@@ -149,7 +155,28 @@ setToB.addEventListener('click', function() {
 
 }, false);
 
+/* This two options are diabled, for the time being*/
+const loopInA = document.getElementById('loopA');
+loopInA.addEventListener('change', function() {
+  if (loopInA.checked){
+    console.log("LOOP");
+    document.getElementById("sliderA").disabled = false;
+  }else{
+    console.log("UNLOOP");
+    document.getElementById("sliderA").disabled = true;
+  }
+}, false);
 
+const loopInB = document.getElementById('loopB');
+loopInA.addEventListener('change', function() {
+  if (loopInA.checked){
+    console.log("LOOP");
+    document.getElementById("sliderB").disabled = false;
+  }else{
+    console.log("UNLOOP");
+    document.getElementById("sliderB").disabled = true;
+  }
+}, false);
 
 //
 function getRMSvalue(val){

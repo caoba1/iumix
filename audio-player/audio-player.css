@@ -34,8 +34,8 @@
   .audio-player #play-btn, .audio-player #play-btnB {
     background-image: url("../images/play.svg");
     background-size: cover;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     display: inline-block;
     /*filter: invert(92%) sepia(18%) saturate(516%) hue-rotate(60deg) brightness(103%) contrast(102%);*/
     }

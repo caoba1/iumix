@@ -88,6 +88,7 @@ div {
 /*Youtube track list*/
 .yTiD{
 	background: #808080;
+	height: 14px;
 }
 
 
@@ -170,6 +171,8 @@ margin-bottom: 0px;
   background-color:#F78900;
 }
 
+
+/*For the dev box*/
 .dimmed {
   position: relative;
   color:white;

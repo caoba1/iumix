@@ -31,31 +31,29 @@
   </div-->
   <div class="audio-player">
     <div id="play-btn"></div>
+
     <div class="audio-wrapper" id="player-container" href="javascript:;">
     <audio id="audioStreamA" ontimeupdate="initProgressBar()" autostart="false" preload ="none">
         <source src="http://localhost:3000/audio1?songId=t1TcDHrkQYg" type="audio/mpeg">
     </audio>
     <div class="player-controls scrubber">
-      <p id=titleA>Oslo <small>by</small> Holy Esque</p> <p style:"display:hidden;" id="durationA">0</p>
+      <p id=titleA>Song_title <small>by</small>Author</p> <p style:"display:hidden;" id="durationA">0</p>
       <span id="seek-obj-container">
         <small style="float: left; position: relative; left: 5px; top: -5px;" id="start-time"></small>
         <small style="float: right; position: relative; right: 20px; top: -5px;" id="end-time"></small>
         <progress id="seek-obj" value="0.4" max="1"></progress>
       </span>
-
-      <!--span>
-        <input type="range" min="0" max="1" value="0" step="0.01" class="slider" id="slider-lower">
-        <input type="range" min="0" max="1" value="1" step="0.01" class="slider" id="slider-higher">
-      </span-->
       <span>
         <input id="sliderA" type="range" multiple min="0" max="1" value="0,1" step="0.01"/>
       </span>
     </div>
-
     </div>
-    <!--div class="album-image" style="background-image: url(https://artistxite.ie/imgcache/album/005/161/005161476_500.jpg)"></div-->
+    <!--div class="album-image" style="background-image: url(?)"></div-->
   </div>
-
+  <!-- TODO: place loop-btn inside audio-player-->
+  <div id="loops-btn" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
+    <input type="checkbox" id="loopA" name="loopA" checked disabled>loop from <loopTip id=sliderALowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderAHighTip style="color:lightblue">inf</loopTip>
+  </div>
 
   <div>
     Master <input type="range" id="volumeA" min="0" max="1" value="0.5" step="0.01">
@@ -64,7 +62,7 @@
     Pan <input type="range" id="pannerA" min="-1" max="1" value="0" step="0.01">
   </div>
   <div>
-    Que: <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"><a href="#">set!</a></div>
+    Que: <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"><a href="#">set & play!</a></div>
   </div>
 </div>
 
@@ -74,7 +72,6 @@
         <source src="http://localhost:3000/audio2?songId=6W5pq4bIzIw" type="audio/mpeg">
     </audio>
   </div-->
-
   <div class="audio-player">
     <div id="play-btnB"></div>
     <div class="audio-wrapper" id="player-containerB" href="javascript:;">
@@ -89,25 +86,28 @@
         <progress id="seek-objB" value="0" max="1"></progress>
       </span>
 
-      <!--span>
+      <span>
         <input id="sliderB" type="range" multiple min="0" max="1" value="0,1" step="0.01"/>
-      </span-->
+      </span>
     </div>
 
     </div>
     <!--div class="album-image" style="background-image: url(https://artistxite.ie/imgcache/album/005/161/005161476_500.jpg)"></div-->
   </div>
-
+  <!-- TODO: place loop-btn inside audio-player-->
+  <div id="loops-btnB" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
+    <input type="checkbox" id="loopB" name="loopB" checked disabled>loop from <loopTip id=sliderBLowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderBHighTip style="color:lightblue">inf</loopTip>
+  </div>
 
 
   <div>
-    Master <input type="range" id="volumeB" min="0" max="1" value="0" step="0.01">
+    Master <input type="range" id="volumeB" min="0" max="1" value="0.5" step="0.01">
   </div>
   <div>
     Pan <input type="range" id="pannerB" min="-1" max="1" value="0" step="0.01">
   </div>
   <div>
-    Que: <textarea class="yTiD" id="setIdB">#</textarea> <div id="setIdBSET" class="set-button"><a href="#">set!</a></div>
+    Que: <textarea class="yTiD" id="setIdB">#</textarea> <div id="setIdBSET" class="set-button"><a href="#">set & play!</a></div>
   </div>
 </div>
 
@@ -145,23 +145,21 @@
 
 
 
-
-
+    <!-- Search section for youtube streams -->
 <div class="wrapper-search">
   <label style="font-size: 36px"> Search Songs</label>
   <div class="search-box">
-    <input type="text" id="search-box-text" value="planes"> <!-- change to get element id -->
+    <input type="text" id="search-box-text" value="debussy"> <!-- change to get element id -->
     <button type="button" class="toggle-btn" onclick="doSearch()">Submit</button>
   </div>
   <div class="search-results">
     Results </br>
-
     <div class="suggest-list">
-        Hello / This is not centered. </br>
         <select id="search-results" style="width:100%;">
         </select>
     </div>
-
+    <!-- See https://jsfiddle.net/7ac9us70/1052/ and https://stackoverflow.com/questions/17419957/how-can-i-change-the-font-size-of-a-select-option for styling-->
+    </br>
     Send to que </br>
     <div class="toggle-btn" id="sendToA"><a href="#">A</a></div>
     <div class="toggle-btn" id="sendToB"><a href="#">B</a></div>
@@ -171,11 +169,12 @@
   </div>
 </div>
 
-    <!-- Search section for youtube streams -->
+
 
 
 
 <div class=dimmed>
+  Dev area: </br>
 On player A <br>
 RMS value: <textarea class="yTiD" id="RMSA">#</textarea>
 <br>

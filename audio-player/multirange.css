@@ -72,6 +72,9 @@
 
 		input[type="range"].multirange.ghost::-webkit-slider-runnable-track {
 			background: var(--track-background);
+			/* find out how to height:5px; /*range heigh*/
+
+
 		}
 
 		input[type="range"].multirange.ghost::-moz-range-track {
