@@ -91,7 +91,7 @@ allPlayButton.addEventListener('click', function() {
   aSB.play();
     /* Added after new audio player is installed */
   document.getElementById('play-btn').className = "pause";
-  document.getElementById('play-btn').className = "pause";
+  document.getElementById('play-btnB').className = "pause";
 }, false);
 //The all pause button
 const allPauseButton = document.getElementById('pauseAllButton');
@@ -101,7 +101,7 @@ allPauseButton.addEventListener('click', function() {
   aSA.pause();
   aSB.pause();
   /* Added after new audio player is installed */
-  document.getElementById('play-btnB').className = "";
+  document.getElementById('play-btn').className = "";
   document.getElementById('play-btnB').className = "";
 }, false);
 
