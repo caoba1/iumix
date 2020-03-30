@@ -16,7 +16,10 @@
   "dependencies": {
     "express": "^4.9.8",
     "youtube-audio-stream": "*",
-    "cors": "*"
+    "cors": "*",
+    "fluent-ffmpeg": "2.1.2",
+    "npx": "^10.2.2",
+    "ytdl-core": "1.0.5"
   },
   "engines": {
     "node": "8.12.0"
