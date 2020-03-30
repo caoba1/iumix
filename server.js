@@ -20,12 +20,12 @@ app.get("/audio1", (req, res) => {
   let songId = req.query.songId;
   console.log('YTat1='+songId);
   stream(uri.concat(songId)).pipe(res);
-})
+});
 
 app.get("/audio2", (req, res) => {
   let songId = req.query.songId;
   console.log('YTat2='+songId);
   stream(uri.concat(songId)).pipe(res);
-})
+});
 
-app.listen(PORT, () => console.log("Ready!"))
+app.listen(PORT, () => console.log("Ready!"));
