@@ -1,0 +1,28 @@
+{
+  "name": "uitoo",
+  "version": "0.0.1",
+  "description": "uiToo! Helps you stream sound in a friendly way",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "example",
+    "uitoo"
+  ],
+  "author": "SinPantuflas",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.9.8",
+    "youtube-audio-stream": "*",
+    "cors": "*"
+  },
+  "engines": {
+    "node": "8.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinpantuflas/uitoo"
+  }
+}

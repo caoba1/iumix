@@ -1,7 +1,10 @@
+#!/usr/bin/env node
+
 const express = require("express");
 const app = new express();
 const stream = require('youtube-audio-stream');
-const cors = require('cors')
+const cors = require('cors');
+const PORT = process.env.PORT || 5000;
 app.use(cors());
 
 const uri = "https://www.youtube.com/watch?v=";
@@ -25,4 +28,4 @@ app.get("/audio2", (req, res) => {
   stream(uri.concat(songId)).pipe(res);
 })
 
-app.listen(3000, () => console.log("Ready!"))
+app.listen(PORT, () => console.log("Ready!"))

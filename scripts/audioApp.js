@@ -252,7 +252,8 @@ document.querySelector('#setIdB').addEventListener('keypress', function (e) {
       audioScope.pause();
       audioScope.innerHTML = '';
       var audioSource = document.createElement('source');
-      let uriString = ('http://localhost:3000/').concat('audio2','?','songId=',document.querySelector('#setIdB').value.trim());
+      //let uriString = ('http://localhost:3000/').concat('audio2','?','songId=',document.querySelector('#setIdB').value.trim());
+      let uriString = ''.concat('audio2','?','songId=',document.querySelector('#setIdB').value.trim());
       audioSource.setAttribute('src', uriString,'type','audio/mpg');
       audioScope.appendChild(audioSource);
       audioScope.load();
@@ -264,7 +265,8 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
       audioScope.pause();
       audioScope.innerHTML = '';
       var audioSource = document.createElement('source');
-      let uriString = ('http://localhost:3000/').concat('audio1','?','songId=',document.querySelector('#setIdA').value.trim());
+      //let uriString = ('http://localhost:3000/').concat('audio1','?','songId=',document.querySelector('#setIdA').value.trim());
+      let uriString = ''.concat('audio1','?','songId=',document.querySelector('#setIdA').value.trim());
       audioSource.setAttribute('src', uriString,'type','audio/mpg');
       audioScope.appendChild(audioSource);
       audioScope.load();
