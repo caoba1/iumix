@@ -14,11 +14,12 @@
   "author": "SinPantuflas",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.9.8",
-    "youtube-audio-stream": "*",
     "cors": "*",
+    "express": "^4.9.8",
     "fluent-ffmpeg": "2.1.2",
     "npx": "^10.2.2",
+    "start": "^5.1.0",
+    "youtube-audio-stream": "*",
     "ytdl-core": "1.0.5"
   },
   "engines": {

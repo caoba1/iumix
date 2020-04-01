@@ -41,7 +41,8 @@
     }
   .audio-player #play-btn:hover, .audio-player #play-btnB:hover,
   .audio-player #play-btn:focus, .audio-player #play-btnB:focus {
-      filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    background-color: coral;
+      /*filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);*/
     }
   .audio-player #play-btn.pause,
   .audio-player #play-btnB.pause {

@@ -26,15 +26,15 @@ function initProgressBar() {
     document.getElementById('play-btn').className = "";
   }
 
-  if (player.currentTime >= length * document.getElementById('sliderA').valueHigh | player.currentTime <= length * document.getElementById('sliderA').valueLow) {
+  if (player.currentTime >= length * (document.getElementById('sliderA').highValue/100) | player.currentTime <= length * (document.getElementById('sliderA').lowValue/100)) {
     // replay if loop
-    player.currentTime = length * document.getElementById('sliderA').valueLow;
-    progressbar.value = document.getElementById('sliderA').valueLow;
+    player.currentTime = length * document.getElementById('sliderA').lowValue/100;
+    progressbar.value = document.getElementById('sliderA').lowValue/100;
   }
 
   // Show looper's values --- TODO: change placement of this function or add tooltips
-  document.getElementById('sliderALowTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').valueLow*length);
-  document.getElementById('sliderAHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').valueHigh*length);
+  document.getElementById('sliderALowTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').lowValue*length/100);
+  document.getElementById('sliderAHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').highValue*length/100);
 
   function seek(event) {
     var percent = event.offsetX / this.offsetWidth;
@@ -69,15 +69,15 @@ function initProgressBarB() {
     document.getElementById('play-btnB').className = "";
   }
 
-  if (playerB.currentTime >= lengthB * document.getElementById('sliderB').valueHigh | playerB.currentTime <= lengthB * document.getElementById('sliderB').valueLow) {
+  if (playerB.currentTime >= lengthB * (document.getElementById('sliderB').highValue/100) | playerB.currentTime <= (lengthB * document.getElementById('sliderB').lowValue/100)) {
     // replay if loop
-    playerB.currentTime = lengthB * document.getElementById('sliderB').valueLow;
-    progressbarB.value = document.getElementById('sliderB').valueLow;
+    playerB.currentTime = lengthB * (document.getElementById('sliderB').lowValue/100);
+    progressbarB.value = (document.getElementById('sliderB').lowValue/100);
   }
 
   // Show looper's values --- TODO: change placement of this function or add tooltips
-  document.getElementById('sliderBLowTip').innerHTML=calculateTotalValue(document.getElementById('sliderB').valueLow*lengthB);
-  document.getElementById('sliderBHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderB').valueHigh*lengthB);
+  document.getElementById('sliderBLowTip').innerHTML=calculateTotalValue(document.getElementById('sliderB').lowValue*lengthB/100);
+  document.getElementById('sliderBHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderB').highValue*lengthB/100);
 
   function seek(event) {
     var percent = event.offsetX / this.offsetWidth;
