@@ -36,7 +36,7 @@ div {
   width: 100%;
   background: rgba(0,0,0,0.8);
 	text-align: center;
-	border: 1px solid #ccffcc;
+	border: 0px solid #ccffcc; /*BORDER*/
 }
 
 
