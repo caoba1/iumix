@@ -11,6 +11,7 @@
   <!--meta name = "Access-Control-Allow-Origin" value = "*" /-->
 
   <link rel="stylesheet" type="text/css" href="audio-player/audio-player.css">
+  <!--link rel="stylesheet" type="text/css" href="audio-player/inputrangecolors.css"-->
   <link rel="stylesheet" type="text/css" href="audio-player/multirangesp.css">
 
   <link rel="stylesheet" type="text/css" href="styles/audioApp.css">
@@ -65,14 +66,21 @@
       <input type="checkbox" id="loopA" name="loopA" checked disabled>loop from <loopTip id=sliderALowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderAHighTip style="color:lightblue">inf</loopTip>
     </div>
 
-    <div>
-      Master <input type="range" id="volumeA" min="0" max="1" value="0.5" step="0.01">
+    <div class="rslider">
+      <input type="range" id="volumeA" min="0" max="1" value="0.5" step="0.01">
+      </br> Master
+      <small style="float: left; position: relative; left: 6%; top: -20px; font-size:0.6em; ">min</small>
+      <small style="float: right; position: relative; right: 6%; top: -20px; font-size:0.6em; ">max</small>
+    </div>
+    <div class="rslider">
+      <input type="range" id="pannerA" min="-1" max="1" value="0" step="0.01" style="width:80%">
+      </br> Pan
+      <small style="float: left; position: relative; left: 6%; top: -16px; font-size:0.8em; ">L</small>
+      <small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
     </div>
     <div>
-      Pan <input type="range" id="pannerA" min="-1" max="1" value="0" step="0.01">
-    </div>
-    <div>
-      Que: <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"><a href="#">set & play!</a></div>
+      Que </br>
+       <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
     </div>
   </div>
 
@@ -95,10 +103,9 @@
           <small style="float: right; position: relative; right: 20px; top: -5px;" id="end-timeB"></small>
           <progress id="seek-objB" value="0" max="1"></progress>
         </span>
-
         <span>
           <!--input id="sliderB" type="range" multiple min="0" max="1" value="0,1" step="0.01"/-->
-          <div id="sliderB" class="multirange" role="group" aria-labelledby="multi-lbl" style="--lowVal: 0.0; --highVal: 100; --min: 0; --max: 100;">
+          <div id="sliderB" class="multirange" role="group" aria-labelledby="multi-lbl" style="--lowVal: 0.0; --highVal: 100; --min: 0; --max: 100; --w:120px;">
             <input class="multirange-low-val" id="lowVal" type="range" min="0" value="0" max="100" step="1"/>
             <output for="lowVal" style="--c: var(--lowVal);"></output>
             <input class="multirange-high-val" id="highVal" type="range" min="0" value="100" max="100" step="1"/>
@@ -106,7 +113,6 @@
           </div>
         </span>
       </div>
-
     </div>
     <!--div class="album-image" style="background-image: url(https://artistxite.ie/imgcache/album/005/161/005161476_500.jpg)"></div-->
   </div>
@@ -116,14 +122,21 @@
   </div>
 
 
-  <div>
-    Master <input type="range" id="volumeB" min="0" max="1" value="0.5" step="0.01">
+  <div class="rslider">
+    <input type="range" id="volumeB" min="0" max="1" value="0.5" step="0.01">
+  </br> Master
+  <small style="float: left; position: relative; left: 6%; top: -20px; font-size:0.6em; ">min</small>
+  <small style="float: right; position: relative; right: 6%; top: -20px; font-size:0.6em; ">max</small>
+  </div>
+  <div class="rslider">
+    <input type="range" id="pannerB" min="-1" max="1" value="0" step="0.01" style="width:80%">
+    </br> Pan
+    <small style="float: left; position: relative; left: 6%; top: -16px; font-size:0.8em; ">L</small>
+    <small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
   </div>
   <div>
-    Pan <input type="range" id="pannerB" min="-1" max="1" value="0" step="0.01">
-  </div>
-  <div>
-    Que: <textarea class="yTiD" id="setIdB">#</textarea> <div id="setIdBSET" class="set-button"><a href="#">set & play!</a></div>
+    Que </br>
+     <textarea class="yTiD" id="setIdB">#</textarea> <div id="setIdBSET" class="set-button" style="bottom:7px;"><a href="#">set & play!</a></div>
   </div>
 </div>
 
@@ -134,11 +147,17 @@
   <div id="meanBSET" class="set-button"><a href="#">nrm!</a></div>
 </div>
 
-<div>
-  Master <input type="range" id="volumeMaster" min="0" max="1" value="0.5" step="0.01">
+<div class="rslider">
+  <input style="width:60%" type="range" id="volumeMaster" min="0" max="1" value="0.5" step="0.01">
+</br> Master Volume
+<small style="float: left; position: relative; left: 20%; top: -8px; font-size:0.6em; ">min</small>
+<small style="float: right; position: relative; right: 20%; top: -8px; font-size:0.6em; ">max</small>
 </div>
-<div>
-  Mix <input type="range" id="volumeMixer" min="-0.5" max="0.5" value="0" step="0.05">
+<div class="rslider">
+<input style="width:60%" type="range" id="volumeMixer" min="-0.5" max="0.5" value="0" step="0.05">
+</br> Mix
+<small style="float: left; position: relative; left: 20%; top: -8px; font-size:1.6em; font-family:'Lacquer'; ">A</small>
+<small style="float: right; position: relative; right: 20%; top: -8px; font-size:1.6em; font-family:'Lacquer'; ">B</small>
 </div>
 <div>
   <div class="toggle-btn" id="playAllButton"><a href="#">Play</a></div>
@@ -166,7 +185,7 @@
   <label style="font-size: 36px"> Search Songs</label>
   <div class="search-box">
     <input type="text" id="search-box-text" value="debussy"> <!-- change to get element id -->
-    <button type="button" class="toggle-btn" onclick="doSearch()">Submit</button>
+    <button type="button" class="set-btn" onclick="doSearch()">Submit</button>
   </div>
   <div class="search-results">
     Results </br>

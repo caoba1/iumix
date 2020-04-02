@@ -1,0 +1,94 @@
+.multirange {
+  --dif: calc(var(--max) - var(--min));
+  display: grid;
+  grid-template: repeat(2, -webkit-max-content) 0.5em/ 1fr 1fr;
+  grid-template: repeat(2, max-content) 0.5em/ 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+  margin: 1em auto;
+  width: 90%;  //Change this value to change slider's width
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0.5em, #ccc), color-stop(0, transparent));
+  background: linear-gradient(0deg, #ccc 0.5em, transparent 0);
+  font-family: ubuntu mono, consolas, monaco, monospace;
+}
+.multirange::before, .multirange::after {
+  grid-column: 1/ span 2;
+  grid-row: 3;
+  height: 100%;
+  background: #55a4aa;
+  content: "";
+}
+.multirange::before {
+  margin-left: calc((var(--lowVal) - var(--min))/var(--dif)*100%);
+  width: calc((var(--highVal) - var(--lowVal))/var(--dif)*100%);
+}
+.multirange::after {
+  margin-left: calc((var(--highVal) - var(--min))/var(--dif)*100%);
+  width: calc((var(--lowVal) - var(--highVal))/var(--dif)*100%);
+}
+
+.multirange input[type='range'] {
+  grid-column: 1/ span 2;
+  grid-row: 3;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin: 0;
+  background: none;
+  /* get rid of white Chrome background */
+  --col: #000;
+  pointer-events: none;
+}
+.multirange input[type='range']::-webkit-slider-runnable-track, .multirange input[type='range']::-webkit-slider-thumb, input[type='range'] {
+  -webkit-appearance: none;
+}
+.multirange input[type='range']::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+.multirange input[type='range']::-moz-range-track {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+.multirange input[type='range']::-webkit-slider-thumb {
+  border: none;
+  /* get rid of Firefox thumb border */
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 0;
+  /* get rid of Firefox corner rounding */
+  background: linear-gradient(90deg, #fff 2px, transparent 0) calc(1em - 1px), radial-gradient(circle, var(--col) calc(1em - 1px), transparent 1em);
+  pointer-events: auto;
+}
+.multirange input[type='range']::-moz-range-thumb {
+  border: none;
+  /* get rid of Firefox thumb border */
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 0;
+  /* get rid of Firefox corner rounding */
+  background: linear-gradient(90deg, #fff 2px, transparent 0) calc(1em - 1px), radial-gradient(circle, var(--col) calc(1em - 1px), transparent 1em);
+  pointer-events: auto;
+}
+.multirange input[type='range']:focus {
+  z-index: 2;
+  outline: dotted 1px currentcolor;
+}
+.multirange input[type='range']:focus, .multirange input[type='range']:focus + output {
+  --col: darkorange ;
+}
+
+.multirange output {
+  display: none; //TODO: Check, it can be a tippy box!!
+  grid-row: 2;
+  color: var(--col);
+}
+.multirange output:last-child {
+  text-align: right;
+}
+.multirange output::after {
+  counter-reset: c var(--c);
+  content: "--" attr(for) ": " counter(c) ";";
+}

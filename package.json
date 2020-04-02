@@ -4,7 +4,7 @@
   "description": "uiToo! Helps you stream sound in a friendly way",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --inspect server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,8 +14,10 @@
   "author": "SinPantuflas",
   "license": "MIT",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "cors": "*",
     "express": "^4.9.8",
+    "express-session": "^1.17.0",
     "fluent-ffmpeg": "2.1.2",
     "npx": "^10.2.2",
     "start": "^5.1.0",

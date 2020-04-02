@@ -11,7 +11,7 @@ for (var i = 0; i < multiRangeElements.length; i++) {
      * and one low child element per slider */
     /*let lowValElement = _multiRangeElement.getElementsByClassName('multirange-low-val');
     let highValElement = _multiRangeElement.getElementsByClassName('multirange-high-val');*/
-
+    _multiRangeElement.style.setProperty(`--w`, +_multiRangeElement.clientWidth+"px");
 
     /* Add event listeners */
     _multiRangeElement.addEventListener('input', e => {
@@ -37,6 +37,10 @@ for (var i = 0; i < multiRangeElements.length; i++) {
         }
        _multiRangeElement.highValue =_t.value;
     }
+    //set new rangeSlider
+
+
+
     //showVals();
     }, false);
 
