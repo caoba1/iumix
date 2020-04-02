@@ -25,7 +25,7 @@
     .audio-player .player-controls progress[value]::-webkit-progress-bar {
       background-color: rgba(71, 90, 101, 1);/*green;*/
       border-radius: 2px;
-      border: 1px solid #dfdfdf; /*BORDER*/
+      border: 0px solid #dfdfdf; /*BORDER*/
       color: blue; }
     .audio-player .player-controls progress::-webkit-progress-value {
       background-color: rgba(0, 164, 208, 0.8);/*rgba(0, 208, 127, 0.8);/*blue;*/
