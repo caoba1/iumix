@@ -15,7 +15,7 @@ function doSearch() {
   so to find the duration, and list it in the search results, you would need to do a second search (see below)
   https://stackoverflow.com/questions/27393842/contentdetails-or-duration-not-coming-using-youtube-v3-api/27415212
   like it is in the setVideoTitleData function, or to append each video Id to a searchApp.
-  This increases the amount of calls made to the API*/
+  This increases the amount of calls made to the API */
 
   const thisDocIdElement = document.getElementById('search-results');
 
@@ -72,7 +72,8 @@ function setVideoTitleData(videoId, thisElementVideo, thisElementDuration){
 
       //Get media element convertDuration
       videoDuration=convertDuration(parsedResponse.items[0].contentDetails.duration);
-      thisElementDuration.innerHTML = videoDuration;
+      console.log('Time tag in player '+thisElementVideo.id+':'+videoDuration+'\n')
+      thisElementDuration.innerHTML = videoDuration; //TODO: just jumps in left audio player tag
 
     }
   }
@@ -84,7 +85,7 @@ function setVideoTitleData(videoId, thisElementVideo, thisElementDuration){
 
 /**
 *@param ytTimeFormat is a YouTube time format toString
-*@return time in seconds
+*@return time 'length' in seconds
 **/
 function convertDuration(ytTimeFormat){
 

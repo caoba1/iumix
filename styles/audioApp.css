@@ -101,7 +101,10 @@ div {
   background-color: rgba(0, 31, 10, 0.51);
   height: 1.1em;
   overflow: hidden;
-  resize: none; }
+  resize: none;
+  color: #369883; }
+  .yTiD:hover {
+    behaviour: "scroll"; }
 
 /* toggle-btn modified from https://webdeasy.de/top-css-buttons/*/
 .toggle-btn {
@@ -190,17 +193,16 @@ div {
   color: white; }
   .dimmed .yTiD {
     color: white; }
-
-.dimmed:before {
-  content: " ";
-  z-index: 10;
-  display: block;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5); }
+  .dimmed:before {
+    content: " ";
+    z-index: 10;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5); }
 
 #durationA, #durationB {
   display: none; }

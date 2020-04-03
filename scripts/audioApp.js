@@ -292,6 +292,13 @@ document.querySelector('#setIdB').addEventListener('keypress', function (e) {
     audioSource.setAttribute('src', uriString,'type','audio/mpg');
     audioScope.appendChild(audioSource);
     audioScope.load();
+
+    idInB = document.querySelector('#setIdB').value.trim();
+    setVideoTitleData(idInA,document.getElementById('titleB'),document.getElementById('durationB'));
+    document.getElementById("end-timeB").innerHTML = calculateTotalValue(document.getElementById('durationB').innerHTML);
+    initProgressBarB();
+
+    audioScope.play();
   }
 });
 
@@ -311,6 +318,7 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
   setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'));
   document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
   initProgressBar();
+
   audioScope.play();
 });
 
@@ -325,6 +333,20 @@ if (x.style.display === "none") {
   devOpsIsToggled = false;
 }}
 
+/** TODO: implement playlist is toggled **/
+function togglePlayList(){var x = document.getElementById("iu-playlist");
+if (x.style.display === "none") {
+  x.style.display = "block";
+  document.getElementById("playListButton").innerHTML =" v ";
+  //playliIsToggled = true;
+} else {
+  x.style.display = "none";
+  document.getElementById("playListButton").innerHTML =" > ";
+  //playliIsToggled = false;
+}}
+
+
+/*## jash*/
 //According to the sliding window approach
 function getWaveEnvelope(dataBuff,length){
   let bufferLength = dataBuff.length;

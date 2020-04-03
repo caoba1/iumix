@@ -1,11 +1,12 @@
 /* || General layout rules for narrow screens */
-$border-size-div: 0px !default;
+$border-size-div: 0px !default; 
 
 $alert-box-border-size: 1px !default;
 $alert-box-border-color: #333 !default;
 $alert-box-color: rgba(160,160,180,0.8) !default;
 
 $text-field-color: rgba(0, 31, 10, 0.51) !default;
+$text-field-text-color: rgb(54, 152, 131) !default;
 
 $play-button-color: #cf245c !default;
 
@@ -124,6 +125,10 @@ div {
   height: 1.1em;
   overflow: hidden;
   resize: none;
+  color: $text-field-text-color;
+  &:hover {
+    behaviour: "scroll";
+  }
 }
 
 
@@ -226,17 +231,18 @@ div {
   & .yTiD{
     color: white;
   }
-}
-.dimmed:before {
-  content: " ";
-  z-index: 10;
-  display: block;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5);
+
+  &:before {
+    content: " ";
+    z-index: 10;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
 }
 
 #durationA, #durationB {display:none;}

@@ -16,7 +16,10 @@ for (var i = 0; i < multiRangeElements.length; i++) {
     /* Add event listeners */
     _multiRangeElement.addEventListener('input', e => {
       let _t = e.target;
+
+      _multiRangeElement.style.setProperty(`--w`, +_multiRangeElement.clientWidth+"px");
       /*_t.parentNode.style.setProperty(`--${_t.id}`, +_t.value);*/
+      console.log("\n::sliders:ID:"+_multiRangeElement.id+":--w:"+_multiRangeElement.clientWidth+"px"+":_sliderID:"+_t.id+":value:"+_t.value)
       if (_t.id==='lowVal'){
         /** TODO: **/
         if (_multiRangeElement.highValue <= parseInt(_t.value)){
