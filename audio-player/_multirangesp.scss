@@ -58,6 +58,7 @@ $uw: $w - $d;
   height: $thumb-height;
   width: $thumb-width;
   pointer-events: auto;
+  z-index:2;
 
 
   //margin-bottom: $thumb-height/2();
@@ -190,8 +191,8 @@ $uw: $w - $d;
   }
 
   &::after {
-    margin-left: calc(#{$r} + ((var(--highVal) - var(--min))/var(--dif))*(var(--w)-#{$d}));
-    width: calc( ((var(--lowVal) - var(--highVal))/var(--dif))*(var(--w)-#{$d}));
+    margin-left: calc(#{$r} + ((var(--highVal) - var(--max))/var(--dif))*(var(--w)-#{$d}));
+    width: calc( ((var(--highVal) - var(--lowVal))/var(--dif))*(var(--w)-#{$d}));
   }
 
   & input[type='range'] {
