@@ -117,6 +117,7 @@ function init() {
     let idA = document.getElementById('setIdA');
     let selectionA = document.getElementById('search-results');
     idA.value = selectionA.value;
+
   }, false);
 
   const sendToB = document.getElementById('sendToB');
@@ -124,6 +125,7 @@ function init() {
     let idB = document.getElementById('setIdB');
     let selectionB = document.getElementById('search-results');
     idB.value = selectionB.value;
+
   }, false);
 
   /** NI
