@@ -5,14 +5,13 @@ $track-height: 2px !default;
 $track-shadow-size: 1px !default;
 $track-shadow-blur: 1px !default;
 $track-shadow-color: rgba(0, 0, 0, .2) !default;
-$track-border-width: 0px !default; //BORDER
+$track-border-width: 1px !default;
 $track-border-color: #cfd8dc !default;
 
 $track-radius: 2px !default;
 $contrast: 5% !default;
 
 $ie-bottom-track-color: darken($track-color, $contrast) !default;
-
 
 $bcktrack-color: rgba(179, 62, 189, 0.8) !default; //#55a4aa;
 //deprecated $thmb-facecolor: rgba(#aaa155, 0.66);
@@ -37,9 +36,6 @@ $d: 2*$h;
 $r: .5*$d;
 
 $uw: $w - $d;
-
-
-
 
 @mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
   box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color, 0 0 $shadow-size lighten($shadow-color, 5%);

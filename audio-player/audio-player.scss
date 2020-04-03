@@ -1,0 +1,70 @@
+$player-progress-background: rgba(71, 90, 101, 1) !default;
+$player-progress-track: rgba(0, 164, 208, 0.8) !default;
+
+$player-progress-border-size: 0px !default;
+
+$player-button-play: "../images/play.svg" !default;
+$player-button-play-hover: "../images/play-h.svg" !default;
+$player-button-pause: "../images/pause.svg" !default;
+$player-button-pause-hover: "../images/pause-h.svg" !default;
+
+$player-border-size: 0px !default;
+.audio-player {
+  border: $player-border-size solid #dfdfdf;
+  text-align: center;
+  display: flex;
+  flex-flow: row;
+  margin: 0 0 2rem 0;
+  width: 100%; }
+  .audio-player .album-image {
+    min-height: 80px;
+    width: 80px;
+    background-size: cover; }
+  .audio-player .player-controls {
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    flex: 3; }
+    .audio-player .player-controls progress {
+      width: 90%; }
+    .audio-player .player-controls progress[value] {
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: $player-progress-background;/*yellow;*/
+      color: blue;
+      height: 5px; }
+    .audio-player .player-controls progress[value]::-webkit-progress-bar {
+      background-color: $player-progress-background;/*green;*/
+      border-radius: 2px;
+      border: $player-progress-border-size solid #dfdfdf; /*BORDER*/
+      color: blue; }
+    .audio-player .player-controls progress::-webkit-progress-value {
+      background-color: $player-progress-track;/*rgba(0, 208, 127, 0.8);/*blue;*/
+
+    }
+    .audio-player .player-controls p {
+      font-size: 1rem; }
+  .audio-player #play-btn, .audio-player #play-btnB {
+    background-image: url($player-button-play);
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    /*filter: invert(92%) sepia(18%) saturate(516%) hue-rotate(60deg) brightness(103%) contrast(102%);*/
+    }
+  .audio-player #play-btn:hover, .audio-player #play-btnB:hover,
+  .audio-player #play-btn:focus, .audio-player #play-btnB:focus {
+    background-image: url($player-button-play-hover);
+    }
+  .audio-player #play-btn.pause,
+  .audio-player #play-btnB.pause {
+      background-image: url($player-button-pause);
+      &:hover {
+        background-image: url($player-button-pause-hover);
+      }
+      &:focus {
+        background-image: url($player-button-pause-hover);
+      }
+    }
+/* Issue with ID and class of buttons !(!!)
+/*# sourceMappingURL=audio-player.css.map */

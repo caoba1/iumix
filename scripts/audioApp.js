@@ -1,4 +1,4 @@
-document.body.addEventListener("click", init, {once: true});
+//document.body.addEventListener("click", init, {once: true});
 var idInA = "t1TcDHrkQYg";
 var idInB = "6W5pq4bIzIw";
 
