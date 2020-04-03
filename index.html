@@ -204,8 +204,10 @@
 </div>
 </div>
 
-
-<div class=dimmed>
+<!-- /* A popable test area */ -->
+<div class="page-footer">
+  <div style="text-align:left;" id="devOpsButton" onclick="toggleDevOps()"> > </div>
+<div class="dimmed" style="display:none;" id="dev-options">
   Dev area: </br>
   On player A <br>
   RMS value: <textarea class="yTiD" id="RMSA">#</textarea>
@@ -218,7 +220,7 @@
   Mean value: <textarea class="yTiD" id="meanEnvelopeB">#</textarea>
   <br>
 </div>
-
+</div>
 <!-- This init button is necessary to init the js calls ... document! -->
       <div class="alert-box">
         <div class="alert-button" onclick="this.parentElement.style.display='none'; init();">

@@ -19,9 +19,9 @@ h1, h2, label {
   text-align: center;
   color: #E0E0E0;
   /*  text-shadow: -1px -1px 1px #aaa,
-                 0px 1px 1px rgba(255,255,255,0.5),
-                 1px 1px 2px rgba(255,255,255,0.7),
-                 0px 0px 2px rgba(255,255,255,0.4);*/
+  0px 1px 1px rgba(255,255,255,0.5),
+  1px 1px 2px rgba(255,255,255,0.7),
+  0px 0px 2px rgba(255,255,255,0.4);*/
   margin: 0; }
 
 h1 {
@@ -169,28 +169,27 @@ div {
   background-color: rgba(255, 255, 255, 0.1);
   margin: 15px 15px;
   bottom: 0px; }
-
-.set-button a {
-  color: white;
-  font-family: Poppins;
-  font-weight: bold;
-  font-size: 10px;
-  text-align: center;
-  text-decoration: none; }
-
-.set-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 1px 1px 2px rgba(62, 189, 189, 0.8), -1px -1px 2px rgba(62, 189, 189, 0.8), -1px 1px 2px rgba(62, 189, 189, 0.8), 1px -1px 2px rgba(62, 189, 189, 0.8); }
-
-.set-button:active {
-  /*background-color:#e8bc84;*/
-  transform: translateY(-1px);
-  box-shadow: 2px 2px 5px rgba(255, 0, 99, 0.8), -2px -2px 5px rgba(255, 0, 99, 0.8), -2px 2px 5px rgba(255, 0, 99, 0.8), 2px -2px 5px rgba(255, 0, 99, 0.8); }
+  .set-button a {
+    color: white;
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 10px;
+    text-align: center;
+    text-decoration: none; }
+  .set-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 1px 1px 2px rgba(62, 189, 189, 0.8), -1px -1px 2px rgba(62, 189, 189, 0.8), -1px 1px 2px rgba(62, 189, 189, 0.8), 1px -1px 2px rgba(62, 189, 189, 0.8); }
+  .set-button:active {
+    /*background-color:#e8bc84;*/
+    transform: translateY(-1px);
+    box-shadow: 2px 2px 5px rgba(255, 0, 99, 0.8), -2px -2px 5px rgba(255, 0, 99, 0.8), -2px 2px 5px rgba(255, 0, 99, 0.8), 2px -2px 5px rgba(255, 0, 99, 0.8); }
 
 /*For the dev box*/
 .dimmed {
   position: relative;
   color: white; }
+  .dimmed .yTiD {
+    color: white; }
 
 .dimmed:before {
   content: " ";
