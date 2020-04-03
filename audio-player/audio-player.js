@@ -190,7 +190,7 @@ if(document.createEvent){
     event.eventName = "input";
     let _multiRangeElements = document.getElementsByClassName('multirange');
     for (var i = 0; i < _multiRangeElements.length; i++) {
-      _multiRangeElements[i].dispatchEvent(event);
+      _multiRangeElements[i].childNodes[3].dispatchEvent(event);
     }
 } else {
     //for ie
@@ -199,7 +199,7 @@ if(document.createEvent){
     event.eventType = "input";
     let _multiRangeElements = document.getElementsByClassName('multirange');
     for (var i = 0; i < _multiRangeElements.length; i++) {
-      _multiRangeElements[i].fireEvent("on" + event.eventType, event);
+      _multiRangeElements[i].childNodes[3].fireEvent("on" + event.eventType, event);
     }
 }
 
