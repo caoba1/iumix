@@ -190,6 +190,7 @@ if(document.createEvent){
     event.eventName = "input";
     let _multiRangeElements = document.getElementsByClassName('multirange');
     for (var i = 0; i < _multiRangeElements.length; i++) {
+
       _multiRangeElements[i].childNodes[3].dispatchEvent(event);
     }
 } else {
