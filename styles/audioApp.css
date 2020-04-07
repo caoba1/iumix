@@ -187,6 +187,37 @@ div {
     transform: translateY(-1px);
     box-shadow: 2px 2px 5px rgba(255, 0, 99, 0.8), -2px -2px 5px rgba(255, 0, 99, 0.8), -2px 2px 5px rgba(255, 0, 99, 0.8), 2px -2px 5px rgba(255, 0, 99, 0.8); }
 
+.fx-btn-selected {
+  /*grid-area: select;*/
+  /*Do not define this if tou are not using a layout*/
+  position: relative;
+  display: inline;
+  white-space: nowrap;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  /*margin: 15px 15px;*/
+  bottom: 0px;
+  color: white;
+  box-shadow: 1px 1px 2px rgba(62, 189, 189, 0.8), -1px -1px 2px rgba(62, 189, 189, 0.8), -1px 1px 2px rgba(62, 189, 189, 0.8), 1px -1px 2px rgba(62, 189, 189, 0.8); }
+  .fx-btn-selected:active {
+    /*background-color:#e8bc84;*/
+    transform: translateY(-1px);
+    box-shadow: 2px 2px 5px rgba(255, 0, 99, 0.8), -2px -2px 5px rgba(255, 0, 99, 0.8), -2px 2px 5px rgba(255, 0, 99, 0.8), 2px -2px 5px rgba(255, 0, 99, 0.8); }
+
+.fx-btn {
+  /*grid-area: sndFXSelect;*/
+  position: relative;
+  display: inline;
+  white-space: nowrap;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  /*margin: 15px 15px;*/
+  bottom: 0px;
+  color: white; }
+
+.ac-btn {
+  /*grid-area: sndFXButton;*/ }
+
 /*For the dev box*/
 .dimmed {
   position: relative;

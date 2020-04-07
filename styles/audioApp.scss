@@ -1,5 +1,5 @@
 /* || General layout rules for narrow screens */
-$border-size-div: 0px !default; 
+$border-size-div: 0px !default;
 
 $alert-box-border-size: 1px !default;
 $alert-box-border-color: #333 !default;
@@ -9,6 +9,10 @@ $text-field-color: rgba(0, 31, 10, 0.51) !default;
 $text-field-text-color: rgb(54, 152, 131) !default;
 
 $play-button-color: #cf245c !default;
+
+
+$sfx-autocue-button-1-facecolor: rgba(145, 223, 150,0.5) !default;
+$sfx-autocue-button-2-facecolor: rgba(145, 211, 223, 0.5) !default;
 
 html {
   height: 100%;
@@ -223,6 +227,41 @@ div {
   }
 }
 
+.fx-btn-selected{
+  /*grid-area: select;*//*Do not define this if tou are not using a layout*/
+  position: relative;
+  display: inline;
+  white-space: nowrap;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  /*margin: 15px 15px;*/
+  bottom: 0px;
+  color: white;
+  box-shadow: 1px 1px 2px rgba(62, 189, 189, 0.8), -1px -1px 2px rgba(62, 189, 189, 0.8), -1px 1px 2px rgba(62, 189, 189, 0.8), 1px -1px 2px rgba(62, 189, 189, 0.8);
+&:active{
+    /*background-color:#e8bc84;*/
+    transform: translateY(-1px);
+    box-shadow: 2px 2px 5px rgba(255, 0, 99, 0.8), -2px -2px 5px rgba(255, 0, 99, 0.8), -2px 2px 5px rgba(255, 0, 99, 0.8), 2px -2px 5px rgba(255, 0, 99, 0.8);
+  }
+}
+.fx-btn{
+  /*grid-area: sndFXSelect;*/
+  position: relative;
+  display: inline;
+  white-space: nowrap;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  /*margin: 15px 15px;*/
+  bottom: 0px;
+  color: white;
+  &:hover {
+
+  }
+}
+
+.ac-btn{
+  /*grid-area: sndFXButton;*/
+}
 
 /*For the dev box*/
 .dimmed {

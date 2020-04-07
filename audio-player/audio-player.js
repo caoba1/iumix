@@ -26,7 +26,7 @@ function initProgressBar() {
     document.getElementById('play-btn').className = "";
   }
 
-  if (player.currentTime >= length * (document.getElementById('sliderA').highValue/100) | player.currentTime <= length * (document.getElementById('sliderA').lowValue/100)) {
+  if (player.currentTime >= length * (document.getElementById('sliderA').highValue/100) | (player.currentTime <= length * (document.getElementById('sliderA').lowValue/100)) & !sndFx_bypassLooperA) {
     // replay if loop
     player.currentTime = length * document.getElementById('sliderA').lowValue/100;
     progressbar.value = document.getElementById('sliderA').lowValue/100;
@@ -69,10 +69,11 @@ function initProgressBarB() {
     document.getElementById('play-btnB').className = "";
   }
 
-  if (playerB.currentTime >= lengthB * (document.getElementById('sliderB').highValue/100) | playerB.currentTime <= (lengthB * document.getElementById('sliderB').lowValue/100)) {
+  if (playerB.currentTime >= lengthB * (document.getElementById('sliderB').highValue/100) | (playerB.currentTime <= (lengthB * document.getElementById('sliderB').lowValue/100)) & !sndFx_bypassLooperB){
     // replay if loop
     playerB.currentTime = lengthB * (document.getElementById('sliderB').lowValue/100);
     progressbarB.value = (document.getElementById('sliderB').lowValue/100);
+    sndFx_bypassLooper = false;
   }
 
   // Show looper's values --- TODO: change placement of this function or add tooltips

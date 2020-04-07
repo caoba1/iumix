@@ -60,7 +60,15 @@
         </div>
       </div>
       <!--div class="album-image" style="background-image: url(?)"></div-->
+
+
     </div>
+
+
+
+
+    <!--- End of sndFX -->
+
     <!-- TODO: place loop-btn inside audio-player-->
     <div id="loops-btn" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
       <input type="checkbox" id="loopA" name="loopA" checked disabled>loop from <loopTip id=sliderALowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderAHighTip style="color:lightblue">inf</loopTip>
@@ -78,6 +86,22 @@
       <small style="float: left; position: relative; left: 6%; top: -16px; font-size:0.8em; ">L</small>
       <small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
     </div>
+
+    <!--- Start of sndFX -->
+    <!-- TODOMake sndfx a clickable div, top, overlay, transparent-->
+    <div>
+    <div style="text-align:left; max-width:20px" class="fx-btn" id="sndFx-MainButton" onclick="toggleSndFx()"> > </div>
+    <div class="sndFx-menu" style="display:none;" id="fx-menu">
+      <div style="display:grid; grid-template-columns: auto auto auto auto auto;">
+      <div class="fx-btn" id="set-ac"; onclick="set_sndFxSetButtonPressed()" style="border: 10px;">Set Auto Cue</div>
+      <br>
+      <div class="ac-btn" id="ac-btn-1" style="height:30px; width: 30px; background-color: rgba(145, 223, 150,0.8); bottom:0px; text-align:left; font-size:0.8rem; position:block-inline;"><a href="#">AC1_</a></div>
+      <div class="ac-btn" id="ac-btn-2" style="height:30px; width: 30px; background-color: rgba(145, 211, 223, 0.8); bottom:0px; text-align:left; font-size:0.8rem; position:block-inline;"><a href="#">AC2_</a></div>
+    </div>
+    </div>
+    </div>
+
+
     <div>
       Que </br>
        <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
@@ -234,7 +258,7 @@
         </div>
         <p style="position:absolute; bottom:2px; left:2px;">
           This small app uses HTML5 and JS.
-          Please use a compatible browser.
+          Please use a compatible browser. Download Vivaldi.
         </p>
       </div>
 

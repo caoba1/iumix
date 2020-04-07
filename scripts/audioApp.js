@@ -3,10 +3,11 @@ var idInA = "t1TcDHrkQYg";
 var idInB = "6W5pq4bIzIw";
 
 var devOpsIsToggled = false;
-var RMSA = 0;
-var RMSB = 0;
+var setButtonPressed = false; //TODO: Q: make this global or for each sndFx?
 
 const analyserBufferLength = 4096;
+var sndFx_bypassLooperA = false;
+var sndFx_bypassLooperB = false;
 
 
 function init() {
@@ -132,6 +133,41 @@ function init() {
   const setToA = document.getElementById('meanASET');
   setToA.addEventListener('click', function() {
 }, false); **/
+
+/* Buttons for sound effects
+ * in particular, setting loops and clips, and recording them
+ */
+ /* Auto cue buttons */
+
+ /** NOTE: function can be implemented inside audio-player
+ * init function, not this one. Check if there are any
+ * performance issues if any of them are used. Since it
+ * is an asynchronous function there should be no problems.
+ * It is written here so that there exists consistency
+ * between the audio app and the audio player app in
+ * within the project.
+ **/
+ const sndFx_autoCueButtons = document.getElementsByClassName('ac-btn');
+ for (var i=0; i<sndFx_autoCueButtons.length; i++){
+   // initialize values!
+   this.autoCueAt = 0000;
+   // start event listener on click, change to mousedown
+   // TODO This is a security concern: duration is in document.getElementById('durationA').innerHTML
+   let _length = document.getElementById('durationA').innerHTML;
+   sndFx_autoCueButtons[i].addEventListener('click', function(){
+      console.log("Button pressed: "+this.id + " at "+setButtonPressed+"\n");
+      // Now cue to position
+      if (!setButtonPressed){
+        //NOTE: this are elements in audio-player
+        document.getElementById('audioStreamA').currentTime=this.autoCueAt;
+        document.getElementById('audioStreamA').progressbar=this.autoCueAt/_length;
+      }else if (setButtonPressed){
+        this.autoCueAt = document.getElementById('sliderA').lowValue*_length/100;
+        set_sndFxSetButtonPressed(false);
+      }
+   }, false);
+ }
+
 
 /* Button to check loudness of nodes
 * Expected behaviour is to raise volume to the loudest node.
@@ -263,6 +299,29 @@ getRMSvalue("B");
 
 }//init
 
+//TODO: i thought this one was defined!!!
+function set_sndFxSetButtonPressed(value){
+  /*if (value) {
+      console.log("setButton value TRUE!");
+      setButtonPressed = true;
+    }
+    else if (!value){
+      console.log("setButton value FALSE!");
+      setButtonPressed = false;
+  }else { //let undefined in case it is toggled
+      console.log("setButton value is undefined, I will toggle it!")
+      setButtonPressed = !setButtonPressed;
+  }*/
+ setButtonPressed = !setButtonPressed;
+ console.log("setButton value"+setButtonPressed);
+
+if (setButtonPressed){
+ document.getElementById('set-ac').className = "fx-btn-selected";
+}else if (!setButtonPressed){
+  document.getElementById('set-ac').className = "fx-btn";
+}
+}
+
 
 
 // ToDO: Rethink behaviour
@@ -345,6 +404,23 @@ if (x.style.display === "none") {
   //playliIsToggled = false;
 }}
 
+/** TODO: implement playlist is toggled **/
+/** TODO: element is also set toggle button? **/
+/** TODO: create coding guidelines **/
+function toggleSndFx(){var x = document.getElementById("fx-menu");
+if (x.style.display === "none") {
+  x.style.display = "block";
+  document.getElementById("sndFx-MainButton").innerHTML =" v ";
+  //document.getElementById("sndFx-MainButton").style.box-shadow ="2px 2px 5px rgba(213, 231, 5, 0.8), -2px -2px 5px rgba(213, 231, 5, 0.8), -2px 2px 5px rgba(213, 231, 5, 0.8), 2px -2px 5px rgba(213, 231, 5, 0.8)";
+  //playliIsToggled = true;
+  document.getElementById('sndFx-MainButton').className = "fx-btn-selected";
+} else {
+  x.style.display = "none";
+  document.getElementById("sndFx-MainButton").innerHTML =" > ";
+  //document.getElementById("sndFx-MainButton").style.box-shadow ="none;";
+  //playliIsToggled = false;
+  document.getElementById('sndFx-MainButton').className = "fx-btn";
+}}
 
 /*## jash*/
 //According to the sliding window approach
