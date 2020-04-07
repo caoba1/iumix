@@ -32,6 +32,25 @@ function initProgressBar() {
     progressbar.value = document.getElementById('sliderA').lowValue/100;
   }
 
+  // Sound FX // FIXME:
+  const autoCueButtons = document.getElementsByClassName('ac-btn')
+  for (i=0; i<autoCueButtons.length; i++ ){
+    autoCueButtons[i].addEventListener('click', autoCuePlayButtonPressed);
+  }
+  //And defin the function here?
+  // check. verz interesting why it should bee here
+  function autoCuePlayButtonPressed(event) {
+    console.log(this.id);
+    console.log("Autocue:"+event);
+
+      if(sndFxAC_SetButtonPressedFlag){
+        //SET cue
+        console.log("Setting cue at");
+      }else {
+        sndFxAC_SetButtonPressedFlag = !sndFxAC_SetButtonPressedFlag;
+      }
+  }
+
   // Show looper's values --- TODO: change placement of this function or add tooltips
   document.getElementById('sliderALowTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').lowValue*length/100);
   document.getElementById('sliderAHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').highValue*length/100);

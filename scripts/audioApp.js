@@ -8,6 +8,8 @@ var RMSB = 0;
 
 const analyserBufferLength = 4096;
 
+// Vars for auto cue
+var sndFxAC_SetButtonPressedFlag = false;
 
 function init() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -44,9 +46,6 @@ function init() {
   a2.minDecibels = -90;
   a2.maxDecibels = -10;
   a2.smoothingTimeConstant = 0.85;
-
-
-
 
   trackA.connect(gainNodeA).connect(a1).connect(pannerA).connect(gainNodeMA).connect(gainNodeMaster);
   trackB.connect(gainNodeB).connect(a2).connect(pannerB).connect(gainNodeMB).connect(gainNodeMaster);
@@ -111,7 +110,7 @@ function init() {
     document.getElementById('play-btnB').className = "";
   }, false);
 
-
+  //Button for interaction with the serch function
   const sendToA = document.getElementById('sendToA');
   sendToA.addEventListener('click', function() {
     let idA = document.getElementById('setIdA');
@@ -259,10 +258,29 @@ function getRMSvalue(val){
 
 getRMSvalue("A");
 getRMSvalue("B");
-
-
 }//init
 
+//TODO: location of this function, is a call to the audioplayer. check for better performance
+
+function setButtonPressed(){
+  console.log(sndFxAC_SetButtonPressedFlag + "is pressed in set button\n")
+  //if (!sndFxAC_SetButtonPressedFlag){
+  //  setTimeout(setButtonPressed,2500);
+  //} else {
+ console.log("\nSETTTT\n");
+  //}
+}
+
+//This can become a global function for uploading all set eventes
+/*function waitForIt() {
+  if (!sndFxAC_SetButtonPressedFlag) {
+  setTimeout(waitForIt(),2500); //Second argument in seconds
+  } else {
+  console.log("button is set!\n");
+  sndFxAC_SetButtonPressedFlag = false;
+ //document.getElementById('info').value='ok';
+  }
+}*/
 
 
 // ToDO: Rethink behaviour
