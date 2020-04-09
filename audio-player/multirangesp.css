@@ -33,6 +33,7 @@
     height: 14px;
     width: 14px;
     pointer-events: auto;
+    z-index: 2;
     -webkit-appearance: none;
     margin-top: -7px; }
   .rslider input[type='range']::-moz-range-track {
@@ -54,7 +55,8 @@
     cursor: default;
     height: 14px;
     width: 14px;
-    pointer-events: auto; }
+    pointer-events: auto;
+    z-index: 2; }
   .rslider input[type='range']::-ms-track {
     cursor: default;
     height: 2px;
@@ -84,6 +86,7 @@
     height: 14px;
     width: 14px;
     pointer-events: auto;
+    z-index: 2;
     margin-top: 0.5px; }
   .rslider input[type='range']:disabled::-webkit-slider-thumb, .rslider input[type='range']:disabled::-moz-range-thumb, .rslider input[type='range']:disabled::-ms-thumb, .rslider input[type='range']:disabled::-webkit-slider-runnable-track, .rslider input[type='range']:disabled::-ms-fill-lower, .rslider input[type='range']:disabled::-ms-fill-upper {
     cursor: not-allowed; }
@@ -107,8 +110,8 @@
     margin-left: calc(2px + ((var(--lowVal) - var(--min)) / var(--dif))*(var(--w)-4px));
     width: calc( ((var(--highVal) - var(--lowVal))/var(--dif))*(var(--w)-4px)); }
   .multirange::after {
-    margin-left: calc(2px + ((var(--highVal) - var(--min))/var(--dif))*(var(--w)-4px));
-    width: calc( ((var(--lowVal) - var(--highVal))/var(--dif))*(var(--w)-4px)); }
+    margin-left: calc(2px + ((var(--highVal) - var(--max))/var(--dif))*(var(--w)-4px));
+    width: calc( ((var(--highVal) - var(--lowVal))/var(--dif))*(var(--w)-4px)); }
   .multirange input[type='range'] {
     grid-column: 1/ span 2;
     grid-row: 3;
@@ -140,7 +143,15 @@
       height: 14px;
       width: 14px;
       pointer-events: auto;
-      margin-top: -6px; }
+      z-index: 2;
+      margin-top: -6px;
+      /*height: $thumb-height;
+      width: 4px;
+      background-color: $thumb-color;
+      border-color: transparent transparent transparent transparent;
+      border-style: solid;
+      border-width: 2px 2px 2px 2px;
+      border-radius: 2px;*/ }
     .multirange input[type='range']::-moz-range-thumb {
       box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2), 0 0 4px rgba(13, 13, 13, 0.2);
       background: #607d8b;
@@ -151,6 +162,7 @@
       height: 14px;
       width: 14px;
       pointer-events: auto;
+      z-index: 2;
       margin-top: -6px; }
     .multirange input[type='range']:focus {
       z-index: 2;
@@ -178,5 +190,53 @@ output {
   output::after {
     counter-reset: c var(--c);
     content: "--" attr(for) ": " counter(c) ";"; }
+
+.slider-selected {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  height: 12px;
+  top: -24px;
+  z-index: 4;
+  border: 0px; }
+
+/**.multirange-high-val input[type='range'] {
+  &::-webkit-slider-thumb { @include thumb;
+    margin-top: (-$thumb-height/2 +$h/2);
+    //style
+    height: 6px;
+    width: 0px;
+    border-color: transparent transparent transparent #FFFFFF;
+    border-style: solid;
+    border-width: 6px 6px 6px 6px;
+    border-radius: 0px;
+
+  }
+  &::-moz-range-thumb { @include thumb;
+    margin-top: (-$thumb-height/2 +$h/2);
+    height: 20px;
+    width: 20px;
+  }
+}
+**/
+   /*
+.mult<irange-low-val {
+  & input[type='range'] {
+    &::-webkit-slider-thumb, & {
+      -webkit-appearance: none
+    }
+    &::-webkit-slider-thumb { @include thumb;
+      margin-top: (-$thumb-height/2 +$h/2);
+      height: 6px;
+      width: 0px;
+      border-color: transparent transparent transparent #FFFFFF;
+      border-style: solid;
+      border-width: 6px 6px 6px 6px;
+      border-radius: 0px; }
+      &::-moz-range-thumb { @include thumb;
+        margin-top: (-$thumb-height/2 +$h/2);}
+      }
+    }
+*/
 
 /*# sourceMappingURL=multirangesp.css.map */

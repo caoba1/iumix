@@ -14,7 +14,7 @@ $player-border-size: 0px !default;
   text-align: center;
   display: flex;
   flex-flow: row;
-  margin: 0 0 2rem 0;
+  margin: 0 0 5px 0;
   width: 100%; }
   .audio-player .album-image {
     min-height: 80px;
@@ -26,6 +26,7 @@ $player-border-size: 0px !default;
     margin-top: 0px;
     flex: 3; }
     .audio-player .player-controls progress {
+      cursor: pointer;
       width: 90%; }
     .audio-player .player-controls progress[value] {
       -webkit-appearance: none;

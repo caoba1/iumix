@@ -4,11 +4,14 @@ var idInB = "6W5pq4bIzIw";
 
 var devOpsIsToggled = false;
 var setButtonPressed = false; //TODO: Q: make this global or for each sndFx?
+var setButtonPressedB = false;
 
 const analyserBufferLength = 4096;
 var sndFx_bypassLooperA = false;
 var sndFx_bypassLooperB = false;
 
+var player_flag_loop_A = true;
+var player_flag_loop_B = true;
 
 function init() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -159,11 +162,26 @@ function init() {
       // Now cue to position
       if (!setButtonPressed){
         //NOTE: this are elements in audio-player
+        if (this.id.slice(-3).slice(1)!="B"){
         document.getElementById('audioStreamA').currentTime=this.autoCueAt;
         document.getElementById('audioStreamA').progressbar=this.autoCueAt/_length;
+      }else{
+        document.getElementById('audioStreamB').currentTime=this.autoCueAt;
+        document.getElementById('audioStreamB').progressbar=this.autoCueAt/_length;
+      }
       }else if (setButtonPressed){
-        this.autoCueAt = document.getElementById('sliderA').lowValue*_length/100;
-        set_sndFxSetButtonPressed(false);
+        if (this.id.slice(-3).slice(1)!="B"){
+          this.autoCueAt = document.getElementById('sliderA').lowValue*_length/100;
+          set_sndFxSetButtonPressed(false);
+        }else{
+          this.autoCueAt = document.getElementById('sliderB').lowValue*_length/100;
+          set_sndFxSetButtonPressedB(false);
+        }
+
+        // set marker on ac --
+        var innerTag = "AC"+this.id.slice(-1)+"<br>"+calculateTotalValue(this.autoCueAt);
+        this.innerHTML = innerTag;
+
       }
    }, false);
  }
@@ -232,10 +250,14 @@ const loopInA = document.getElementById('loopA');
 loopInA.addEventListener('change', function() {
   if (loopInA.checked){
     console.log("LOOP");
+    player_flag_loop_A = false;
     document.getElementById("sliderA").disabled = false;
+    //document.getElementById("sliderA-Mask").style.display ="block";
   }else{
     console.log("UNLOOP");
     document.getElementById("sliderA").disabled = true;
+    player_flag_loop_A = true;
+    //document.getElementById("sliderA-Mask").style.display ="none";
   }
 }, false);
 
@@ -244,9 +266,11 @@ loopInA.addEventListener('change', function() {
   if (loopInA.checked){
     console.log("LOOP");
     document.getElementById("sliderB").disabled = false;
+    player_flag_loop_B = true;
   }else{
     console.log("UNLOOP");
     document.getElementById("sliderB").disabled = true;
+    player_flag_loop_B = true;
   }
 }, false);
 
@@ -317,12 +341,22 @@ function set_sndFxSetButtonPressed(value){
 
 if (setButtonPressed){
  document.getElementById('set-ac').className = "fx-btn-selected";
+ //document.getElementById('sliderA').className = "slider-selected";
+
 }else if (!setButtonPressed){
   document.getElementById('set-ac').className = "fx-btn";
 }
 }
 
-
+function set_sndFxSetButtonPressed(value){
+setButtonPressedB = !setButtonPressedB;
+ console.log("setButton value"+setButtonPressedB);
+if (setButtonPressed){
+ document.getElementById('set-acB').className = "fx-btn-selected";
+}else if (!setButtonPressed){
+  document.getElementById('set-acB').className = "fx-btn";
+}
+}
 
 // ToDO: Rethink behaviour
 /* '## Deprecated ##
@@ -408,19 +442,63 @@ if (x.style.display === "none") {
 /** TODO: element is also set toggle button? **/
 /** TODO: create coding guidelines **/
 function toggleSndFx(){var x = document.getElementById("fx-menu");
-if (x.style.display === "none") {
-  x.style.display = "block";
-  document.getElementById("sndFx-MainButton").innerHTML =" v ";
+if (x.style.visibility === "hidden") {
+  x.style.visibility = "visible";
+  x.style.width="100%";
+  x.style.height="100%";
+  x.style.opacity="1";
+  //console.log(x);
+  //console.log(document.getElementById("sndFx-MainButton"));
+  //document.getElementById("sndFx-MainButton").innerHTML ="";
   //document.getElementById("sndFx-MainButton").style.box-shadow ="2px 2px 5px rgba(213, 231, 5, 0.8), -2px -2px 5px rgba(213, 231, 5, 0.8), -2px 2px 5px rgba(213, 231, 5, 0.8), 2px -2px 5px rgba(213, 231, 5, 0.8)";
   //playliIsToggled = true;
-  document.getElementById('sndFx-MainButton').className = "fx-btn-selected";
+  document.getElementById('sndFx-MainButton').className = "fx-btn menu-btn-active";
 } else {
-  x.style.display = "none";
-  document.getElementById("sndFx-MainButton").innerHTML =" > ";
+  x.style.visibility = "hidden";
+  x.style.width="0px";
+  x.style.height="0px"
+  x.style.opacity="0";
+
+  //document.getElementById("sndFx-MainButton").innerHTML ="";
   //document.getElementById("sndFx-MainButton").style.box-shadow ="none;";
   //playliIsToggled = false;
-  document.getElementById('sndFx-MainButton').className = "fx-btn";
+  document.getElementById('sndFx-MainButton').className = "fx-btn menu-btn";
 }}
+
+/** TODO: implement playlist is toggled **/
+/** TODO: element is also set toggle button? **/
+/** TODO: create coding guidelines **/
+function toggleSndFxB(){var x = document.getElementById("fx-menuB");
+if (x.style.visibility === "hidden") {
+  x.style.visibility = "visible";
+  x.style.width="100%";
+  x.style.height="100%";
+  x.style.opacity="1";
+  document.getElementById('sndFx-MainButtonB').className = "fx-btn menu-btn-active";
+} else {
+  x.style.visibility = "hidden";
+  x.style.width="0px";
+  x.style.height="0px"
+  x.style.opacity="0";
+  document.getElementById('sndFx-MainButtonB').className = "fx-btn menu-btn";
+}}
+
+
+//## audio-player
+/**
+* @param length time in seconds
+* @return a string with minutes:seconds
+**/
+function calculateTotalValue(length) {
+  var minutes = Math.floor(length / 60),
+    seconds_int = length - minutes * 60,
+    seconds_str = seconds_int.toString(),
+    seconds = seconds_str.substr(0, 2);
+    //https://stackoverflow.com/questions/8935414/getminutes-0-9-how-to-display-two-digit-numbers
+    time = minutes + ':' + ('0'+seconds).slice(-2);
+
+  return time;
+}
 
 /*## jash*/
 //According to the sliding window approach

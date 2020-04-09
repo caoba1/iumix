@@ -3,7 +3,7 @@
   text-align: center;
   display: flex;
   flex-flow: row;
-  margin: 0 0 2rem 0;
+  margin: 0 0 5px 0;
   width: 100%; }
 
 .audio-player .album-image {
@@ -18,6 +18,7 @@
   flex: 3; }
 
 .audio-player .player-controls progress {
+  cursor: pointer;
   width: 90%; }
 
 .audio-player .player-controls progress[value] {

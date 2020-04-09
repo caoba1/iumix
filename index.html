@@ -55,8 +55,19 @@
               <output for="lowVal" style="--c: var(--lowVal);"></output>
               <input class="multirange-high-val" id="highVal" type="range" min="0" value="100" max="100" step="1"/>
               <output for="highVal" style="--c: var(--highVal);"></output>
+              <div class="stack-top-box" id="pointer-slider-a"></div>
             </div>
+            <!div style="overflow:hidden; width:100"-->
+              <!--div class="slider-selected" id="sliderA-Mask">
+              </div-->
+            <!/div-->
           </span>
+
+          <!-- TODO: place loop-btn inside audio-player-->
+          <div id="loops-btn" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
+            <input type="checkbox" id="loopA" name="loopA" checked>loop from <loopTip id=sliderALowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderAHighTip style="color:lightblue">inf</loopTip>
+
+          </div>
         </div>
       </div>
       <!--div class="album-image" style="background-image: url(?)"></div-->
@@ -64,59 +75,57 @@
 
     </div>
 
+    <!--- Start of sndFX -->
+    <!-- TODOMake sndfx a clickable div, top, overlay, transparent-->
+    <div style="text-align:left; width:90%; margin:auto;  margin-bottom: 5px; transition: height 2s;">
+      <div class="fx-btn menu-btn" id="sndFx-MainButton" onclick="toggleSndFx()"> </div>
+      <div class="fx-menu" style="visibility:hidden; height:0px;" id="fx-menu">
+        <div style="align-items: center; display:grid; grid-template-columns: auto auto auto auto auto auto;">
+          <div class="fx-lbl" id="lbl-ac"; style="border:0px; font-size:10px; width:24px; text-align:center; margin:0;">Auto Cue</div>
+          <div class="fx-btn" id="set-ac"; onclick="set_sndFxSetButtonPressed()" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer;">Set</div>
+          <br>
+          <div class="ac-btn" id="ac-btn-1" style="height:30px; width: 30px; text-align: center; background-color: rgba(145, 223, 150,0.8); font-size:0.8rem; position:block-inline; cursor:pointer;">AC1</div>
+          <div class="ac-btn" id="ac-btn-2" style="height:30px; width: 30px; text-align: center; background-color: rgba(145, 211, 223, 0.8); font-size:0.8rem; position:block-inline; cursor:pointer;">AC2</div>
+        </div>
+      </div>
+    </div>
 
 
 
     <!--- End of sndFX -->
 
-    <!-- TODO: place loop-btn inside audio-player-->
-    <div id="loops-btn" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
-      <input type="checkbox" id="loopA" name="loopA" checked disabled>loop from <loopTip id=sliderALowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderAHighTip style="color:lightblue">inf</loopTip>
-    </div>
+
 
     <div class="rslider">
       <input type="range" id="volumeA" min="0" max="1" value="0.5" step="0.01">
-      </br> Master
-      <small style="float: left; position: relative; left: 6%; top: -20px; font-size:0.6em; ">min</small>
-      <small style="float: right; position: relative; right: 6%; top: -20px; font-size:0.6em; ">max</small>
-    </div>
-    <div class="rslider">
-      <input type="range" id="pannerA" min="-1" max="1" value="0" step="0.01" style="width:80%">
-      </br> Pan
-      <small style="float: left; position: relative; left: 6%; top: -16px; font-size:0.8em; ">L</small>
-      <small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
-    </div>
-
-    <!--- Start of sndFX -->
-    <!-- TODOMake sndfx a clickable div, top, overlay, transparent-->
-    <div>
-    <div style="text-align:left; max-width:20px" class="fx-btn" id="sndFx-MainButton" onclick="toggleSndFx()"> > </div>
-    <div class="sndFx-menu" style="display:none;" id="fx-menu">
-      <div style="display:grid; grid-template-columns: auto auto auto auto auto;">
-      <div class="fx-btn" id="set-ac"; onclick="set_sndFxSetButtonPressed()" style="border: 10px;">Set Auto Cue</div>
-      <br>
-      <div class="ac-btn" id="ac-btn-1" style="height:30px; width: 30px; background-color: rgba(145, 223, 150,0.8); bottom:0px; text-align:left; font-size:0.8rem; position:block-inline;"><a href="#">AC1_</a></div>
-      <div class="ac-btn" id="ac-btn-2" style="height:30px; width: 30px; background-color: rgba(145, 211, 223, 0.8); bottom:0px; text-align:left; font-size:0.8rem; position:block-inline;"><a href="#">AC2_</a></div>
-    </div>
-    </div>
-    </div>
-
-
-    <div>
-      Que </br>
-       <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
-    </div>
+    </br> Master
+    <small style="float: left; position: relative; left: 6%; top: -20px; font-size:0.6em; ">min</small>
+    <small style="float: right; position: relative; right: 6%; top: -20px; font-size:0.6em; ">max</small>
   </div>
+  <div class="rslider">
+    <input type="range" id="pannerA" min="-1" max="1" value="0" step="0.01" style="width:80%">
+  </br> Pan
+  <small style="float: left; position: relative; left: 6%; top: -16px; font-size:0.8em; ">L</small>
+  <small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
+</div>
 
-  <div><label>B</label>
-    <!--div class="audioCapsule">
-    <audio class="audioStream" id="audioStreamB" autostart="0" autostart="false" preload ="none" controls>
-    <source src="http://localhost:3000/audio2?songId=6W5pq4bIzIw" type="audio/mpeg">
-  </audio>
+
+
+<div>
+  Que </br>
+  <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
+</div>
+</div>
+
+<div><label>B</label>
+  <!--div class="audioCapsule">
+  <audio class="audioStream" id="audioStreamB" autostart="0" autostart="false" preload ="none" controls>
+  <source src="http://localhost:3000/audio2?songId=6W5pq4bIzIw" type="audio/mpeg">
+</audio>
 </div-->
 <div class="audio-player">
   <div id="play-btnB"></div>
-  <div class="audio-wrapper" id="player-containerB" href="javascript:;">
+  <div class="audio-wrapper"  id="player-containerB" href="javascript:;">
     <audio id="audioStreamB" ontimeupdate="initProgressBarB()" autostart="false" preload ="none">
       <source src="audio2?songId=6W5pq4bIzIw" type="audio/mpeg">
       </audio>
@@ -136,32 +145,49 @@
             <output for="highVal" style="--c: var(--highVal);"></output>
           </div>
         </span>
+        <div id="loops-btnB" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
+          <input type="checkbox" id="loopB" name="loopB" checked>loop from <loopTip id=sliderBLowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderBHighTip style="color:lightblue">inf</loopTip>
+        </div>
       </div>
     </div>
     <!--div class="album-image" style="background-image: url(https://artistxite.ie/imgcache/album/005/161/005161476_500.jpg)"></div-->
   </div>
-  <!-- TODO: place loop-btn inside audio-player-->
-  <div id="loops-btnB" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
-    <input type="checkbox" id="loopB" name="loopB" checked disabled>loop from <loopTip id=sliderBLowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderBHighTip style="color:lightblue">inf</loopTip>
+
+  <!--- Start of sndFX -->
+  <!-- TODOMake sndfx a clickable div, top, overlay, transparent-->
+  <div style="text-align:left; width:90%; margin:auto; margin-bottom: 5px; transition: height 2s;">
+    <div class="fx-btn menu-btn" id="sndFx-MainButtonB" onclick="toggleSndFxB()"> </div>
+    <div class="fx-menu" style="visibility:hidden; height:0px;" id="fx-menuB">
+      <div style="align-items: center; display:grid; grid-template-columns: auto auto auto auto auto auto;">
+        <div class="fx-lbl" id="lbl-acB"; style="border:0px; font-size:10px; width:24px; text-align:center; margin:0;">Auto Cue</div>
+        <div class="fx-btn" id="set-acB"; onclick="set_sndFxSetButtonPressed()" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer;">Set</div>
+        <br>
+        <div class="ac-btn" id="ac-btnB-1" style="height:30px; width: 30px; text-align: center; background-color: rgba(145, 223, 150,0.8); font-size:0.8rem; position:block-inline; cursor:pointer;">AC1</div>
+        <div class="ac-btn" id="ac-btnB-2" style="height:30px; width: 30px; text-align: center; background-color: rgba(145, 211, 223, 0.8); font-size:0.8rem; position:block-inline; cursor:pointer;">AC2</div>
+      </div>
+    </div>
   </div>
 
+
+
+  <!--- End of sndFX -->
 
   <div class="rslider">
     <input type="range" id="volumeB" min="0" max="1" value="0.5" step="0.01">
   </br> Master
   <small style="float: left; position: relative; left: 6%; top: -20px; font-size:0.6em; ">min</small>
   <small style="float: right; position: relative; right: 6%; top: -20px; font-size:0.6em; ">max</small>
-  </div>
-  <div class="rslider">
-    <input type="range" id="pannerB" min="-1" max="1" value="0" step="0.01" style="width:80%">
-    </br> Pan
-    <small style="float: left; position: relative; left: 6%; top: -16px; font-size:0.8em; ">L</small>
-    <small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
-  </div>
-  <div>
-    Que </br>
-     <textarea class="yTiD" id="setIdB">#</textarea> <div id="setIdBSET" class="set-button" style="bottom:7px;"><a href="#">set & play!</a></div>
-  </div>
+</div>
+<div class="rslider">
+  <input type="range" id="pannerB" min="-1" max="1" value="0" step="0.01" style="width:80%">
+</br> Pan
+<small style="float: left; position: relative; left: 6%; top: -16px; font-size:0.8em; ">L</small>
+<small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
+</div>
+<div>
+  Que </br>
+  <textarea class="yTiD" id="setIdB">#</textarea> <div id="setIdBSET" class="set-button" style="bottom:7px;"><a href="#">set & play!</a></div>
+</div>
 </div>
 
 </div>
@@ -178,7 +204,7 @@
 <small style="float: right; position: relative; right: 20%; top: -8px; font-size:0.6em; ">max</small>
 </div>
 <div class="rslider">
-<input style="width:60%" type="range" id="volumeMixer" min="-0.5" max="0.5" value="0" step="0.05">
+  <input style="width:60%" type="range" id="volumeMixer" min="-0.5" max="0.5" value="0" step="0.05">
 </br> Mix
 <small style="float: left; position: relative; left: 20%; top: -8px; font-size:1.6em; font-family:'Lacquer'; ">A</small>
 <small style="float: right; position: relative; right: 20%; top: -8px; font-size:1.6em; font-family:'Lacquer'; ">B</small>
@@ -233,34 +259,34 @@
 
   <div style="text-align:left;" id="playListButton" onclick="togglePlayList()"> > </div>
   <div class="playlist" style="display:none;" id="iu-playlist">
-   #content
+    #content
   </div>
 
   <div style="text-align:left;" id="devOpsButton" onclick="toggleDevOps()"> > </div>
-<div class="dimmed" style="display:none;" id="dev-options">
-  Dev area: </br>
-  On player A <br>
-  RMS value: <textarea class="yTiD" id="RMSA">#</textarea>
-  <br>
-  Mean value: <textarea class="yTiD" id="meanEnvelopeA">#</textarea><div id="meanASET" class="set-button"><a href="#">set!</a></div>
-  <br><br>
-  On player B <br>
-  RMS value: <textarea class="yTiD" id="RMSB">#</textarea>
-  <br>
-  Mean value: <textarea class="yTiD" id="meanEnvelopeB">#</textarea>
-  <br>
-</div>
+  <div class="dimmed" style="display:none;" id="dev-options">
+    Dev area: </br>
+    On player A <br>
+    RMS value: <textarea class="yTiD" id="RMSA">#</textarea>
+    <br>
+    Mean value: <textarea class="yTiD" id="meanEnvelopeA">#</textarea><div id="meanASET" class="set-button"><a href="#">set!</a></div>
+    <br><br>
+    On player B <br>
+    RMS value: <textarea class="yTiD" id="RMSB">#</textarea>
+    <br>
+    Mean value: <textarea class="yTiD" id="meanEnvelopeB">#</textarea>
+    <br>
+  </div>
 </div>
 <!-- This init button is necessary to init the js calls ... document! -->
-      <div class="alert-box">
-        <div class="alert-button" onclick="this.parentElement.style.display='none'; init();">
-          Click to start!.
-        </div>
-        <p style="position:absolute; bottom:2px; left:2px;">
-          This small app uses HTML5 and JS.
-          Please use a compatible browser. Download Vivaldi.
-        </p>
-      </div>
+<div class="alert-box">
+  <div class="alert-button" onclick="this.parentElement.style.display='none'; init();">
+    Click to start!.
+  </div>
+  <p style="position:absolute; bottom:2px; left:2px;">
+    This small app uses HTML5 and JS.
+    Please use a compatible browser. Download Vivaldi.
+  </p>
+</div>
 
 
 </body>

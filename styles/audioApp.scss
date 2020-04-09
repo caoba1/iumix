@@ -14,6 +14,9 @@ $play-button-color: #cf245c !default;
 $sfx-autocue-button-1-facecolor: rgba(145, 223, 150,0.5) !default;
 $sfx-autocue-button-2-facecolor: rgba(145, 211, 223, 0.5) !default;
 
+$sndfx-button-menu: "../images/menu.svg" !default;
+$sndfx-button-menu-active: "../images/menu-active.svg" !default;
+
 html {
   height: 100%;
   font-family: 'Poppins', cursive;
@@ -38,6 +41,12 @@ h1, h2, label {
   1px 1px 2px rgba(255,255,255,0.7),
   0px 0px 2px rgba(255,255,255,0.4);*/
   margin: 0;
+}
+a {
+  color:white;
+  font-family:Poppins;
+  //font-weight:bold;
+  text-decoration: none;
 }
 
 h1 {
@@ -205,8 +214,7 @@ div {
   white-space: nowrap;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.1);
-  margin: 15px 15px;
-  bottom: 0px;
+  margin:0; top:50%;
   & a{
     color:white;
     font-family:Poppins;
@@ -233,9 +241,9 @@ div {
   display: inline;
   white-space: nowrap;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(220, 240, 255, 0.2);
   /*margin: 15px 15px;*/
-  bottom: 0px;
+  margin:0;
   color: white;
   box-shadow: 1px 1px 2px rgba(62, 189, 189, 0.8), -1px -1px 2px rgba(62, 189, 189, 0.8), -1px 1px 2px rgba(62, 189, 189, 0.8), 1px -1px 2px rgba(62, 189, 189, 0.8);
 &:active{
@@ -251,12 +259,32 @@ div {
   white-space: nowrap;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.1);
-  /*margin: 15px 15px;*/
-  bottom: 0px;
+  margin:0;
   color: white;
   &:hover {
 
   }
+}
+.menu-btn{
+  content: url($sndfx-button-menu);
+  width: 16px; //orig is 24
+  height: 16px;
+  text-align:left;
+  margin-left: 0px;
+  margin-right: auto;
+}
+.menu-btn-active{
+  content: url($sndfx-button-menu-active);
+  width: 16px;
+  height: 16px;
+  text-align:left;
+  margin-left: 0px;
+  margin-right: auto;
+}
+
+.fx-menu{
+    background: rgba(60, 8, 8, 0.5);
+    transition: width 1.5s linear 0s, opacity 600ms, visibility 600ms;
 }
 
 .ac-btn{
@@ -341,4 +369,81 @@ div {
   50% {margin-top:30%;}
   75% {margin-top:28%;}
   100% {margin-top:30%;}
+}
+
+.stack-top-box{
+  display:none;
+  position:absolute;
+  z-index:0;
+  width: 2px;
+  height: 12px;
+  top:-16px;
+  background-color: rgba(71, 195, 180, 0.44);
+}
+
+/* The container */
+.containercheck {
+  display: block;
+  position: relative;
+  padding-left: 16px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.containercheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 13px;
+  width: 13px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.containercheck:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containercheck input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.containercheck input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.containercheck .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
