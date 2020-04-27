@@ -22,7 +22,7 @@
     "npx": "^10.2.2",
     "start": "^5.1.0",
     "youtube-audio-stream": "*",
-    "ytdl-core": "1.0.5"
+    "ytdl-core": "2.0.1"
   },
   "engines": {
     "node": "8.12.0"
