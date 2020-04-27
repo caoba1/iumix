@@ -329,10 +329,11 @@ getRMSvalue("B");
 
 //TODO: i thought this one was defined!!!
 function set_sndFxSetButtonPressed(value){
-  /*if (value) {
-      console.log("setButton value TRUE!");
-      setButtonPressed = true;
-    }
+  if (value) {
+      console.log("setButton value TRUE!"+value);
+      setButtonPressed = value;
+    }else{
+    /*
     else if (!value){
       console.log("setButton value FALSE!");
       setButtonPressed = false;
@@ -341,23 +342,26 @@ function set_sndFxSetButtonPressed(value){
       setButtonPressed = !setButtonPressed;
   }*/
  setButtonPressed = !setButtonPressed;
+}
  console.log("setButton value"+setButtonPressed);
-
+//what u with boolean? :/
+console.log(setButtonPressed);
 if (setButtonPressed){
+  console.log("setButton value"+setButtonPressed);
  document.getElementById('set-ac').className = "fx-btn-selected";
  //document.getElementById('sliderA').className = "slider-selected";
 
-}else if (!setButtonPressed){
+}else if (!(setButtonPressed)){
   document.getElementById('set-ac').className = "fx-btn";
 }
 }
 
-function set_sndFxSetButtonPressed(value){
+function set_sndFxSetButtonPressedB(value){
 setButtonPressedB = !setButtonPressedB;
  console.log("setButton value"+setButtonPressedB);
-if (setButtonPressed){
+if (setButtonPressedB){
  document.getElementById('set-acB').className = "fx-btn-selected";
-}else if (!setButtonPressed){
+}else if (!setButtonPressedB){
   document.getElementById('set-acB').className = "fx-btn";
 }
 }
