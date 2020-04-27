@@ -2,7 +2,7 @@
 const express = require("express");
 const app = new express();
 
-const stream = require('youtube-audio-stream');
+const stream = require('./ytstream');
 const cors = require('cors');
 const PORT = process.env.PORT || 5000;
 const cookieParser = require('cookie-parser'); //.cookie

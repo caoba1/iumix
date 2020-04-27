@@ -21,7 +21,6 @@
     "fluent-ffmpeg": "2.1.2",
     "npx": "^10.2.2",
     "start": "^5.1.0",
-    "youtube-audio-stream": "*",
     "ytdl-core": "2.0.1"
   },
   "engines": {

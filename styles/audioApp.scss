@@ -139,7 +139,7 @@ div {
   overflow: hidden;
   resize: none;
   color: $text-field-text-color;
-  overflow-y:auto;
+  overflow-y:scroll;
   &:hover {
     behaviour: "scroll";
   }
