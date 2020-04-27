@@ -88,7 +88,7 @@ function setVideoTitleData(videoId, thisElementVideo, thisElementDuration){
 *@return time 'length' in seconds
 **/
 function convertDuration(ytTimeFormat){
-
+// TODO; Merge with calculateTotalValue
   //thanksto  https://stackoverflow.com/questions/22148885/converting-youtube-data-api-v3-video-duration-format-to-seconds-in-javascript-no
   //function YTDurationToSeconds(duration) {
   var match = ytTimeFormat.match(/PT(\d+H)?(\d+M)?(\d+S)?/);

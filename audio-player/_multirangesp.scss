@@ -178,10 +178,24 @@ $uw: $w - $d;
   background: linear-gradient(0deg, #ccc $h, transparent 0);
   font-family: ubuntu mono, consolas, monaco, monospace;
 
-  &::before, &::after {
+  /*&::before, &::after {
     grid-column: 1/ span 2;
     grid-row: 3;
     background: $bcktrack-color;
+    content: ''
+  }*/
+
+  &::before {
+    grid-column: 1/ span 2;
+    grid-row: 3;
+    background: $bcktrack-color;
+    content: ''
+  }
+
+  &::after {
+    grid-column: 1/ span 2;
+    grid-row: 3;
+    background: cyan;
     content: ''
   }
 
@@ -191,7 +205,7 @@ $uw: $w - $d;
   }
 
   &::after {
-    margin-left: calc(#{$r} + ((var(--highVal) - var(--max))/var(--dif))*(var(--w)-#{$d}));
+    margin-left: calc(#{$r} + ((var(--lowVal) - var(--min)) / var(--dif))*(var(--w)-#{$d}));
     width: calc( ((var(--highVal) - var(--lowVal))/var(--dif))*(var(--w)-#{$d}));
   }
 

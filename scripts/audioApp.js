@@ -13,6 +13,10 @@ var sndFx_bypassLooperB = false;
 var player_flag_loop_A = true;
 var player_flag_loop_B = true;
 
+function onLoad(){
+  init();
+}
+
 function init() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   const audioContext = new AudioContext();
@@ -492,10 +496,10 @@ if (x.style.visibility === "hidden") {
 function calculateTotalValue(length) {
   var minutes = Math.floor(length / 60),
     seconds_int = length - minutes * 60,
-    seconds_str = seconds_int.toString(),
+    seconds_str = Math.floor(seconds_int).toString(),
     seconds = seconds_str.substr(0, 2);
     //https://stackoverflow.com/questions/8935414/getminutes-0-9-how-to-display-two-digit-numbers
-    time = minutes + ':' + ('0'+seconds).slice(-2);
+    time = minutes + ':' + ('00'+seconds).slice(-2);
 
   return time;
 }

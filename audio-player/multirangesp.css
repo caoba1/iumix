@@ -100,17 +100,28 @@
   margin: 1em auto;
   width: calc(90% + 0px);
   background: linear-gradient(0deg, #ccc 2px, transparent 0);
-  font-family: ubuntu mono, consolas, monaco, monospace; }
-  .multirange::before, .multirange::after {
+  font-family: ubuntu mono, consolas, monaco, monospace;
+  /*&::before, &::after {
+    grid-column: 1/ span 2;
+    grid-row: 3;
+    background: $bcktrack-color;
+    content: ''
+  }*/ }
+  .multirange::before {
     grid-column: 1/ span 2;
     grid-row: 3;
     background: rgba(179, 62, 189, 0.8);
+    content: ""; }
+  .multirange::after {
+    grid-column: 1/ span 2;
+    grid-row: 3;
+    background: cyan;
     content: ""; }
   .multirange::before {
     margin-left: calc(2px + ((var(--lowVal) - var(--min)) / var(--dif))*(var(--w)-4px));
     width: calc( ((var(--highVal) - var(--lowVal))/var(--dif))*(var(--w)-4px)); }
   .multirange::after {
-    margin-left: calc(2px + ((var(--highVal) - var(--max))/var(--dif))*(var(--w)-4px));
+    margin-left: calc(2px + ((var(--lowVal) - var(--min)) / var(--dif))*(var(--w)-4px));
     width: calc( ((var(--highVal) - var(--lowVal))/var(--dif))*(var(--w)-4px)); }
   .multirange input[type='range'] {
     grid-column: 1/ span 2;
