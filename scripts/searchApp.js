@@ -1,6 +1,6 @@
-function doSearch() {
+var apiYTK = 'AIzaSyDn4eBLCP-WKdF5WZK3auTyfX-N5uIev6k';
 
-  var apiYTK = 'AIzaSyDn4eBLCP-WKdF5WZK3auTyfX-N5uIev6k';
+function doSearch() {
 
   let searchQuery = document.getElementById('search-box-text').value;
   // Here we are composing the endpoint with query parameters as defined from https://developers.google.com/youtube/v3/docs/search/list
@@ -54,9 +54,9 @@ function doSearch() {
 };
 
 
-function setVideoTitleData(videoId, thisElementVideo, thisElementDuration){
+function setVideoTitleData(videoId, thisElementVideo, thisElementDuration, thisElementPlayerDuration){
 
-  var apiYTK = 'AIzaSyDn4eBLCP-WKdF5WZK3auTyfX-N5uIev6k';
+
   let url='https://www.googleapis.com/youtube/v3/videos?id='+videoId+'&key='+apiYTK+'&fields=items(id,snippet(channelId,title,categoryId),statistics,contentDetails(duration))&part=snippet,statistics,contentDetails';
   var videoTitle="";
   var videoDuration="";
@@ -74,6 +74,7 @@ function setVideoTitleData(videoId, thisElementVideo, thisElementDuration){
       videoDuration=convertDuration(parsedResponse.items[0].contentDetails.duration);
       console.log('Time tag in player '+thisElementVideo.id+':'+videoDuration+'\n')
       thisElementDuration.innerHTML = videoDuration; //TODO: just jumps in left audio player tag
+      thisElementPlayerDuration.innerHTML = calculateTotalValue(videoDuration);
 
     }
   }
@@ -81,6 +82,28 @@ function setVideoTitleData(videoId, thisElementVideo, thisElementDuration){
   ajaxSearchRequest.send(null);
   //return videoTitle;//parsedResponse.items[0].snippet.title;
 };
+
+function setVideoTitleValue(videoId, thisElement){
+  console.log("ENTER")
+  console.log(thisElement);
+  let url='https://www.googleapis.com/youtube/v3/videos?id='+videoId+'&key='+apiYTK+'&fields=items(id,snippet(channelId,title,categoryId),statistics,contentDetails(duration))&part=snippet,statistics,contentDetails';
+  var videoTitle="";
+  var ajaxSearchRequest = new XMLHttpRequest();
+  ajaxSearchRequest.onreadystatechange = function() {
+    if (ajaxSearchRequest.readyState == XMLHttpRequest.DONE) {
+      let parsedResponse = JSON.parse(ajaxSearchRequest.responseText);
+      console.log(ajaxSearchRequest.responseText);
+      console.log("-------------------");
+      console.log(parsedResponse.items[0].snippet.title);
+      videoTitle=parsedResponse.items[0].snippet.title;
+      thisElement.value = videoTitle;
+    }
+  }
+  ajaxSearchRequest.open('GET', url, true);
+  ajaxSearchRequest.send(null);
+  //return videoTitle;//parsedResponse.items[0].snippet.title;
+};
+
 
 
 /**

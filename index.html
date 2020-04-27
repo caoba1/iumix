@@ -51,7 +51,7 @@
             <!--input id="sliderA" type="range" multiple min="0" max="1" value="0,1" step="0.01"/-->
             <div id="sliderA" class="multirange" role="group" aria-labelledby="multi-lbl" style="--lowVal: 0.0; --highVal: 100; --min: 0; --max: 100;">
               <!-- div id="multi-lbl">Multiple range slider</div-->
-              <input class="multirange-low-val" id="lowVal" type="range" min="0" value="0" max="100" step="1"/>
+              <input class="multirange-low-val" id="lowVal" type="range" min="0" value="0" max="100" step="1" style="--shadowColoer:#607d8b;"/>
               <output for="lowVal" style="--c: var(--lowVal);"></output>
               <input class="multirange-high-val" id="highVal" type="range" min="0" value="100" max="100" step="1"/>
               <output for="highVal" style="--c: var(--highVal);"></output>
@@ -112,8 +112,8 @@
 
 
 <div>
-  Que </br>
-  <textarea class="yTiD" id="setIdA" disabled>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
+  <small>queue</small> </br>
+  <textarea class="yTiD" id="setIdATitle" disabled>#</textarea> <textarea class="yTiD" id="setIdA" disabled hidden>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
 </div>
 </div>
 
@@ -139,7 +139,7 @@
         <span>
           <!--input id="sliderB" type="range" multiple min="0" max="1" value="0,1" step="0.01"/-->
           <div id="sliderB" class="multirange" role="group" aria-labelledby="multi-lbl" style="--lowVal: 0.0; --highVal: 100; --min: 0; --max: 100; --w:120px;">
-            <input class="multirange-low-val" id="lowVal" type="range" min="0" value="0" max="100" step="1"/>
+            <input class="multirange-low-val" id="lowVal" type="range" min="0" value="0" max="100" step="1" style="--shadowColoer:#607d8b;"/>
             <output for="lowVal" style="--c: var(--lowVal);"></output>
             <input class="multirange-high-val" id="highVal" type="range" min="0" value="100" max="100" step="1"/>
             <output for="highVal" style="--c: var(--highVal);"></output>
@@ -185,8 +185,8 @@
 <small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
 </div>
 <div>
-  Que </br>
-  <textarea class="yTiD" id="setIdB">#</textarea> <div id="setIdBSET" class="set-button" style="bottom:7px;"><a href="#">set & play!</a></div>
+  <small>queue</small> </br>
+  <textarea class="yTiD" id="setIdBTitle" disabled>#</textarea> <textarea class="yTiD" id="setIdB" disabled hidden>#</textarea> <div id="setIdBSET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
 </div>
 </div>
 
@@ -245,7 +245,7 @@
     </div>
     <!-- See https://jsfiddle.net/7ac9us70/1052/ and https://stackoverflow.com/questions/17419957/how-can-i-change-the-font-size-of-a-select-option for styling-->
   </br>
-  Send to que </br>
+  Send to queue </br>
   <div class="toggle-btn" id="sendToA"><a href="#">A</a></div>
   <div class="toggle-btn" id="sendToB"><a href="#">B</a></div>
   <div>

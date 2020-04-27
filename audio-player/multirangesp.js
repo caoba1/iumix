@@ -35,7 +35,7 @@ for (var i = 0; i < multiRangeElements.length; i++) {
       _multiRangeElement.style.setProperty(`--w`, +_multiRangeElement.clientWidth+"px");
       /*_t.parentNode.style.setProperty(`--${_t.id}`, +_t.value);*/
       console.log("\n::sliders:ID:"+_multiRangeElement.id+":--w:"+_multiRangeElement.clientWidth+"px"+":_sliderID:"+_t.id+":value:"+_t.value)
-      if (_t.id==='lowVal'){
+      if (_t.id==='lowVal' | _t.id==='lowValB'){
         //BUG#1
         console.log("HERE!\n")
         if (!_t.value){
@@ -55,7 +55,7 @@ for (var i = 0; i < multiRangeElements.length; i++) {
         }
        _multiRangeElement.lowValue =_t.value;
     }
-      else if (_t.id==='highVal'){
+      else if (_t.id==='highVal' | _t.id==='highValB'){
         //BUG#1
         console.log("HERE!!!\n")
         if (!_t.value){

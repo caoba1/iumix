@@ -126,6 +126,11 @@ function init() {
     let selectionA = document.getElementById('search-results');
     idA.value = selectionA.value;
 
+    // waste an api call
+    setVideoTitleValue(selectionA.value,document.getElementById('setIdATitle'));
+
+
+
   }, false);
 
   const sendToB = document.getElementById('sendToB');
@@ -133,6 +138,9 @@ function init() {
     let idB = document.getElementById('setIdB');
     let selectionB = document.getElementById('search-results');
     idB.value = selectionB.value;
+
+    //waste an api call
+    setVideoTitleValue(selectionB.value,document.getElementById('setIdBTitle'));
 
   }, false);
 
@@ -162,24 +170,24 @@ function init() {
    // TODO This is a security concern: duration is in document.getElementById('durationA').innerHTML
    let _length = document.getElementById('durationA').innerHTML;
    sndFx_autoCueButtons[i].addEventListener('click', function(){
-      console.log("Button pressed: "+this.id + " at "+setButtonPressed+"\n");
+      console.log("Button pressed: "+this.id + " at "+setButtonPressed+"\n" + this.id.slice(-3).substring(0,1) + "\n");
       // Now cue to position
       if (!setButtonPressed){
         //NOTE: this are elements in audio-player
-        if (this.id.slice(-3).slice(1)!="B"){
+        if (this.id.slice(-3).substring(0,1)!="B"){
         document.getElementById('audioStreamA').currentTime=this.autoCueAt;
         document.getElementById('audioStreamA').progressbar=this.autoCueAt/_length;
       }else{
-        document.getElementById('audioStreamB').currentTime=this.autoCueAt;
-        document.getElementById('audioStreamB').progressbar=this.autoCueAt/_length;
+        //document.getElementById('audioStreamB').currentTime=this.autoCueAt;
+        //document.getElementById('audioStreamB').progressbar=this.autoCueAt/document.getElementById('durationB').innerHTML;
       }
       }else if (setButtonPressed){
-        if (this.id.slice(-3).slice(1)!="B"){
+        if (this.id.slice(-3).substring(0,1)!="B"){
           this.autoCueAt = document.getElementById('sliderA').lowValue*_length/100;
           set_sndFxSetButtonPressed(false);
         }else{
-          this.autoCueAt = document.getElementById('sliderB').lowValue*_length/100;
-          set_sndFxSetButtonPressedB(false);
+          //this.autoCueAt = document.getElementById('sliderB').lowValue*document.getElementById('durationB').innerHTML/100;
+          //set_sndFxSetButtonPressedB(false);
         }
 
         // set marker on ac --
@@ -187,6 +195,28 @@ function init() {
         this.innerHTML = innerTag;
 
       }
+
+
+      if (!setButtonPressedB){
+        //NOTE: this are elements in audio-player
+        if (this.id.slice(-3).substring(0,1)!="B"){
+      }else{
+        document.getElementById('audioStreamB').currentTime=this.autoCueAt;
+        document.getElementById('audioStreamB').progressbar=this.autoCueAt/document.getElementById('durationB').innerHTML;
+      }
+    }else if (setButtonPressedB){
+        if (this.id.slice(-3).substring(0,1)!="B"){
+        }else{
+          this.autoCueAt = document.getElementById('sliderB').lowValue*document.getElementById('durationB').innerHTML/100;
+          set_sndFxSetButtonPressedB(false);
+        }
+        // set marker on ac --
+        var innerTag = "AC"+this.id.slice(-1)+"<br>"+calculateTotalValue(this.autoCueAt);
+        this.innerHTML = innerTag;
+
+        }
+
+
    }, false);
  }
 
@@ -348,10 +378,12 @@ function set_sndFxSetButtonPressed(value){
 console.log(setButtonPressed);
 if (setButtonPressed){
   console.log("setButton value"+setButtonPressed);
+  document.getElementById('sliderA').children[0].style.setProperty('--shadowColoer','rgba(62, 189, 240, 1)');
  document.getElementById('set-ac').className = "fx-btn-selected";
  //document.getElementById('sliderA').className = "slider-selected";
 
 }else if (!(setButtonPressed)){
+  document.getElementById('sliderA').children[0].style.setProperty('--shadowColoer','#607d8b');
   document.getElementById('set-ac').className = "fx-btn";
 }
 }
@@ -360,8 +392,10 @@ function set_sndFxSetButtonPressedB(value){
 setButtonPressedB = !setButtonPressedB;
  console.log("setButton value"+setButtonPressedB);
 if (setButtonPressedB){
+ document.getElementById('sliderB').children[0].style.setProperty('--shadowColoer','rgba(62, 189, 240, 1)');
  document.getElementById('set-acB').className = "fx-btn-selected";
 }else if (!setButtonPressedB){
+  document.getElementById('sliderB').children[0].style.setProperty('--shadowColoer','#607d8b');
   document.getElementById('set-acB').className = "fx-btn";
 }
 }
@@ -382,6 +416,7 @@ audioScope.load();
 });
 ## */
 
+//Deprecate:::
 document.querySelector('#setIdB').addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     var audioScope = document.getElementById('audioStreamB');
@@ -395,8 +430,8 @@ document.querySelector('#setIdB').addEventListener('keypress', function (e) {
     audioScope.load();
 
     idInB = document.querySelector('#setIdB').value.trim();
-    setVideoTitleData(idInA,document.getElementById('titleB'),document.getElementById('durationB'));
-    document.getElementById("end-timeB").innerHTML = calculateTotalValue(document.getElementById('durationB').innerHTML);
+    setVideoTitleData(idInA,document.getElementById('titleB'),document.getElementById('durationB'),document.getElementById('end-timeB'));
+    //document.getElementById("end-timeB").innerHTML = calculateTotalValue(document.getElementById('durationB').innerHTML);
     initProgressBarB();
 
     audioScope.play();
@@ -416,11 +451,33 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
 
 
   idInA = document.querySelector('#setIdA').value.trim();
-  setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'));
-  document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
+  setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-time'));
+  //document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
   initProgressBar();
 
   audioScope.play();
+  document.getElementById('play-btn').className = "pause";
+});
+
+document.querySelector('#setIdBSET').addEventListener('click', function () {
+  var audioScope = document.getElementById('audioStreamB');
+  audioScope.pause();
+  audioScope.innerHTML = '';
+  var audioSource = document.createElement('source');
+  //let uriString = ('http://localhost:3000/').concat('audio1','?','songId=',document.querySelector('#setIdA').value.trim());
+  let uriString = ''.concat('audio2','?','songId=',document.querySelector('#setIdB').value.trim());
+  audioSource.setAttribute('src', uriString,'type','audio/mpg');
+  audioScope.appendChild(audioSource);
+  audioScope.load();
+
+
+  idInB = document.querySelector('#setIdB').value.trim();
+  setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'),document.getElementById('end-timeB'));
+  //document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
+  initProgressBarB();
+
+  audioScope.play();
+  document.getElementById('play-btnB').className = "pause";
 });
 
 function toggleDevOps(){var x = document.getElementById("dev-options");

@@ -33,10 +33,7 @@ function initProgressBar() {
       progressbar.value = document.getElementById('sliderA').lowValue/100;
     }
 
-    // Show looper's values --- TODO: change placement of this function or add tooltips
-    document.getElementById('sliderALowTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').lowValue*length/100);
-    document.getElementById('sliderAHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').highValue*length/100);
-  }
+    }
 
 
   function seek(event) {
@@ -44,6 +41,16 @@ function initProgressBar() {
     player.currentTime = percent * length;//player.duration;
     progressbar.value = percent; /// 100;
   }
+
+  // Show looper's values --- add tooltips
+  const loopSliderLow = document.getElementById('sliderA');
+  loopSliderLow.addEventListener('input', function() {
+    document.getElementById('sliderALowTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').lowValue*document.getElementById('durationA').innerHTML/100);
+    document.getElementById('sliderAHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').highValue*document.getElementById('durationA').innerHTML/100);
+  }, false);
+
+
+
 };
 
 function initProgressBarB() {
@@ -89,6 +96,16 @@ function initProgressBarB() {
     playerB.currentTime = percent * lengthB;//player.duration;
     progressbarB.value = percent; /// 100;
   }
+
+  // Show looper's values --- add tooltips
+  const loopSliderB = document.getElementById('sliderB');
+  loopSliderB.addEventListener('input', function() {
+    document.getElementById('sliderBLowTip').innerHTML=calculateTotalValue(document.getElementById('sliderB').lowValue*document.getElementById('durationB').innerHTML/100);
+    document.getElementById('sliderBHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderB').highValue*document.getElementById('durationB').innerHTML/100);
+  }, false);
+
+
+
 };
 
 
@@ -181,8 +198,9 @@ function calculateCurrentValue(currentTime) {
 
 //Initialize!
 initPlayers(2);
-setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA')); //? in searchApp.js
-setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'));
+setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-time')); //? in searchApp.js
+setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'),document.getElementById('end-timeB'));
+//workaround
 initProgressBar();
 initProgressBarB();
 initMultirangeSliders();

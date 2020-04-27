@@ -24,7 +24,7 @@ $thumb-height: 14px !default;
 $thumb-width: 14px !default;
 $thumb-shadow-size: 4px !default;
 $thumb-shadow-blur: 4px !default;
-$thumb-shadow-color: rgba(0, 0, 0, .2) !default;
+$thumb-shadow-color: rgba(0, 0, 0, 0.2) !default;
 $thumb-border-width: 1.4px !default;
 $thumb-border-color: #eceff1 !default;
 
@@ -37,6 +37,7 @@ $r: .5*$d;
 
 $uw: $w - $d;
 
+
 @mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
   box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color, 0 0 $shadow-size lighten($shadow-color, 5%);
 }
@@ -48,9 +49,10 @@ $uw: $w - $d;
 }
 
 @mixin thumb() {
-  @include shadow(
-  $thumb-shadow-size, $thumb-shadow-blur, $thumb-shadow-color);
-  background: $thumb-color;
+  //@include shadow(
+  //$thumb-shadow-size, $thumb-shadow-blur, $thumb-shadow-color);
+  box-shadow: $thumb-shadow-size $thumb-shadow-size $thumb-shadow-blur $thumb-shadow-color, 0 0 $thumb-shadow-size lighten($thumb-shadow-color, 5%);
+  background: var(--shadowColoer);
   border: $thumb-border-width solid $thumb-border-color;
   border-radius: $thumb-radius;
   box-sizing: border-box;
@@ -80,6 +82,7 @@ $uw: $w - $d;
   background: transparent;
   margin: $thumb-height / 2 0;
   width: $track-width;
+  --shadowColoer: #607d8b;
 
   &::-moz-focus-outer {
     border: 0;
@@ -223,6 +226,7 @@ $uw: $w - $d;
     background: none; /* get rid of white Chrome background */
     --col: #c743c2;//#000;
     pointer-events: none;
+    --shadowColoer: #607d8b;
 
     &::-webkit-slider-runnable-track { @include track }
     &::-moz-range-track { @include track }
