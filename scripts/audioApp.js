@@ -131,6 +131,7 @@ function init() {
 
 
 
+
   }, false);
 
   const sendToB = document.getElementById('sendToB');
@@ -296,8 +297,8 @@ loopInA.addEventListener('change', function() {
 }, false);
 
 const loopInB = document.getElementById('loopB');
-loopInA.addEventListener('change', function() {
-  if (loopInA.checked){
+loopInB.addEventListener('change', function() {
+  if (loopInB.checked){
     console.log("LOOP");
     document.getElementById("sliderB").disabled = false;
     player_flag_loop_B = true;
@@ -430,7 +431,7 @@ document.querySelector('#setIdB').addEventListener('keypress', function (e) {
     audioScope.load();
 
     idInB = document.querySelector('#setIdB').value.trim();
-    setVideoTitleData(idInA,document.getElementById('titleB'),document.getElementById('durationB'),document.getElementById('end-timeB'));
+    setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'),document.getElementById('end-timeB'));
     //document.getElementById("end-timeB").innerHTML = calculateTotalValue(document.getElementById('durationB').innerHTML);
     initProgressBarB();
 
@@ -455,6 +456,15 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
   //document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
   initProgressBar();
 
+  let _loopInA = document.getElementById('loopA');
+  if (_loopInA.checked){
+    //same as calling on change function?
+      console.log("UNLOOP");
+      document.getElementById("sliderA").disabled = true;
+      player_flag_loop_A = false;
+      _loopInA.checked=false;
+    }
+
   audioScope.play();
   document.getElementById('play-btn').className = "pause";
 });
@@ -475,6 +485,15 @@ document.querySelector('#setIdBSET').addEventListener('click', function () {
   setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'),document.getElementById('end-timeB'));
   //document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
   initProgressBarB();
+
+  let _loopInB = document.getElementById('loopB');
+  if (_loopInB.checked){
+    //same as calling on change function?
+      console.log("UNLOOP");
+      document.getElementById("sliderB").disabled = true;
+      player_flag_loop_B = false;
+      _loopInB.checked=false;
+    }
 
   audioScope.play();
   document.getElementById('play-btnB').className = "pause";
