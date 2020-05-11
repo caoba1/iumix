@@ -29,6 +29,7 @@ app.get("/audio1", (req, res) => {
   let songId = req.query.songId;
   console.log('YTat1='+songId);
   stream(uri.concat(songId)).pipe(res);
+  //stream('https://soundcloud.com/feindrehstar/afrikatour_interview_mdr)
 });
 
 app.get("/audio2", (req, res) => {

@@ -108,19 +108,71 @@ div {
 .search-box input[type='text']{
   font-family: Poppins;
   font: Poppins;
+  background: rgba(20, 84, 91, 0.8);
   font-size: 12px;
+  border-color: rgba(1, 55, 24, 0.11);
+  color: white;
 }
 .search-box button{
   font-family: Poppins;
-  /*color: rgb(62, 189, 189);
-  background-color: rgba(60,60,60,1);*/
+  /*color: rgb(62, 189, 189);*/
+  background: rgba(60,60,60,1);
   font-size: 12px;
+  color: white;
+  border-color: rgba(1, 55, 24, 0.11);
 }
 .search-results{
-  /*background-color: rgba(0,0,0,0.2);*/
+  font-family: Poppins;
   font-size: 14px;
+  color: white;
 }
 
+.suggest-list{
+  background: transparent;
+  background-color: rgba(0, 41, 31, 0.6);
+  line-height: 1.2;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  overflow-y: scroll;
+
+  & option:hover, option:focus, option:active, option:checked
+  {
+    background: rgba(0, 116, 153, 0.6);
+    background-color: rgba(0, 116, 153, 0.6);
+    box-shadow: 0 0 10px 100px #1882A8 inset;
+  }
+  & option {
+    background-color: rgba(2, 68, 52,0.6);
+    /*background: rgba(0, 116, 153, 0.6);
+    /*background: none repeat scroll 0 0 #E5E3E3;*/
+    border: 0px 1px solid #CCCCCC;
+    height: 16px;
+    line-height: 16px;
+    z-index: -9999;
+    color:white;
+  }
+  /*& option:checked::after
+  {
+    background: rgba(0, 116, 153, 0.6);
+    background-color: rgba(0, 116, 153, 0.6);
+  }*/
+  &::-webkit-scrollbar {
+	width: 6px;
+	background-color: #585d59;
+}
+  &::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #59798f;
+}
+
+&::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 4px;
+	background-color: #afe8c9;
+}
+}
 
 
 .audioStream{
@@ -134,12 +186,16 @@ div {
 /*Youtube track list*/
 .yTiD{
   width: 60%;
+  font-family: Poppins;
+  font-size: 12px;
   background-color: $text-field-color;
-  height: 1.1em;
+  height: 1.4em;
   overflow: hidden;
   resize: none;
   color: $text-field-text-color;
-  overflow-y:scroll;
+  border: 0;
+  animation: scrolling 12s .2s linear 1;
+  behaviour: "scroll";
   &:hover {
     behaviour: "scroll";
   }
@@ -214,8 +270,9 @@ div {
   display: inline;
   white-space: nowrap;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
-  margin:0; top:50%;
+  padding: 1px 5px;
+  background-color: rgba(3, 74, 89, 0.4);
+  margin:2px; top:50%;
   & a{
     color:white;
     font-family:Poppins;
@@ -247,7 +304,7 @@ div {
   margin:0;
   color: white;
   box-shadow: 1px 1px 2px rgba(62, 189, 189, 0.8), -1px -1px 2px rgba(62, 189, 189, 0.8), -1px 1px 2px rgba(62, 189, 189, 0.8), 1px -1px 2px rgba(62, 189, 189, 0.8);
-&:active{
+  &:active{
     /*background-color:#e8bc84;*/
     transform: translateY(-1px);
     box-shadow: 2px 2px 5px rgba(255, 0, 99, 0.8), -2px -2px 5px rgba(255, 0, 99, 0.8), -2px 2px 5px rgba(255, 0, 99, 0.8), 2px -2px 5px rgba(255, 0, 99, 0.8);
@@ -284,8 +341,8 @@ div {
 }
 
 .fx-menu{
-    background: rgba(60, 8, 8, 0.5);
-    transition: width 1.5s linear 0s, opacity 600ms, visibility 600ms;
+  background: rgba(60, 8, 8, 0.5);
+  transition: width 1.5s linear 0s, opacity 600ms, visibility 600ms;
 }
 
 .ac-btn{

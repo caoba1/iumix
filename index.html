@@ -24,7 +24,7 @@
 
 </head>
 <body>
-  <div class="pageHeader"><h1>This is the title</h1></div>
+  <div class="pageHeader"><h1>iuMix</h1></div>
   <div class="wrapper">
 
     <div><label>A</label>
@@ -112,8 +112,8 @@
 
 
 <div>
-  <small>queue</small> </br>
-  <textarea class="yTiD" id="setIdATitle" disabled>#</textarea> <textarea class="yTiD" id="setIdA" disabled hidden>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
+  <small style="text-align:left; float:left; margin-left:4px;">Next in line:</small> </br>
+  <textarea class="yTiD" id="setIdATitle" style="float:left; margin-left:4px; margin-bottom:2px;" disabled>#</textarea> <textarea class="yTiD" id="setIdA" disabled hidden>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
 </div>
 </div>
 
@@ -185,8 +185,8 @@
 <small style="float: right; position: relative; right: calc(4% + 0.2em); top: -16px; font-size:0.8em; ">R</small>
 </div>
 <div>
-  <small>queue</small> </br>
-  <textarea class="yTiD" id="setIdBTitle" disabled>#</textarea> <textarea class="yTiD" id="setIdB" disabled hidden>#</textarea> <div id="setIdBSET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
+    <small style="text-align:left; float:left; margin-left:4px;">Next in line:</small> </br>
+  <textarea class="yTiD" id="setIdBTitle" style="float:left; margin-left:4px; margin-bottom:2px;" disabled>#</textarea> <textarea class="yTiD" id="setIdB" disabled hidden>#</textarea> <div id="setIdBSET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
 </div>
 </div>
 
@@ -239,13 +239,13 @@
   </div>
   <div class="search-results">
     Results </br>
-    <div class="suggest-list">
-      <select id="search-results" style="width:100%;">
+    <div class="suggest-list-container">
+      <select class=suggest-list id="search-results" style="width:100%;" size=5>
       </select>
     </div>
     <!-- See https://jsfiddle.net/7ac9us70/1052/ and https://stackoverflow.com/questions/17419957/how-can-i-change-the-font-size-of-a-select-option for styling-->
   </br>
-  Send to queue </br>
+  Send to </br>
   <div class="toggle-btn" id="sendToA"><a href="#">A</a></div>
   <div class="toggle-btn" id="sendToB"><a href="#">B</a></div>
   <div>
@@ -284,8 +284,15 @@
   </div>
   <p style="position:absolute; bottom:2px; left:2px;">
     This small app uses HTML5 and JS.
-    Please use a compatible browser. Download Vivaldi.
+    Please use a compatible browser. Download Vivaldi or your favorite browser!
   </p>
+</div>
+
+<div class="config-settings" style="position:absolute; right:10px; top:10px; width:48px;">
+  <div class"setting-buttons">
+    <div id="settings">?</div>
+    <div id="plays">!</div>
+  </div>
 </div>
 
 
