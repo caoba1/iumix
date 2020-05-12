@@ -23,10 +23,12 @@ function streamify (uri, opt) {
     }
   }
 
-  const video = ytdl(uri, opt)
+  const video = ytdl(uri, opt) //Download
   //const video = ytdl('https://soundcloud.com/feindrehstar/afrikatour_interview_mdr', opt)
   const { file, audioFormat } = opt
+  // create stream in file
   const stream = file ? fs.createWriteStream(file) : new PassThrough()
+  // at this point video is in still not in strean
   const ffmpeg = new FFmpeg(video)
 
   process.nextTick(() => {

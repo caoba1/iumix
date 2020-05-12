@@ -285,13 +285,13 @@ const loopInA = document.getElementById('loopA');
 loopInA.addEventListener('change', function() {
   if (loopInA.checked){
     console.log("LOOP");
-    player_flag_loop_A = false;
+    player_flag_loop_A = true;
     document.getElementById("sliderA").disabled = false;
     //document.getElementById("sliderA-Mask").style.display ="block";
   }else{
     console.log("UNLOOP");
     document.getElementById("sliderA").disabled = true;
-    player_flag_loop_A = true;
+    player_flag_loop_A = false;
     //document.getElementById("sliderA-Mask").style.display ="none";
   }
 }, false);
@@ -305,7 +305,7 @@ loopInB.addEventListener('change', function() {
   }else{
     console.log("UNLOOP");
     document.getElementById("sliderB").disabled = true;
-    player_flag_loop_B = true;
+    player_flag_loop_B = false;
   }
 }, false);
 
@@ -393,10 +393,11 @@ function set_sndFxSetButtonPressedB(value){
 setButtonPressedB = !setButtonPressedB;
  console.log("setButton value"+setButtonPressedB);
 if (setButtonPressedB){
+ disableLoop(document.getElementById('loopB'),true,'B');
  document.getElementById('sliderB').children[0].style.setProperty('--shadowColoer','rgba(62, 189, 240, 1)');
  document.getElementById('set-acB').className = "fx-btn-selected";
 }else if (!setButtonPressedB){
-  document.getElementById('sliderB').children[0].style.setProperty('--shadowColoer','#607d8b');
+  document.getElementById('sliderB').children[0].style.setProperty('--shadowColoer','#607d8b'); //Same as in multirangesp.css
   document.getElementById('set-acB').className = "fx-btn";
 }
 }
@@ -448,7 +449,7 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
   let uriString = ''.concat('audio1','?','songId=',document.querySelector('#setIdA').value.trim());
   audioSource.setAttribute('src', uriString,'type','audio/mpg');
   audioScope.appendChild(audioSource);
-  audioScope.load();
+
 
 
   idInA = document.querySelector('#setIdA').value.trim();
@@ -458,14 +459,9 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
 
   //loop
   let _loopInA = document.getElementById('loopA');
-  if (_loopInA.checked){
-    //same as calling on change function?
-      console.log("UNLOOP");
-      document.getElementById("sliderA").disabled = true;
-      player_flag_loop_A = false;
-      _loopInA.checked=false;
-    }
+  disableLoop(_loopInA, true, 'A');
 
+  audioScope.load(); //Note: seems that audioscope autoplays on load!
   audioScope.play();
   document.getElementById('play-btn').className = "pause";
 });
@@ -479,8 +475,6 @@ document.querySelector('#setIdBSET').addEventListener('click', function () {
   let uriString = ''.concat('audio2','?','songId=',document.querySelector('#setIdB').value.trim());
   audioSource.setAttribute('src', uriString,'type','audio/mpg');
   audioScope.appendChild(audioSource);
-  audioScope.load();
-
 
   idInB = document.querySelector('#setIdB').value.trim();
   setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'),document.getElementById('end-timeB'));
@@ -488,14 +482,9 @@ document.querySelector('#setIdBSET').addEventListener('click', function () {
   initProgressBarB();
 
   let _loopInB = document.getElementById('loopB');
-  if (_loopInB.checked){
-    //same as calling on change function?
-      console.log("UNLOOP");
-      document.getElementById("sliderB").disabled = true;
-      player_flag_loop_B = false;
-      _loopInB.checked=false;
-    }
+  disableLoop(_loopInB, true, 'B');
 
+  audioScope.load();
   audioScope.play();
   document.getElementById('play-btnB').className = "pause";
 });
@@ -568,8 +557,40 @@ if (x.style.visibility === "hidden") {
   document.getElementById('sndFx-MainButtonB').className = "fx-btn menu-btn";
 }}
 
-
 //## audio-player
+function disableLoop(_loopHandler, disableFlag, _which){
+  if (disableFlag){
+    if (_loopHandler.checked){
+      //same as calling on change function?
+        console.log("UNLOOP");
+        //deprecated
+        //document.getElementById("sliderA").disabled = true;
+        if (_which === 'A'){
+        player_flag_loop_A = false;
+      }
+        if (_which === 'B'){
+        player_flag_loop_B = false;
+        }
+        _loopHandler.checked=false;
+      }
+  }else if (!disableFlag){
+    if (!_loopHandler.checked){
+      //same as calling on change function?
+        console.log("LOOP");
+        //deprecated
+        //document.getElementById("sliderA").disabled = true;
+        if (_which === 'A'){
+        player_flag_loop_A = true;
+      }
+        if (_which === 'B'){
+        player_flag_loop_B = true;
+        }
+        _loopHandler.checked=true;
+      }
+  }
+}
+
+
 /**
 * @param length time in seconds
 * @return a string with minutes:seconds

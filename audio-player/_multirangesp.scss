@@ -14,8 +14,8 @@ $contrast: 5% !default;
 $ie-bottom-track-color: darken($track-color, $contrast) !default;
 
 $bcktrack-color: rgba(179, 62, 189, 0.8) !default; //#55a4aa;
-//deprecated $thmb-facecolor: rgba(#aaa155, 0.66);
-$thumb-color: #607d8b !default;
+//deprecated $thmb-facecolor: rgba(#aaa155, 0.66); #607d8b
+$thumb-color: #607d8b !default; //#607d8b light blue #608b81 light teal
 
 $thumb-focus-color: rgba(0, 0, 0, .2) !default;
 
@@ -27,6 +27,8 @@ $thumb-shadow-blur: 4px !default;
 $thumb-shadow-color: rgba(0, 0, 0, 0.2) !default;
 $thumb-border-width: 1.4px !default;
 $thumb-border-color: #eceff1 !default;
+
+$slider-track-color: #027c5b !default;
 
 $w: 120px; //$track-width; //120px;
 $w_:  calc(90% + 0px); //deprectated
@@ -61,7 +63,7 @@ $uw: $w - $d;
   width: $thumb-width;
   pointer-events: auto;
   z-index:3;
-
+  //background-image: url('../images/maximize.svg');
 
   //margin-bottom: $thumb-height/2();
 }
@@ -82,7 +84,7 @@ $uw: $w - $d;
   background: transparent;
   margin: $thumb-height / 2 0;
   width: $track-width;
-  --shadowColoer: #607d8b;
+  --shadowColoer: #607d8b; //#608b81; //$thumb-color; //#607d8b;
 
   &::-moz-focus-outer {
     border: 0;
@@ -198,7 +200,7 @@ $uw: $w - $d;
   &::after {
     grid-column: 1/ span 2;
     grid-row: 3;
-    background: cyan;
+    background: $slider-track-color; //cyan;
     content: ''
   }
 
@@ -226,7 +228,7 @@ $uw: $w - $d;
     background: none; /* get rid of white Chrome background */
     --col: #c743c2;//#000;
     pointer-events: none;
-    --shadowColoer: #607d8b;
+    --shadowColoer: #607d8b; //#608b81; //$thumb-color; //#607d8b;
 
     &::-webkit-slider-runnable-track { @include track }
     &::-moz-range-track { @include track }

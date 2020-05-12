@@ -28,14 +28,22 @@ app.use(express.static(__dirname + '/'));
 app.get("/audio1", (req, res) => {
   let songId = req.query.songId;
   console.log('YTat1='+songId);
-  stream(uri.concat(songId)).pipe(res);
+  if (typeof songId === 'string' || songId instanceof String){
+  stream(uri.concat(songId)).pipe(res);}
+  else{
+    console.log('song id not a string')
+  }
   //stream('https://soundcloud.com/feindrehstar/afrikatour_interview_mdr)
 });
 
 app.get("/audio2", (req, res) => {
   let songId = req.query.songId;
   console.log('YTat2='+songId);
-  stream(uri.concat(songId)).pipe(res);
+  if (typeof songId === 'string' || songId instanceof String){
+  stream(uri.concat(songId)).pipe(res);}
+  else{
+    console.log('song id not a string')
+  }
 });
 
 app.get('/', function(req, res){

@@ -116,7 +116,7 @@
   .multirange::after {
     grid-column: 1/ span 2;
     grid-row: 3;
-    background: cyan;
+    background: #027c5b;
     content: ""; }
   .multirange::before {
     margin-left: calc(2px + ((var(--lowVal) - var(--min)) / var(--dif))*(var(--w)-4px));

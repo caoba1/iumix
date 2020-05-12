@@ -17,6 +17,11 @@ $sfx-autocue-button-2-facecolor: rgba(145, 211, 223, 0.5) !default;
 $sndfx-button-menu: "../images/menu.svg" !default;
 $sndfx-button-menu-active: "../images/menu-active.svg" !default;
 
+$checkmark-background-active: #027c5b !default;
+$checkmark-background: #3f5b62 !default;
+$checkmark-background-hover: #ccc !default;
+$checkmark-facecolor: white !default;
+
 html {
   height: 100%;
   font-family: 'Poppins', cursive;
@@ -471,17 +476,17 @@ div {
   width: 12px;
   margin-left: 16px;
   border-radius: 2px;
-  background-color: #3f5b62;
+  background-color: $checkmark-background;
 }
 
 /* On mouse-over, add a grey background color */
 .containercheck:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: $checkmark-background-hover;
 }
 
 /* When the checkbox is checked, add a blue background */
 .containercheck input:checked ~ .checkmark {
-  background-color: #027c5b;
+  background-color: $checkmark-background-active;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -502,7 +507,7 @@ div {
   top: -2px;
   width: 4px;
   height: 10px;
-  border: solid white;
+  border: solid $checkmark-facecolor;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
