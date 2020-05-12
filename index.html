@@ -63,10 +63,12 @@
             <!/div-->
           </span>
 
-          <!-- TODO: place loop-btn inside audio-player-->
-          <div id="loops-btn" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
-            <input type="checkbox" id="loopA" name="loopA" checked>loop from <loopTip id=sliderALowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderAHighTip style="color:lightblue">inf</loopTip>
-
+          <label class="containercheck">
+            <input type="checkbox" id="loopA" name="loopA" checked>
+            <span class="checkmark"></span>
+          </label>
+          <div id="loops-btn" style="margin-left: 32px; height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
+            loop from <loopTip id=sliderALowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderAHighTip style="color:lightblue">inf</loopTip>
           </div>
         </div>
       </div>
@@ -147,8 +149,14 @@
             <output for="highVal" style="--c: var(--highVal);"></output>
           </div>
         </span>
-        <div id="loops-btnB" style="height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
-          <input type="checkbox" id="loopB" name="loopB" checked>loop from <loopTip id=sliderBLowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderBHighTip style="color:lightblue">inf</loopTip>
+        <!--div id="loops-btnB" style="margin-left: 14px; height:30px; bottom:0px; text-align:left; font-size:0.8rem;"-->
+          <label class="containercheck">
+            <input type="checkbox" id="loopB" name="loopB" checked>
+            <span class="checkmark"></span>
+          </label>
+          <div id="loops-btnB" style="margin-left: 32px; height:30px; bottom:0px; text-align:left; font-size:0.8rem;">
+
+          loop from <loopTip id=sliderBLowTip style="color:lightblue">0:00</loopTip> to <loopTip id=sliderBHighTip style="color:lightblue">inf</loopTip>
         </div>
       </div>
     </div>

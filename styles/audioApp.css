@@ -385,9 +385,10 @@ div {
 .containercheck {
   display: block;
   position: relative;
-  padding-left: 16px;
+  padding-left: 35px;
+  margin-bottom: 12px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -406,9 +407,11 @@ div {
   position: absolute;
   top: 0;
   left: 0;
-  height: 13px;
-  width: 13px;
-  background-color: #eee; }
+  height: 12px;
+  width: 12px;
+  margin-left: 16px;
+  border-radius: 2px;
+  background-color: #3f5b62; }
 
 /* On mouse-over, add a grey background color */
 .containercheck:hover input ~ .checkmark {
@@ -416,7 +419,7 @@ div {
 
 /* When the checkbox is checked, add a blue background */
 .containercheck input:checked ~ .checkmark {
-  background-color: #2196F3; }
+  background-color: #027c5b; }
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
@@ -430,12 +433,12 @@ div {
 
 /* Style the checkmark/indicator */
 .containercheck .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
+  left: 4px;
+  top: -2px;
+  width: 4px;
   height: 10px;
   border: solid white;
-  border-width: 0 3px 3px 0;
+  border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg); }

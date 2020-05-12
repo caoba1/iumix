@@ -456,6 +456,7 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
   //document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
   initProgressBar();
 
+  //loop
   let _loopInA = document.getElementById('loopA');
   if (_loopInA.checked){
     //same as calling on change function?
