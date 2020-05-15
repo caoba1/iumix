@@ -67,6 +67,7 @@ function init() {
   const volumeControlA = document.querySelector('#volumeA');
   volumeControlA.addEventListener('input', function() {
     gainNodeA.gain.value = this.value;
+    console.log('volumeControlA::haschanged\n');
   }, false);
 
   const pannerControlA = document.querySelector('#pannerA');
@@ -78,6 +79,7 @@ function init() {
   const volumeControlB = document.querySelector('#volumeB');
   volumeControlB.addEventListener('input', function() {
     gainNodeB.gain.value = this.value;
+    console.log('volumeControlB::haschanged\n');
   }, false);
 
   const pannerControlB = document.querySelector('#pannerB');
@@ -247,6 +249,8 @@ normB.addEventListener('click', function() {
 
   let AIS = document.getElementById('volumeA').value;
   let BIS = document.getElementById('volumeB').value;
+  console.log(AIS);
+  console.log(BIS);
   console.log("nrm_pressed"+":measure:"+measure+":maxB:"+maxB+"minB"+minB+":Ais:"+AIS+":Bis:"+BIS+":RMSA:"+RMSA+":RMSB:"+RMSB);
 
   var volUP = measure;
@@ -256,14 +260,14 @@ normB.addEventListener('click', function() {
     if (maxB[1]===0){
       // loudness A is higher -> decrease volume in A // invert!
       document.getElementById('volumeA').value = Number.parseFloat(AIS - BIS*(1-volUP)).toFixed(2);
-      console.log("\nA to >" + (BIS - AIS*(1-volUP)));
+      console.log("\nA to >" + (BIS - BIS*(volUP/2)));
       gainNodeB.gain.value = Number.parseFloat(AIS + BIS*(volUP/2)).toFixed(4);
       gainNodeA.gain.value = Number.parseFloat(BIS - BIS*(volUP/2)).toFixed(4);
 
     }else if (maxB[1]===1){
       // loudness B is higher -> increase volume in A //
       document.getElementById('volumeA').value = Number.parseFloat(AIS + BIS*volUP).toFixed(2);
-      console.log("\nA to >" + (AIS + BIS*volUP));
+      console.log("\nA to >" + (AIS + BIS*(volUP/2)));
       gainNodeB.gain.value = Number.parseFloat(BIS - BIS*volUP/2).toFixed(4);
       gainNodeA.gain.value = Number.parseFloat(AIS + BIS*(volUP/2)).toFixed(4);
 
@@ -273,14 +277,14 @@ normB.addEventListener('click', function() {
     if (maxB[1]===0){
       // loudness A is higher -> increase volume in B //
       document.getElementById('volumeB').value = Number.parseFloat(BIS + AIS*volUP).toFixed(2);
-      console.log("\nB to >" + Number.parseFloat(BIS + AIS*volUP).toFixed(4));
+      console.log("\nB to >" + Number.parseFloat(BIS + AIS*(volUP/2)).toFixed(4));
       gainNodeA.gain.value = Number.parseFloat(AIS - AIS*(volUP/2)).toFixed(4);
       gainNodeB.gain.value = Number.parseFloat(BIS + AIS*(volUP/2)).toFixed(4);
 
     }else if (maxB[1]===1){
       // loudness B is higher -> decrease volume in B // invert!
       document.getElementById('volumeB').value = Number.parseFloat(BIS - AIS*(1-volUP)).toFixed(2);
-      console.log("\nB to >" + Number.parseFloat(BIS + BIS*volUP).toFixed(4));
+      console.log("\nB to >" + Number.parseFloat(AIS - AIS*(volUP/2)).toFixed(4));
       gainNodeA.gain.value = Number.parseFloat(BIS + AIS*(volUP/2)).toFixed(4);
       gainNodeB.gain.value = Number.parseFloat(AIS - AIS*(volUP/2)).toFixed(4);
     }
