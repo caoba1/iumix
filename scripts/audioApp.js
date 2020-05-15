@@ -13,9 +13,10 @@ var sndFx_bypassLooperB = false;
 var player_flag_loop_A = true;
 var player_flag_loop_B = true;
 
+/* Check this //
 function onLoad(){
   init();
-}
+}*/
 
 function init() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -55,10 +56,12 @@ function init() {
 
 
 
-
   trackA.connect(gainNodeA).connect(a1).connect(pannerA).connect(gainNodeMA).connect(gainNodeMaster);
   trackB.connect(gainNodeB).connect(a2).connect(pannerB).connect(gainNodeMB).connect(gainNodeMaster);
   gainNodeMaster.connect(audioContext.destination);
+
+
+
   // module controls
   // A
   const volumeControlA = document.querySelector('#volumeA');
@@ -218,7 +221,7 @@ function init() {
         }
 
 
-   }, false);
+   }, false);//All of autocue buttons
  }
 
 
@@ -226,8 +229,8 @@ function init() {
 * Expected behaviour is to raise volume to the loudest node.
 * If volume is the same, lower volume of the loudest node.
 */
-const setToB = document.getElementById('meanBSET');
-setToB.addEventListener('click', function() {
+const normB = document.getElementById('normB');
+normB.addEventListener('click', function() {
   // Get the 'loudness' measures of the two nodes
   let idA = RMSA; //document.getElementById('RMSA').value;
   let idB = RMSB; //document.getElementById('RMSB').value;
@@ -251,16 +254,18 @@ setToB.addEventListener('click', function() {
     // volume b is higher
 
     if (maxB[1]===0){
-      // loudness A is higher -> decrease volume in A //
+      // loudness A is higher -> decrease volume in A // invert!
       document.getElementById('volumeA').value = Number.parseFloat(AIS - BIS*(1-volUP)).toFixed(2);
       console.log("\nA to >" + (BIS - AIS*(1-volUP)));
-      gainNodeB.gain.value = Number.parseFloat(BIS - AIS*(1-volUP)).toFixed(4);
+      gainNodeB.gain.value = Number.parseFloat(AIS + BIS*(volUP/2)).toFixed(4);
+      gainNodeA.gain.value = Number.parseFloat(BIS - BIS*(volUP/2)).toFixed(4);
 
     }else if (maxB[1]===1){
       // loudness B is higher -> increase volume in A //
       document.getElementById('volumeA').value = Number.parseFloat(AIS + BIS*volUP).toFixed(2);
       console.log("\nA to >" + (AIS + BIS*volUP));
-      gainNodeB.gain.value = Number.parseFloat(AIS + BIS*volUP).toFixed(4);
+      gainNodeB.gain.value = Number.parseFloat(BIS - BIS*volUP/2).toFixed(4);
+      gainNodeA.gain.value = Number.parseFloat(AIS + BIS*(volUP/2)).toFixed(4);
 
     }
   } else if (BIS < AIS) {
@@ -269,13 +274,15 @@ setToB.addEventListener('click', function() {
       // loudness A is higher -> increase volume in B //
       document.getElementById('volumeB').value = Number.parseFloat(BIS + AIS*volUP).toFixed(2);
       console.log("\nB to >" + Number.parseFloat(BIS + AIS*volUP).toFixed(4));
-      gainNodeA.gain.value = Number.parseFloat(BIS + AIS*volUP).toFixed(4);
+      gainNodeA.gain.value = Number.parseFloat(AIS - AIS*(volUP/2)).toFixed(4);
+      gainNodeB.gain.value = Number.parseFloat(BIS + AIS*(volUP/2)).toFixed(4);
 
     }else if (maxB[1]===1){
-      // loudness B is higher -> decrease volume in B //
+      // loudness B is higher -> decrease volume in B // invert!
       document.getElementById('volumeB').value = Number.parseFloat(BIS - AIS*(1-volUP)).toFixed(2);
       console.log("\nB to >" + Number.parseFloat(BIS + BIS*volUP).toFixed(4));
-      gainNodeA.gain.value = Number.parseFloat(BIS + BIS*volUP).toFixed(4);
+      gainNodeA.gain.value = Number.parseFloat(BIS + AIS*(volUP/2)).toFixed(4);
+      gainNodeB.gain.value = Number.parseFloat(AIS - AIS*(volUP/2)).toFixed(4);
     }
   }
 }, false);
@@ -352,8 +359,16 @@ function getRMSvalue(val){
 }
 
 
+
 getRMSvalue("A");
 getRMSvalue("B");
+
+
+//-------------- DEV
+
+_drawAudio('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/shoptalk-clip.mp3',audioContext);
+
+//--------------
 
 
 }//init
@@ -419,6 +434,7 @@ audioScope.load();
 ## */
 
 //Deprecate:::
+/**
 document.querySelector('#setIdB').addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     var audioScope = document.getElementById('audioStreamB');
@@ -439,6 +455,7 @@ document.querySelector('#setIdB').addEventListener('keypress', function (e) {
     audioScope.play();
   }
 });
+**/
 
 document.querySelector('#setIdASET').addEventListener('click', function () {
   var audioScope = document.getElementById('audioStreamA');

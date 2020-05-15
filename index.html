@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,7 +118,9 @@
 
 <div>
   <small style="text-align:left; float:left; margin-left:4px;">Next in line:</small> </br>
-  <textarea class="yTiD" id="setIdATitle" style="float:left; margin-left:4px; margin-bottom:2px;" disabled>#</textarea> <textarea class="yTiD" id="setIdA" disabled hidden>#</textarea> <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
+  <textarea class="yTiD" id="setIdATitle" style="float:left; margin-left:4px; margin-bottom:2px;" disabled>#</textarea> <textarea class="yTiD" id="setIdA" disabled hidden>#</textarea>
+  <!--div id="setIdBSET_" class="set-button"  style="bottom:7px;"><a href="#">set</a></div Autoplay on load-->
+  <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
 </div>
 </div>
 
@@ -198,7 +201,9 @@
 </div>
 <div>
     <small style="text-align:left; float:left; margin-left:4px;">Next in line:</small> </br>
-  <textarea class="yTiD" id="setIdBTitle" style="float:left; margin-left:4px; margin-bottom:2px;" disabled>#</textarea> <textarea class="yTiD" id="setIdB" disabled hidden>#</textarea> <div id="setIdBSET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
+  <textarea class="yTiD" id="setIdBTitle" style="float:left; margin-left:4px; margin-bottom:2px;" disabled>#</textarea> <textarea class="yTiD" id="setIdB" disabled hidden>#</textarea>
+  <!--div id="setIdBSET_" class="set-button"  style="bottom:7px;"><a href="#">set</a></div Autoplay on load -->
+  <div id="setIdBSET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
 </div>
 </div>
 
@@ -206,7 +211,7 @@
 
 
 <div>
-  <div id="meanBSET" class="set-button" style="margin-top:2px;"><a href="#">nrm!</a></div>
+  <div id="normB" class="set-button" style="margin-top:2px;"><a href="#">nrm!</a></div>
 </div>
 
 <div class="rslider">
@@ -226,15 +231,6 @@
   <div class="toggle-btn" id="pauseAllButton"><a href="#">Pause</a></div>
 </div>
 
-
-<script src="audio-player/multirangesp.js"></script>
-
-<script src="scripts/searchApp.js"></script>
-<!-- Below is your custom application script -->
-<script src="scripts/audioApp.js"></script>
-
-
-<script src="audio-player/audio-player.js"></script>
 
 
 <!-- this area is light red-->
@@ -270,8 +266,14 @@
 <div class="page-footer">
 
   <div style="text-align:left;" id="playListButton" onclick="togglePlayList()"> > </div>
+  Hello I am outside playlist getContext
+  <br>
+  <canvas id="waveformCanvasA" style="width: 98%; height: 130px; margin: 2rem auto;">
+  </canvas>
+
   <div class="playlist" style="display:none;" id="iu-playlist">
-    #content
+    #content <br>
+    I am inside playlist context
   </div>
 
   <div style="text-align:left;" id="devOpsButton" onclick="toggleDevOps()"> > </div>
@@ -308,6 +310,11 @@
 </div>
 
 
+<script src="scripts/audiowaveform.js"></script>
+<script src="audio-player/multirangesp.js"></script>
+<script src="scripts/searchApp.js"></script>
+<!-- Below is your custom application script -->
+<script src="scripts/audioApp.js"></script>
+<script src="audio-player/audio-player.js"></script>
 </body>
-
 </html>
