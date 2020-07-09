@@ -14,8 +14,8 @@ app.use(cookieParser());
 app.use(session({secret: "Shh, its a secret!",resave:true,saveUninitialized:true}));
 
 const uri = "https://www.youtube.com/watch?v=";
-
-app.use(function(req, res, next) {
+// added async
+app.use(async function(req, res, next) {
   res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-inline' https://apis.google.com");
   res.setHeader('Set-Cookie', "myCookie=cookieValue;Path=/");
   return next();
@@ -26,19 +26,27 @@ app.use(express.static(__dirname + '/'));
 //app.use(express.static('/styles',__dirname + '/styles'));
 
 app.get("/audio1", (req, res) => {
-  let songId = req.query.songId;
+  let songId = req.query.songId; //CDO
+  //var songId = "t1TcDHrkQYg";
   console.log('YTat1='+songId);
+  console.log("and the holder is of type: " + typeof(uri.concat(songId)));
   if (typeof songId === 'string' || songId instanceof String){
-  stream(uri.concat(songId)).pipe(res);}
+   stream(uri.concat(songId)).pipe(res);}
   else{
     console.log('song id not a string')
   }
   //stream('https://soundcloud.com/feindrehstar/afrikatour_interview_mdr)
+
+  //Create binding for aubio on node.js
+  //should be in argument? ex: ?time-track
+  //Create JSON response.
 });
 
 app.get("/audio2", (req, res) => {
   let songId = req.query.songId;
   console.log('YTat2='+songId);
+  let thisVar = uri.concat(songId);
+  console.log("and the holder is of type: " + typeof(thisVar));
   if (typeof songId === 'string' || songId instanceof String){
   stream(uri.concat(songId)).pipe(res);}
   else{

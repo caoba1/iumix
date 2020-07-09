@@ -21,7 +21,8 @@
     "fluent-ffmpeg": "2.1.2",
     "npx": "^10.2.2",
     "start": "^5.1.0",
-    "ytdl-core": "2.0.1"
+    "ytdl-core": "2.0.1",
+    "url": "*"
   },
   "engines": {
     "node": "8.12.0"

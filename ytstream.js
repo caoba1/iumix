@@ -22,7 +22,7 @@ function streamify (uri, opt) {
       return format.container === opt.videoFormat && format.audioBitrate
     }
   }
-
+  console.log(uri);
   const video = ytdl(uri, opt) //Download
   //const video = ytdl('https://soundcloud.com/feindrehstar/afrikatour_interview_mdr', opt)
   const { file, audioFormat } = opt
