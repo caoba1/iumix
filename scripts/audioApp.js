@@ -6,6 +6,13 @@ var devOpsIsToggled = false;
 var setButtonPressed = false; //TODO: Q: make this global or for each sndFx?
 var setButtonPressedB = false;
 
+var setButtonPressedLPFILT = false;
+var setButtonPressedHPFILT = false;
+var setButtonPressedBPFILT = false;
+var setButtonPressedLPFILTB = false;
+var setButtonPressedHPFILTB = false;
+var setButtonPressedBPFILTB = false;
+
 const analyserBufferLength = 4096;
 var sndFx_bypassLooperA = false;
 var sndFx_bypassLooperB = false;
@@ -42,6 +49,46 @@ function init() {
   const pannerA = new StereoPannerNode(audioContext, pannerOptions);
   const pannerB = new StereoPannerNode(audioContext, pannerOptions);
 
+  /*FILTERS*/
+  const filterLPA = audioContext.createBiquadFilter();
+  filterLPA.type = "lowshelf"; //Change this to peaking??
+  filterLPA.frequency.value = 1000;
+  //Turned off at start
+  filterLPA.gain.value = 0;
+
+  const filterBPA = audioContext.createBiquadFilter();
+  filterBPA.type = "peaking";
+  filterBPA.frequency.value = 4000;
+  //Turned off at start
+  filterBPA.gain.value = 0;
+
+
+  const filterHPA = audioContext.createBiquadFilter();
+  filterHPA.type = "highshelf"; //Change this to peaking?
+  filterHPA.frequency.value = 8000;
+  //Turned off at start
+  filterHPA.gain.value = 0;
+
+  //-----------------------
+  const filterLPB = audioContext.createBiquadFilter();
+  filterLPB.type = "peaking"; //Change this to peaking??
+  filterLPB.frequency.value = 1000;
+  //Turned off at start
+  filterLPB.gain.value = 0;
+  const filterBPB = audioContext.createBiquadFilter();
+  filterBPB.type = "peaking";
+  filterBPB.frequency.value = 4000;
+  //Turned off at start
+  filterBPB.gain.value = 0;
+  const filterHPB = audioContext.createBiquadFilter();
+  filterHPB.type = "peaking"; //Change this to peaking?
+  filterHPB.frequency.value = 8000;
+  //Turned off at start
+  filterHPB.gain.value = 0;
+
+
+  /*END_OF_FILTERS*/
+
   // create analyser modules. todo: extract sole buffer
   const a1 = audioContext.createAnalyser();
   a1.fftSize = analyserBufferLength;
@@ -54,8 +101,8 @@ function init() {
   a2.maxDecibels = -10;
   a2.smoothingTimeConstant = 0.85;
 
-  trackA.connect(gainNodeA).connect(a1).connect(pannerA).connect(gainNodeMA).connect(gainNodeMaster);
-  trackB.connect(gainNodeB).connect(a2).connect(pannerB).connect(gainNodeMB).connect(gainNodeMaster);
+  trackA.connect(gainNodeA).connect(a1).connect(filterLPA).connect(filterBPA).connect(filterHPA).connect(pannerA).connect(gainNodeMA).connect(gainNodeMaster);
+  trackB.connect(gainNodeB).connect(a2).connect(filterLPB).connect(filterBPB).connect(filterHPB).connect(pannerB).connect(gainNodeMB).connect(gainNodeMaster);
   gainNodeMaster.connect(audioContext.destination);
 
   // module controls
@@ -222,6 +269,76 @@ function init() {
    }, false);//All of autocue buttons
  }
 
+ /* SNFX_ FILTER BUTTONS: AND GAIN KNOBS (TODO) */
+ const LPFSET = document.getElementById('set-lpf');
+ LPFSET.addEventListener('click', function(){
+   console.log("flag is:" + setButtonPressedLPFILT);
+if (setButtonPressedLPFILT){
+   filterLPA.gain.setValueAtTime(25, audioContext.currentTime);
+ }
+ else if (!setButtonPressedLPFILT){
+   filterLPA.gain.setValueAtTime(-10, audioContext.currentTime);
+ }
+ });
+ const BPFSET = document.getElementById('set-bpf');
+ BPFSET.addEventListener('click', function(){
+   console.log("flag is:" + setButtonPressedBPFILT);
+ if (setButtonPressedBPFILT){
+   filterBPA.gain.setValueAtTime(25, audioContext.currentTime);
+ }
+ else if (!setButtonPressedBPFILT){
+   filterBPA.gain.setValueAtTime(-10, audioContext.currentTime);
+ }
+ });
+ const HPFSET = document.getElementById('set-hpf');
+ HPFSET.addEventListener('click', function(){
+   console.log("flag is:" + setButtonPressedHPFILT);
+ if (setButtonPressedHPFILT){
+   filterHPA.gain.setValueAtTime(25, audioContext.currentTime);
+ }
+ else if (!setButtonPressedHPFILT){
+   filterHPA.gain.setValueAtTime(-10, audioContext.currentTime);
+ }
+ });
+ const LPFSETB = document.getElementById('set-lpfb');
+ LPFSETB.addEventListener('click', function(){
+   setButtonPressedLPFILTB = !setButtonPressedLPFILTB;
+   console.log("flag is:" + setButtonPressedLPFILTB);
+if (setButtonPressedLPFILTB){
+   LPFSETB.className = "fx-btn-selected";
+   filterLPB.gain.setValueAtTime(25, audioContext.currentTime);
+ }
+ else if (!setButtonPressedLPFILTB){
+   LPFSETB.className = "fx-btn";
+   filterLPB.gain.setValueAtTime(-10, audioContext.currentTime);
+ }
+ });
+ const BPFSETB = document.getElementById('set-bpfb');
+ BPFSETB.addEventListener('click', function(){
+   setButtonPressedBPFILTB = !setButtonPressedBPFILTB;
+   console.log("flag is:" + setButtonPressedBPFILTB);
+ if (setButtonPressedBPFILTB){
+   BPFSETB.className = "fx-btn-selected";
+   filterBPB.gain.setValueAtTime(25, audioContext.currentTime);
+ }
+ else if (!setButtonPressedBPFILTB){
+   BPFSETB.className = "fx-btn";
+   filterBPB.gain.setValueAtTime(-10, audioContext.currentTime);
+ }
+ });
+ const HPFSETB = document.getElementById('set-hpfb');
+ HPFSETB.addEventListener('click', function(){
+   setButtonPressedHPFILTB = !setButtonPressedHPFILTB;
+   console.log("flag is:" + setButtonPressedHPFILTB);
+ if (setButtonPressedHPFILTB){
+   HPFSETB.className = "fx-btn-selected";
+   filterHPB.gain.setValueAtTime(25, audioContext.currentTime);
+ }
+ else if (!setButtonPressedHPFILTB){
+   HPFSETB.className = "fx-btn";
+   filterHPB.gain.setValueAtTime(-10, audioContext.currentTime);
+ }
+ });
 
 /* Button to check loudness of nodes
 * Expected behaviour is to raise volume to the loudest node.
@@ -438,6 +555,44 @@ if (setButtonPressedB){
 }
 }
 
+
+/* Section to control filter parameters
+*  Event listeners to the buttons!
+*
+*/
+//TODO: Rethink flags!!!
+function set_sndFxSetButtonPressed_LPFILT(value){
+setButtonPressedLPFILT = !setButtonPressedLPFILT;
+ console.log("setButton LPF value"+setButtonPressedLPFILT);
+if (setButtonPressedLPFILT){
+  document.getElementById('set-lpf').className = "fx-btn-selected";
+  //filterLPA.gain.setValueAtTime(25, audioCtx.currentTime);
+}else if (!setButtonPressedLPFILT){
+  document.getElementById('set-lpf').className = "fx-btn";
+  //filterLPA.gain.setValueAtTime(25, audioCtx.currentTime);
+}
+}
+function set_sndFxSetButtonPressed_BPFILT(value){
+setButtonPressedBPFILT = !setButtonPressedBPFILT;
+ console.log("setButton BPF value"+setButtonPressedBPFILT);
+if (setButtonPressedBPFILT){
+  document.getElementById('set-bpf').className = "fx-btn-selected";
+}else if (!setButtonPressedBPFILT){
+  document.getElementById('set-bpf').className = "fx-btn";
+}
+}
+function set_sndFxSetButtonPressed_HPFILT(value){
+setButtonPressedHPFILT = !setButtonPressedHPFILT;
+ console.log("setButton HPF value"+setButtonPressedHPFILT);
+if (setButtonPressedHPFILT){
+ document.getElementById('set-hpf').className = "fx-btn-selected";
+}else if (!setButtonPressedHPFILT){
+  document.getElementById('set-hpf').className = "fx-btn";
+}
+}
+
+
+
 // ToDO: Rethink behaviour
 /* '## Deprecated ##
 document.querySelector('#setIdA').addEventListener('keypress', function (e) {
@@ -577,6 +732,27 @@ if (x.style.visibility === "hidden") {
   document.getElementById('sndFx-MainButton').className = "fx-btn menu-btn";
 }}
 
+/**TODO: Document this. Now we copy another menu for the filters 2 TIMES.**/
+/**TODO: Create template for this, change code to template.**/
+function toggleSndFxFilt(){var x = document.getElementById("fx-menu_filt");
+if (x.style.visibility === "hidden") {
+  x.style.visibility = "visible";
+  x.style.width="100%";
+  x.style.height="100%";
+  x.style.opacity="1";
+
+  document.getElementById('sndFx-FiltButton').className = "fx-btn menu-btn-active_filt";
+} else {
+  x.style.visibility = "hidden";
+  x.style.width="0px";
+  x.style.height="0px"
+  x.style.opacity="0";
+
+  document.getElementById('sndFx-FiltButton').className = "fx-btn menu-btn_filt";
+}}
+
+
+
 /** TODO: implement playlist is toggled **/
 /** TODO: element is also set toggle button? **/
 /** TODO: create coding guidelines **/
@@ -593,6 +769,21 @@ if (x.style.visibility === "hidden") {
   x.style.height="0px"
   x.style.opacity="0";
   document.getElementById('sndFx-MainButtonB').className = "fx-btn menu-btn";
+}}
+
+function toggleSndFxFiltB(){var x = document.getElementById("fx-menu_filtB");
+if (x.style.visibility === "hidden") {
+  x.style.visibility = "visible";
+  x.style.width="100%";
+  x.style.height="100%";
+  x.style.opacity="1";
+  document.getElementById('sndFx-FiltButtonB').className = "fx-btn menu-btn-active_filt";
+} else {
+  x.style.visibility = "hidden";
+  x.style.width="0px";
+  x.style.height="0px"
+  x.style.opacity="0";
+  document.getElementById('sndFx-FiltButtonB').className = "fx-btn menu-btn_filt";
 }}
 
 //## audio-player

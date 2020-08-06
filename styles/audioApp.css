@@ -285,6 +285,24 @@ div {
   margin-left: 0px;
   margin-right: auto; }
 
+
+  .menu-btn_filt {
+    content: url("../images/menu_filt.svg");
+    width: 16px;
+    height: 16px;
+    text-align: left;
+    margin-left: 0px;
+    margin-right: auto; }
+
+  .menu-btn-active_filt {
+    content: url("../images/menu_filt-active.svg");
+    width: 16px;
+    height: 16px;
+    text-align: left;
+    margin-left: 0px;
+    margin-right: auto; }
+
+
 .fx-menu {
   background: rgba(60, 8, 8, 0.5);
   transition: width 1.5s linear 0s, opacity 600ms, visibility 600ms; }

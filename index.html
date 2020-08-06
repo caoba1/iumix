@@ -75,13 +75,15 @@
       </div>
       <!--div class="album-image" style="background-image: url(?)"></div-->
 
-
     </div>
 
     <!--- Start of sndFX -->
     <!-- TODOMake sndfx a clickable div, top, overlay, transparent-->
     <div style="text-align:left; width:90%; margin:auto;  margin-bottom: 5px; transition: height 2s;">
       <div class="fx-btn menu-btn" id="sndFx-MainButton" onclick="toggleSndFx()"> </div>
+      <div class="fx-btn menu-btn_filt" id="sndFx-FiltButton" onclick="toggleSndFxFilt()"> </div>
+
+      <!-- Cue at (!) loop-->
       <div class="fx-menu" style="visibility:hidden; height:0px;" id="fx-menu">
         <div style="align-items: center; display:grid; grid-template-columns: auto auto auto auto auto auto auto;">
           <div class="fx-lbl" id="lbl-ac"; style="border:0px; font-size:9px; width:12px; text-align:center; margin:0;">Auto Cue</div>
@@ -93,11 +95,30 @@
           <div class="ac-btn" id="ac-btn-4" style="height:30px; width: 30px; text-align: center; background-color: rgba(198, 145, 223, 0.6); font-size:0.8rem; position:block-inline; cursor:pointer;">AC4</div>
         </div>
       </div>
+
+      <!-- Filters -->
+      <div class="fx-menu" style="visibility:hidden; height:0px;" id="fx-menu_filt">
+        <div style="align-items: center; display:grid; grid-template-columns: auto auto auto auto;">
+          <div class="fx-lbl" id="lbl-filt"; style="border:0px; font-size:9px; width:12px; text-align:center; margin:0;">Filters</div>
+          <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
+            <div class="fx-btn" id="set-lpf"; onclick="set_sndFxSetButtonPressed_LPFILT()" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer;  font-size:6pt;">Low</div>
+            <div>Knob_1</div>
+          </div>
+          <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
+            <div class="fx-btn" id="set-bpf"; onclick="set_sndFxSetButtonPressed_BPFILT()" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">Med</div>
+            <div>Knob_2</div>
+          </div>
+          <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
+            <div class="fx-btn" id="set-hpf"; onclick="set_sndFxSetButtonPressed_HPFILT()" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">High</div>
+            <div>Knob_3</div>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
-
-
-
-
+    <!-- End of Fx Div-->
     <!--- End of sndFX -->
 
 
@@ -131,6 +152,8 @@
   <source src="http://localhost:3000/audio2?songId=6W5pq4bIzIw" type="audio/mpeg">
 </audio>
 </div-->
+
+
 <div class="audio-player">
   <div id="play-btnB"></div>
   <div class="audio-wrapper"  id="player-containerB" href="javascript:;">
@@ -167,10 +190,13 @@
     <!--div class="album-image" style="background-image: url(https://artistxite.ie/imgcache/album/005/161/005161476_500.jpg)"></div-->
   </div>
 
+
   <!--- Start of sndFX -->
   <!-- TODOMake sndfx a clickable div, top, overlay, transparent-->
   <div style="text-align:left; width:90%; margin:auto; margin-bottom: 5px; transition: height 2s;">
     <div class="fx-btn menu-btn" id="sndFx-MainButtonB" onclick="toggleSndFxB()"> </div>
+    <div class="fx-btn menu-btn_filt" id="sndFx-FiltButtonB" onclick="toggleSndFxFiltB()"> </div>
+
     <div class="fx-menu" style="visibility:hidden; height:0px;" id="fx-menuB">
       <div style="align-items: center; display:grid; grid-template-columns: auto auto auto auto auto auto auto;">
         <div class="fx-lbl" id="lbl-acB"; style="border:0px; font-size:9px; width:12px; text-align:center; margin:0;">Auto Cue</div>
@@ -182,6 +208,28 @@
         <div class="ac-btn" id="ac-btnB-4" style="height:30px; width: 30px; text-align: center; background-color: rgba(198, 145, 223, 0.6); font-size:0.8rem; position:block-inline; cursor:pointer;">AC4</div>
       </div>
     </div>
+
+    <div class="fx-menu" style="visibility:hidden; height:0px;" id="fx-menu_filtB">
+      <div style="align-items: center; display:grid; grid-template-columns: auto auto auto auto;">
+        <div class="fx-lbl" id="lbl-filtb"; style="border:0px; font-size:9px; width:12px; text-align:center; margin:0;">Filters</div>
+        <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
+          <div class="fx-btn" id="set-lpfb"; onclick="" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">Low</div>
+          <div>Knob_1</div>
+        </div>
+        <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
+          <div class="fx-btn" id="set-bpfb"; onclick="" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">Med</div>
+          <div>Knob_2</div>
+        </div>
+        <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
+          <div class="fx-btn" id="set-hpfb"; onclick="" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">High</div>
+          <div>Knob_3</div>
+        </div>
+      </div>
+
+    </div>
+
+
+
   </div>
 
 
@@ -267,7 +315,7 @@
 <!-- /* A popable test area */ -->
 <div class="page-footer">
 
-  <!--div style="text-align:left;" id="playListButton" onclick="togglePlayList()"> > </div>
+  <div style="text-align:left;" id="playListButton" onclick="togglePlayList()"> > </div>
   <div class="playlist" style="display:none;" id="iu-playlist">
   Hello I am outside playlist getContext
   <br>
@@ -277,7 +325,7 @@
 
     #content <br>
     I am inside playlist context
-  </div!-->
+  </div>
 
   <div style="text-align:left;" id="devOpsButton" onclick="toggleDevOps()"> > </div>
   <div class="dimmed" style="display:none;" id="dev-options">
