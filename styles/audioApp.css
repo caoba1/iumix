@@ -232,6 +232,7 @@ div {
   margin: 2px;
   top: 50%; }
   .set-button a {
+    cursor: pointer;
     color: white;
     font-family: Poppins;
     font-weight: bold;
