@@ -16,6 +16,7 @@
   <link rel="stylesheet" type="text/css" href="audio-player/multirangesp.css">
 
   <link rel="stylesheet" type="text/css" href="styles/audioApp.css">
+  <link rel="stylesheet" type="text/css" href="styles/playlistApp.css">
 
   <!--link rel="stylesheet" type="text/css" href="styles/rangeSlider.css"-->
 
@@ -140,9 +141,13 @@
 
 <div>
   <small style="text-align:left; float:left; margin-left:4px;">Next in line:</small> </br>
+  
+  <div id="populating">
   <textarea class="yTiD" id="setIdATitle" style="float:left; margin-left:4px; margin-bottom:2px;" disabled>#</textarea> <textarea class="yTiD" id="setIdA" disabled hidden>#</textarea>
   <!--div id="setIdBSET_" class="set-button"  style="bottom:7px;"><a href="#">set</a></div Autoplay on load-->
-  <div id="setIdASET" class="set-button"  style="bottom:7px;"><a href="#">set & play!</a></div>
+  </div>
+
+  <div id="setIdASET" class="set-button"  style="bottom:7px;">  <a href="#">set & play!</a></div>
 </div>
 </div>
 
@@ -286,6 +291,18 @@
 <!-- this area is light red-->
 
 
+<!-- Playlist -->
+<div class= "wrapper-playlist">
+
+  <div id="myDIV" class="header">
+    <h2 style="margin:5px">Playlist!</h2>
+  </div>
+  
+  <ul id="myUL">
+  </ul>
+
+</div>
+
 
 
 <!-- Search section for youtube streams -->
@@ -304,8 +321,10 @@
     <!-- See https://jsfiddle.net/7ac9us70/1052/ and https://stackoverflow.com/questions/17419957/how-can-i-change-the-font-size-of-a-select-option for styling-->
   </br>
   Send to deck </br>
-  <div class="toggle-btn" id="sendToA"><a href="#">A</a></div>
+    <div class="toggle-btn" id="sendToA"><a href="#">A</a></div>
   <div class="toggle-btn" id="sendToB"><a href="#">B</a></div>
+</br>
+<div class="toggle-btn" id="enqueuePlaylist"><a>Put in list</a></div>
   <div>
 
   </div>
@@ -365,6 +384,7 @@
 <script src="audio-player/multirangesp.js"></script>
 <script src="scripts/searchApp.js"></script>
 <!-- Below is your custom application script -->
+<script src="scripts/playlistApp.js"></script>
 <script src="scripts/audioApp.js"></script>
 <script src="audio-player/audio-player.js"></script>
 </body>

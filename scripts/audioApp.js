@@ -19,11 +19,14 @@ var sndFx_bypassLooperB = false;
 
 var player_flag_loop_A = true;
 var player_flag_loop_B = true;
+var player_loop_time_A = 0;
 
 /* Check this //
 function onLoad(){
   init();
 }*/
+const eventInput = new Event('input');
+
 
 function init() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -234,6 +237,11 @@ function init() {
         if (this.id.slice(-3).substring(0,1)!="B"){
           this.autoCueAt = document.getElementById('sliderA').lowValue*_length/100;
           set_sndFxSetButtonPressed(false);
+
+          //document.getElementById('lowVal').value = player_loop_time_A;
+          console.log("returning slider to original position "+ player_loop_time_A);
+          let eventI = new Event('input',{id:'lowVal',lowValue:player_loop_time_A});
+          document.getElementById('sliderA').dispatchEvent(eventI);
         }else{
           //this.autoCueAt = document.getElementById('sliderB').lowValue*document.getElementById('durationB').innerHTML/100;
           //set_sndFxSetButtonPressedB(false);

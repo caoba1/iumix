@@ -1,4 +1,6 @@
-var apiYTK = 'AIzaSyDn4eBLCP-WKdF5WZK3auTyfX-N5uIev6k';
+//var apiYTK = 'AIzaSyAa_SU1OxmjmBpEkhlbYziVZHX6fw1RizQ';
+//var apiYTK = 'AIzaSyC8niAMu6utI8jAfBmNCjTG9cKsexl6VO4';
+var apiYTK = 'AIzaSyCZpdqjzJAm-hiMypDdVV88M_714OmWbTY';
 
 function doSearch() {
 
@@ -52,6 +54,22 @@ function doSearch() {
   ajaxSearchRequest.send(null);
 
 };
+
+function getTitleFromId(videoId){
+  let url='https://www.googleapis.com/youtube/v3/videos?id='+videoId+'&key='+apiYTK+'&fields=items(id,snippet(channelId,title,categoryId),statistics,contentDetails(duration))&part=snippet,statistics,contentDetails';
+  var videoTitle="";
+  var ajaxSearchRequest = new XMLHttpRequest();
+  ajaxSearchRequest.onreadystatechange = function() {
+    if (ajaxSearchRequest.readyState == XMLHttpRequest.DONE) {
+      let parsedResponse = JSON.parse(ajaxSearchRequest.responseText);
+      videoTitle=parsedResponse.items[0].snippet.title;
+  }
+  ajaxSearchRequest.open('GET', url, true);
+  ajaxSearchRequest.send(null);
+}
+return videoTitle;
+};
+
 
 
 function setVideoTitleData(videoId, thisElementVideo, thisElementDuration, thisElementPlayerDuration){

@@ -1,3 +1,5 @@
+var endOfCarriage = false;
+
 function initProgressBar() {
   var player = document.getElementById('audioStreamA');
   var length = document.getElementById('durationA').innerHTML;//player.duration
@@ -22,18 +24,22 @@ function initProgressBar() {
   progressbar.addEventListener("click", seek);
 
   if (player.currentTime == player.duration) {
-    // replay if loop
     document.getElementById('play-btn').className = "";
+    player.currentTime = length * 0;
+    progressbar.value = 0;
+    player.pause();
+    console.log("CALL TO WHERE!!?");
+    setEndOfCarriage(true);
   }
 
-  if (player_flag_loop_A){
+  if (player_flag_loop_A && !setButtonPressed){
     if (player.currentTime >= length * (document.getElementById('sliderA').highValue/100) | (player.currentTime <= length * (document.getElementById('sliderA').lowValue/100)) & !sndFx_bypassLooperA) {
       // replay if loop
       player.currentTime = length * document.getElementById('sliderA').lowValue/100;
       progressbar.value = document.getElementById('sliderA').lowValue/100;
     }
-
-    }
+  }
+     
 
 
   function seek(event) {
@@ -47,11 +53,12 @@ function initProgressBar() {
   loopSliderLow.addEventListener('input', function() {
     document.getElementById('sliderALowTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').lowValue*document.getElementById('durationA').innerHTML/100);
     document.getElementById('sliderAHighTip').innerHTML=calculateTotalValue(document.getElementById('sliderA').highValue*document.getElementById('durationA').innerHTML/100);
+    player_loop_time_A = document.getElementById('sliderA').lowValue;
   }, false);
-
-
-
 };
+
+
+
 
 function initProgressBarB() {
   var playerB = document.getElementById('audioStreamB');
@@ -293,4 +300,53 @@ initPlayers(1);
 document.getElementById('titleA').innerHTML= getVideoTitleData(idInA);
 */
 
+var setEndOfCarriage = function(val){
+  endOfCarriage = val
+  if (endOfCarriage){
+      endOfCarriage = false;
+      console.log("Long time ")
+      getNextInQueue(document.getElementById('audioStreamA')); 
+  }
+};
+
 //initPlayers(jQuery('#player-container').length);
+function getNextInQueue(player){
+    player.pause();
+    var i;
+    var myNodelist = document.getElementsByTagName("LI");
+  for (i = 0; i < myNodelist.length; i++) {
+    console.log(myNodelist[i]);
+    if (!(myNodelist[i].className == 'checked')){
+      console.log("Found a not checked!");
+      myNodelist[i].className = 'checked';
+      var idValue = myNodelist[i].getAttribute('data-songId');
+      console.log("idValue: " + idValue);
+      setAudioAndPlay(idValue, player);
+      break;
+    }
+  }
+}
+
+function setAudioAndPlay(songId, audioScope){
+  let idInA = songId.trim();
+  
+  audioScope.pause(); //Third time
+  audioScope.innerHTML = '';
+
+  var audioSource = document.createElement('source');
+  let uriString = ''.concat('audio1','?','songId=',idInA);
+  audioSource.setAttribute('src', uriString,'type','audio/mpg');
+  audioScope.appendChild(audioSource);
+
+  //A
+  setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-time'));
+  initProgressBar(); 
+
+  //loop
+  let _loopInA = document.getElementById('loopA');
+  disableLoop(_loopInA, true, 'A');
+
+  audioScope.load(); //Note: seems that audioscope autoplays on load!
+  audioScope.play();
+  document.getElementById('play-btn').className = "pause";
+}
