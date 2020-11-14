@@ -147,6 +147,11 @@ function init() {
   }, false);
   //
 
+  const searchButton = document.getElementById('search-button-submit');
+  searchButton.addEventListener('click', function(){
+    doSearch();
+  }, false)
+
   //The all play button
   const allPlayButton = document.getElementById('playAllButton');
   allPlayButton.addEventListener('click', function() {
