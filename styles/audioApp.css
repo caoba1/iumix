@@ -25,6 +25,7 @@ h1, h2, label {
   margin: 0; }
 
 a {
+  cursor : pointer;
   color: white;
   font-family: Poppins;
   text-decoration: none; }
@@ -87,6 +88,7 @@ div {
   color: white; }
 
 .search-box button {
+  cursor: pointer;
   font-family: Poppins;
   /*color: rgb(62, 189, 189);*/
   background: #3c3c3c;
