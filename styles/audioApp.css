@@ -164,6 +164,7 @@ div {
 
 /* toggle-btn modified from https://webdeasy.de/top-css-buttons/*/
 .toggle-btn {
+  cursor: pointer;
   position: relative;
   display: inline-block;
   /*height:60px;*/
@@ -221,6 +222,7 @@ div {
 
 /*Set buttons*/
 .set-button {
+  cursor: pointer;
   position: relative;
   display: inline;
   white-space: nowrap;
