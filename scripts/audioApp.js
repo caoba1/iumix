@@ -691,7 +691,7 @@ document.querySelector('#setIdASET').addEventListener('click', async function ()
 
 
   idInA = document.querySelector('#setIdA').value.trim();
-  setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-time'));
+  setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-timeA'));
   //document.getElementById("end-time").innerHTML = calculateTotalValue(document.getElementById('durationA').innerHTML);
   initProgressBar();
 

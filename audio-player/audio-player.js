@@ -8,11 +8,11 @@ function initProgressBar() {
   //console.log(length);
   // calculate total length of value
   var totalLength = calculateTotalValue(length)
-  document.getElementById("end-time").innerHTML = totalLength;
+  document.getElementById("end-timeA").innerHTML = totalLength;
 
   // calculate current value time
   var currentTime = calculateCurrentValue(current_time);
-  document.getElementById("start-time").innerHTML = currentTime;
+  document.getElementById("start-timeA").innerHTML = currentTime;
 
   var progressbar = document.getElementById('seek-obj');
   //console.log("<<<"+player.currentTime);
@@ -205,7 +205,7 @@ function calculateCurrentValue(currentTime) {
 
 //Initialize!
 initPlayers(2);
-setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-time')); //? in searchApp.js
+setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-timeA')); //? in searchApp.js
 setVideoTitleData(idInB,document.getElementById('titleB'),document.getElementById('durationB'),document.getElementById('end-timeB'));
 //workaround
 initProgressBar();
@@ -319,15 +319,25 @@ function getNextInQueue(player){
     if (!(myNodelist[i].className == 'checked')){
       console.log("Found a not checked!");
       myNodelist[i].className = 'checked';
-      var idValue = myNodelist[i].getAttribute('data-songId');
+      //var idValue = myNodelist[i].getAttribute('data-songId');
+
+      var videoObject = {
+        title: myNodelist[i].dataset.title,
+        videoid: myNodelist[i].dataset.videoid,
+        duration: myNodelist[i].dataset.duration
+      };
+
+
+      let idValue = videoObject.videoid;
       console.log("idValue: " + idValue);
-      setAudioAndPlay(idValue, player);
+      
+      setAudioAndPlayObject(videoObject, player);
       break;
     }
   }
 }
 
-function setAudioAndPlay(songId, audioScope){
+async function setAudioAndPlay(songId, audioScope){
   let idInA = songId.trim();
   
   audioScope.pause(); //Third time
@@ -339,14 +349,44 @@ function setAudioAndPlay(songId, audioScope){
   audioScope.appendChild(audioSource);
 
   //A
-  setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-time'));
+  setVideoTitleData(idInA,document.getElementById('titleA'),document.getElementById('durationA'),document.getElementById('end-timeA'));
   initProgressBar(); 
 
   //loop
   let _loopInA = document.getElementById('loopA');
   disableLoop(_loopInA, true, 'A');
 
-  audioScope.load(); //Note: seems that audioscope autoplays on load!
+  await audioScope.load(); //Note: seems that audioscope autoplays on load!
+  audioScope.play();
+  document.getElementById('play-btn').className = "pause";
+}
+
+
+async function setAudioAndPlayObject(songObject, audioScope){
+  
+  let idInA = songObject.videoid.trim();
+
+  await audioScope.pause(); //Third time
+  audioScope.innerHTML = '';
+
+  var audioSource = document.createElement('source');
+  let uriString = ''.concat('audio1','?','songId=',idInA);
+  audioSource.setAttribute('src', uriString,'type','audio/mpg');
+  audioScope.appendChild(audioSource);
+
+  //A or B
+  let thisPanel = audioScope.id.slice(-1);
+
+  //A
+
+  setVideoTitleData(idInA,document.getElementById('title'.concat(thisPanel)),document.getElementById('duration'.concat(thisPanel)),document.getElementById('end-time'.concat(thisPanel)));
+  initProgressBar();
+
+  //loop
+  let _loopInA = document.getElementById('loop'.concat(thisPanel));
+  disableLoop(_loopInA, true, thisPanel);
+
+  await audioScope.load(); //Note: seems that audioscope autoplays on load!
   audioScope.play();
   document.getElementById('play-btn').className = "pause";
 }

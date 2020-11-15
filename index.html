@@ -47,8 +47,8 @@
         <div class="player-controls scrubber">
           <p id=titleA>Song_title <small>by</small>Author</p> <p style:"display:hidden;" id="durationA">0</p>
           <span id="seek-obj-container">
-            <small style="float: left; position: relative; left: 5px; top: -5px;" id="start-time"></small>
-            <small style="float: right; position: relative; right: 20px; top: -5px;" id="end-time"></small>
+            <small style="float: left; position: relative; left: 5px; top: -5px;" id="start-timeA"></small>
+            <small style="float: right; position: relative; right: 20px; top: -5px;" id="end-timeA"></small>
             <progress id="seek-obj" value="0.4" max="1"></progress>
           </span>
           <span>
@@ -313,9 +313,9 @@
   <div class="search-box">
     <form>
     <input type="text" id="search-box-text" value="debussy"> <!-- change to get element id -->
+    <button type="button" class="set-btn" id="search-button-submit">Submit</button>
   </form>
   </div>
-  <button type="button" class="set-btn" id="search-button-submit">Submit</button>
   <div class="search-results">
     Results </br>
     <div class="suggest-list-container">

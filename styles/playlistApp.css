@@ -61,11 +61,24 @@
     position: absolute;
     right: 0;
     top: 0;
-    padding: 12px 16px 12px 16px;
+    padding: 6px 8px 6px 8px;
     color: black;
   }
   
   .close:hover {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .setplay {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    padding: 4px 8px 6px 8px;
+    color: black;
+  }
+  
+  .setplay:hover {
     background-color: #f44336;
     color: white;
   }

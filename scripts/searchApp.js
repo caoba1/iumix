@@ -37,8 +37,14 @@ function doSearch() {
       for (iResults = 0; iResults < 9; iResults++) {
         /*console.log(itemsP[iResults].id.videoId);*/
         /*popSug += "<div id="+itemsP[iResults].id.videoId+">"+itemsP[iResults].snippet.title+"</div>";*/
+        var videoObject = {
+          title: itemsP[iResults].snippet.title,
+          videoId: itemsP[iResults].id.videoId,
+          duration: 0
+        };
+        console.log(videoObject);
 
-        popSug += "<option value="+itemsP[iResults].id.videoId+">"+itemsP[iResults].snippet.title+"</option>";
+        popSug += "<option value="+ itemsP[iResults].id.videoId + " data-title =" + JSON.stringify(videoObject.title) + " data-videoid =" + videoObject.videoId + " data-duration =" + JSON.stringify(videoObject.duration)+">" + videoObject.title+"</option>";
       }
 
       thisDocIdElement.innerHTML = popSug;
@@ -54,6 +60,21 @@ function doSearch() {
   ajaxSearchRequest.send(null);
 
 };
+
+/* Duration */
+function getDurationFromIdObject(IdObjet){
+  let url='https://www.googleapis.com/youtube/v3/videos?id='+videoId+'&key='+apiYTK+'&fields=items(id,snippet(channelId,title,categoryId),statistics,contentDetails(duration))&part=snippet,statistics,contentDetails';
+  var ajaxSearchRequest = new XMLHttpRequest();
+  ajaxSearchRequest.onreadystatechange = function() {
+    if (ajaxSearchRequest.readyState == XMLHttpRequest.DONE) {
+      let parsedResponse = JSON.parse(ajaxSearchRequest.responseText);
+      IdObjet.duration = parsedResponse.items[0].contentDetails.duration;
+      //Plus convertDuration() and calculateTotalValue();
+  }
+  ajaxSearchRequest.open('GET', url, true);
+  ajaxSearchRequest.send(null);
+  }
+}
 
 function getTitleFromId(videoId){
   let url='https://www.googleapis.com/youtube/v3/videos?id='+videoId+'&key='+apiYTK+'&fields=items(id,snippet(channelId,title,categoryId),statistics,contentDetails(duration))&part=snippet,statistics,contentDetails';
