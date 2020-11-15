@@ -18,6 +18,8 @@
   <link rel="stylesheet" type="text/css" href="styles/audioApp.css">
   <link rel="stylesheet" type="text/css" href="styles/playlistApp.css">
 
+  <!--link rel="stylesheet" type="text/css" href="knobs/knob-input.css"-->
+
   <!--link rel="stylesheet" type="text/css" href="styles/rangeSlider.css"-->
 
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -103,15 +105,15 @@
           <div class="fx-lbl" id="lbl-filt"; style="border:0px; font-size:9px; width:12px; text-align:center; margin:0;">Filters</div>
           <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
             <div class="fx-btn" id="set-lpf"; onclick="set_sndFxSetButtonPressed_LPFILT()" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer;  font-size:6pt;">Low</div>
-            <div>Knob_1</div>
+            <div> <input type="range" class="input-knob" id="knob-1-a" min="-10" max="25" step="5" value="0" data-diameter="32"/>	</div>
           </div>
           <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
             <div class="fx-btn" id="set-bpf"; onclick="set_sndFxSetButtonPressed_BPFILT()" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">Med</div>
-            <div>Knob_2</div>
+            <div><input type="range" class="input-knob" id="knob-2-a" min="-10" max="25" step="5" value="0" data-diameter="32"/></div>
           </div>
           <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
             <div class="fx-btn" id="set-hpf"; onclick="set_sndFxSetButtonPressed_HPFILT()" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">High</div>
-            <div>Knob_3</div>
+            <div><input type="range" class="input-knob" id="knob-3-a" min="-10" max="25" step="5" value="0" data-diameter="32"/></div>
           </div>
         </div>
       </div>
@@ -219,15 +221,15 @@
         <div class="fx-lbl" id="lbl-filtb"; style="border:0px; font-size:9px; width:12px; text-align:center; margin:0;">Filters</div>
         <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
           <div class="fx-btn" id="set-lpfb"; onclick="" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">Low</div>
-          <div>Knob_1</div>
+          <div> <input type="range" class="input-knob" id="knob-1-b" min="-10" max="25" step="5" value="0" data-diameter="32"/>	</div>
         </div>
         <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
           <div class="fx-btn" id="set-bpfb"; onclick="" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">Med</div>
-          <div>Knob_2</div>
+          <div> <input type="range" class="input-knob" id="knob-2-b" min="-10" max="25" step="5" value="0" data-diameter="32"/>	</div>
         </div>
         <div style="align-items: center; display:grid; grid-template-columns: auto auto;">
           <div class="fx-btn" id="set-hpfb"; onclick="" style="border: 10px; height:1.4em; margin:0; text-align:center; cursor:pointer; font-size:6pt;">High</div>
-          <div>Knob_3</div>
+          <div> <input type="range" class="input-knob" id="knob-3-b" min="-10" max="25" step="5" value="0" data-diameter="32"/>	</div>
         </div>
       </div>
 
@@ -317,7 +319,7 @@
   <div class="search-results">
     Results </br>
     <div class="suggest-list-container">
-      <select class=suggest-list id="search-results" style="width:100%;" size=5>
+      <select class="suggest-list form-control" id="search-results" style="width:100%;" size=5>
       </select>
     </div>
     <!-- See https://jsfiddle.net/7ac9us70/1052/ and https://stackoverflow.com/questions/17419957/how-can-i-change-the-font-size-of-a-select-option for styling-->
@@ -385,6 +387,7 @@
 <script src="scripts/audiowaveform.js"></script>
 <script src="audio-player/multirangesp.js"></script>
 <script src="scripts/searchApp.js"></script>
+<script src="knobs/input-knobs.js"></script>
 <!-- Below is your custom application script -->
 <script src="scripts/playlistApp.js"></script>
 <script src="scripts/audioApp.js"></script>

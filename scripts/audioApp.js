@@ -283,75 +283,107 @@ function init() {
  }
 
  /* SNFX_ FILTER BUTTONS: AND GAIN KNOBS (TODO) */
+ 
+ const LPKNOBA = document.getElementById('knob-1-a');
  const LPFSET = document.getElementById('set-lpf');
  LPFSET.addEventListener('click', function(){
    console.log("flag is:" + setButtonPressedLPFILT);
 if (setButtonPressedLPFILT){
-   filterLPA.gain.setValueAtTime(25, audioContext.currentTime);
+   filterLPA.gain.setValueAtTime(LPKNOBA.value, audioContext.currentTime);
  }
  else if (!setButtonPressedLPFILT){
-   filterLPA.gain.setValueAtTime(-10, audioContext.currentTime);
+   filterLPA.gain.setValueAtTime(-10, audioContext.currentTime); //Default value for this filter when "off"
  }
  });
+ LPKNOBA.addEventListener('change', function(){
+  filterLPA.gain.setValueAtTime(LPKNOBA.value, audioContext.currentTime);
+ }, false);
+
+ const BPKNOBA = document.getElementById('knob-2-a');
  const BPFSET = document.getElementById('set-bpf');
  BPFSET.addEventListener('click', function(){
    console.log("flag is:" + setButtonPressedBPFILT);
  if (setButtonPressedBPFILT){
-   filterBPA.gain.setValueAtTime(25, audioContext.currentTime);
+   filterBPA.gain.setValueAtTime(BPKNOBA.value, audioContext.currentTime);
  }
  else if (!setButtonPressedBPFILT){
    filterBPA.gain.setValueAtTime(-10, audioContext.currentTime);
  }
  });
+ BPKNOBA.addEventListener('change', function(){
+  filterBPA.gain.setValueAtTime(BPKNOBA.value, audioContext.currentTime);
+ }, false);
+
+
+ const HPKNOBA = document.getElementById('knob-3-a');
  const HPFSET = document.getElementById('set-hpf');
  HPFSET.addEventListener('click', function(){
    console.log("flag is:" + setButtonPressedHPFILT);
  if (setButtonPressedHPFILT){
-   filterHPA.gain.setValueAtTime(25, audioContext.currentTime);
+   filterHPA.gain.setValueAtTime(HPKNOBA.value, audioContext.currentTime);
  }
  else if (!setButtonPressedHPFILT){
    filterHPA.gain.setValueAtTime(-10, audioContext.currentTime);
  }
- });
+});
+HPKNOBA.addEventListener('change', function(){
+ filterHPA.gain.setValueAtTime(HPKNOBA.value, audioContext.currentTime);
+}, false); 
+
+ const LPKNOBB = document.getElementById('knob-1-b');
  const LPFSETB = document.getElementById('set-lpfb');
  LPFSETB.addEventListener('click', function(){
    setButtonPressedLPFILTB = !setButtonPressedLPFILTB;
    console.log("flag is:" + setButtonPressedLPFILTB);
 if (setButtonPressedLPFILTB){
    LPFSETB.className = "fx-btn-selected";
-   filterLPB.gain.setValueAtTime(25, audioContext.currentTime);
+   filterLPB.gain.setValueAtTime(LPKNOBB.value, audioContext.currentTime);
  }
  else if (!setButtonPressedLPFILTB){
    LPFSETB.className = "fx-btn";
    filterLPB.gain.setValueAtTime(-10, audioContext.currentTime);
  }
  });
+LPKNOBB.addEventListener('change', function(){
+  filterLPB.gain.setValueAtTime(LPKNOBB.value, audioContext.currentTime);
+ }, false);
+
+ const BPKNOBB = document.getElementById('knob-1-2');
  const BPFSETB = document.getElementById('set-bpfb');
  BPFSETB.addEventListener('click', function(){
    setButtonPressedBPFILTB = !setButtonPressedBPFILTB;
    console.log("flag is:" + setButtonPressedBPFILTB);
  if (setButtonPressedBPFILTB){
    BPFSETB.className = "fx-btn-selected";
-   filterBPB.gain.setValueAtTime(25, audioContext.currentTime);
+   filterBPB.gain.setValueAtTime(BPKNOBB.value, audioContext.currentTime);
  }
  else if (!setButtonPressedBPFILTB){
    BPFSETB.className = "fx-btn";
    filterBPB.gain.setValueAtTime(-10, audioContext.currentTime);
  }
  });
+BPKNOBB.addEventListener('change', function(){
+  filterBPB.gain.setValueAtTime(BPKNOBB.value, audioContext.currentTime);
+ }, false);
+
+ const HPKNOBB = document.getElementById('knob-3-b');
  const HPFSETB = document.getElementById('set-hpfb');
  HPFSETB.addEventListener('click', function(){
    setButtonPressedHPFILTB = !setButtonPressedHPFILTB;
    console.log("flag is:" + setButtonPressedHPFILTB);
  if (setButtonPressedHPFILTB){
    HPFSETB.className = "fx-btn-selected";
-   filterHPB.gain.setValueAtTime(25, audioContext.currentTime);
+   filterHPB.gain.setValueAtTime(HPKNOBB.value, audioContext.currentTime);
  }
  else if (!setButtonPressedHPFILTB){
    HPFSETB.className = "fx-btn";
    filterHPB.gain.setValueAtTime(-10, audioContext.currentTime);
  }
  });
+ HPKNOBB.addEventListener('change', function(){
+  filterHPB.gain.setValueAtTime(HPKNOBB.value, audioContext.currentTime);
+ }, false);
+ 
 
 /* Button to check loudness of nodes
 * Expected behaviour is to raise volume to the loudest node.
