@@ -74,7 +74,7 @@ function init() {
 
   //-----------------------
   const filterLPB = audioContext.createBiquadFilter();
-  filterLPB.type = "peaking"; //Change this to peaking??
+  filterLPB.type = "lowshelf"; //Change this to peaking??
   filterLPB.frequency.value = 1000;
   //Turned off at start
   filterLPB.gain.value = 0;
@@ -84,7 +84,7 @@ function init() {
   //Turned off at start
   filterBPB.gain.value = 0;
   const filterHPB = audioContext.createBiquadFilter();
-  filterHPB.type = "peaking"; //Change this to peaking?
+  filterHPB.type = "highshelf"; //Change this to peaking?
   filterHPB.frequency.value = 8000;
   //Turned off at start
   filterHPB.gain.value = 0;
@@ -292,7 +292,7 @@ if (setButtonPressedLPFILT){
    filterLPA.gain.setValueAtTime(LPKNOBA.value, audioContext.currentTime);
  }
  else if (!setButtonPressedLPFILT){
-   filterLPA.gain.setValueAtTime(-10, audioContext.currentTime); //Default value for this filter when "off"
+   filterLPA.gain.setValueAtTime(0, audioContext.currentTime); //Default value for this filter when "off"
  }
  });
  LPKNOBA.addEventListener('change', function(){
@@ -307,7 +307,7 @@ if (setButtonPressedLPFILT){
    filterBPA.gain.setValueAtTime(BPKNOBA.value, audioContext.currentTime);
  }
  else if (!setButtonPressedBPFILT){
-   filterBPA.gain.setValueAtTime(-10, audioContext.currentTime);
+   filterBPA.gain.setValueAtTime(0, audioContext.currentTime);
  }
  });
  BPKNOBA.addEventListener('change', function(){
@@ -323,7 +323,7 @@ if (setButtonPressedLPFILT){
    filterHPA.gain.setValueAtTime(HPKNOBA.value, audioContext.currentTime);
  }
  else if (!setButtonPressedHPFILT){
-   filterHPA.gain.setValueAtTime(-10, audioContext.currentTime);
+   filterHPA.gain.setValueAtTime(0, audioContext.currentTime);
  }
 });
 HPKNOBA.addEventListener('change', function(){
@@ -341,14 +341,14 @@ if (setButtonPressedLPFILTB){
  }
  else if (!setButtonPressedLPFILTB){
    LPFSETB.className = "fx-btn";
-   filterLPB.gain.setValueAtTime(-10, audioContext.currentTime);
+   filterLPB.gain.setValueAtTime(0, audioContext.currentTime);
  }
  });
 LPKNOBB.addEventListener('change', function(){
   filterLPB.gain.setValueAtTime(LPKNOBB.value, audioContext.currentTime);
  }, false);
 
- const BPKNOBB = document.getElementById('knob-1-2');
+ const BPKNOBB = document.getElementById('knob-2-b');
  const BPFSETB = document.getElementById('set-bpfb');
  BPFSETB.addEventListener('click', function(){
    setButtonPressedBPFILTB = !setButtonPressedBPFILTB;
@@ -359,7 +359,7 @@ LPKNOBB.addEventListener('change', function(){
  }
  else if (!setButtonPressedBPFILTB){
    BPFSETB.className = "fx-btn";
-   filterBPB.gain.setValueAtTime(-10, audioContext.currentTime);
+   filterBPB.gain.setValueAtTime(0, audioContext.currentTime);
  }
  });
 BPKNOBB.addEventListener('change', function(){
@@ -377,7 +377,7 @@ BPKNOBB.addEventListener('change', function(){
  }
  else if (!setButtonPressedHPFILTB){
    HPFSETB.className = "fx-btn";
-   filterHPB.gain.setValueAtTime(-10, audioContext.currentTime);
+   filterHPB.gain.setValueAtTime(0, audioContext.currentTime);
  }
  });
  HPKNOBB.addEventListener('change', function(){
@@ -678,7 +678,7 @@ document.querySelector('#setIdB').addEventListener('keypress', function (e) {
 });
 **/
 
-document.querySelector('#setIdASET').addEventListener('click', function () {
+document.querySelector('#setIdASET').addEventListener('click', async function () {
   var audioScope = document.getElementById('audioStreamA');
   audioScope.pause();
   audioScope.innerHTML = '';
@@ -699,12 +699,12 @@ document.querySelector('#setIdASET').addEventListener('click', function () {
   let _loopInA = document.getElementById('loopA');
   disableLoop(_loopInA, true, 'A');
 
-  audioScope.load(); //Note: seems that audioscope autoplays on load!
+  await audioScope.load(); //Note: seems that audioscope autoplays on load!
   audioScope.play();
   document.getElementById('play-btn').className = "pause";
 });
 
-document.querySelector('#setIdBSET').addEventListener('click', function () {
+document.querySelector('#setIdBSET').addEventListener('click', async function () {
   var audioScope = document.getElementById('audioStreamB');
   audioScope.pause();
   audioScope.innerHTML = '';
@@ -722,7 +722,7 @@ document.querySelector('#setIdBSET').addEventListener('click', function () {
   let _loopInB = document.getElementById('loopB');
   disableLoop(_loopInB, true, 'B');
 
-  audioScope.load();
+  await audioScope.load();
   audioScope.play();
   document.getElementById('play-btnB').className = "pause";
 });
