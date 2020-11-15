@@ -295,9 +295,11 @@ if (setButtonPressedLPFILT){
    filterLPA.gain.setValueAtTime(0, audioContext.currentTime); //Default value for this filter when "off"
  }
  });
- LPKNOBA.addEventListener('change', function(){
+ LPKNOBA.addEventListener('input', function(){
+  if (setButtonPressedLPFILT){
   filterLPA.gain.setValueAtTime(LPKNOBA.value, audioContext.currentTime);
- }, false);
+  }
+}, false);
 
  const BPKNOBA = document.getElementById('knob-2-a');
  const BPFSET = document.getElementById('set-bpf');
@@ -310,9 +312,11 @@ if (setButtonPressedLPFILT){
    filterBPA.gain.setValueAtTime(0, audioContext.currentTime);
  }
  });
- BPKNOBA.addEventListener('change', function(){
+ BPKNOBA.addEventListener('input', function(){
+  if (setButtonPressedBPFILT){
   filterBPA.gain.setValueAtTime(BPKNOBA.value, audioContext.currentTime);
- }, false);
+  }
+}, false);
 
 
  const HPKNOBA = document.getElementById('knob-3-a');
@@ -326,8 +330,10 @@ if (setButtonPressedLPFILT){
    filterHPA.gain.setValueAtTime(0, audioContext.currentTime);
  }
 });
-HPKNOBA.addEventListener('change', function(){
- filterHPA.gain.setValueAtTime(HPKNOBA.value, audioContext.currentTime);
+HPKNOBA.addEventListener('input', function(){
+  if (setButtonPressedHPFILT){
+  filterHPA.gain.setValueAtTime(HPKNOBA.value, audioContext.currentTime);
+  }
 }, false); 
 
  const LPKNOBB = document.getElementById('knob-1-b');
@@ -344,9 +350,11 @@ if (setButtonPressedLPFILTB){
    filterLPB.gain.setValueAtTime(0, audioContext.currentTime);
  }
  });
-LPKNOBB.addEventListener('change', function(){
+LPKNOBB.addEventListener('input', function(){
+  if (setButtonPressedLPFILTB){
   filterLPB.gain.setValueAtTime(LPKNOBB.value, audioContext.currentTime);
- }, false);
+  }
+}, false);
 
  const BPKNOBB = document.getElementById('knob-2-b');
  const BPFSETB = document.getElementById('set-bpfb');
@@ -362,9 +370,11 @@ LPKNOBB.addEventListener('change', function(){
    filterBPB.gain.setValueAtTime(0, audioContext.currentTime);
  }
  });
-BPKNOBB.addEventListener('change', function(){
+BPKNOBB.addEventListener('input', function(){
+  if (setButtonPressedBPFILTB){
   filterBPB.gain.setValueAtTime(BPKNOBB.value, audioContext.currentTime);
- }, false);
+  }
+}, false);
 
  const HPKNOBB = document.getElementById('knob-3-b');
  const HPFSETB = document.getElementById('set-hpfb');
@@ -381,8 +391,10 @@ BPKNOBB.addEventListener('change', function(){
  }
  });
  HPKNOBB.addEventListener('change', function(){
+  if (setButtonPressedHPFILTB){
   filterHPB.gain.setValueAtTime(HPKNOBB.value, audioContext.currentTime);
- }, false);
+  }
+}, false);
  
 
 /* Button to check loudness of nodes
